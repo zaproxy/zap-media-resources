@@ -1,0 +1,596 @@
+1
+00:00:00,000 --> 00:00:12,720
+Hello and welcome to a ZAP Chat video about the ZAP break functionality.
+
+2
+00:00:12,720 --> 00:00:16,640
+Now the break functionality has been in ZAP since day one.
+
+3
+00:00:16,640 --> 00:00:19,640
+So why record a video about it now?
+
+4
+00:00:19,640 --> 00:00:26,560
+Well it's thanks to this tweet from CyberGlitch James who asked for a video on the break functionality,
+
+5
+00:00:26,560 --> 00:00:31,200
+he was looking for one and my immediate reaction was, well of course I must have recorded a
+
+6
+00:00:31,200 --> 00:00:36,440
+video about break until I tried to find it and then realised I probably haven't.
+
+7
+00:00:36,440 --> 00:00:41,540
+And we want to know what videos to record as part of this series, so this seemed like
+
+8
+00:00:41,540 --> 00:00:46,800
+an ideal opportunity to record something that we know people want.
+
+9
+00:00:46,800 --> 00:00:55,880
+So let's switch to ZAP and I'm going to use BodgeIt because it's a nice and simple application
+
+10
+00:00:55,880 --> 00:00:56,380
+
+
+11
+00:00:56,380 --> 00:00:56,540
+
+
+12
+00:00:56,540 --> 00:00:58,040
+so we can see exactly what's going on.
+
+13
+00:00:58,040 --> 00:01:04,260
+And the break functionality is very much a manual technique, and so that's why I'm going
+
+14
+00:01:04,260 --> 00:01:06,000
+to use the ZAP UI.
+
+15
+00:01:06,000 --> 00:01:14,220
+We do have an API for it, but that's really for if you're controlling ZAP with another
+
+16
+00:01:14,220 --> 00:01:16,580
+application.
+
+17
+00:01:16,580 --> 00:01:23,420
+So look at BodgeIt and what we'll see is if you go to the product, you can add a product
+
+18
+00:01:23,420 --> 00:01:26,360
+to your basket.
+
+19
+00:01:26,360 --> 00:01:36,880
+Trouble is the quantity field we can't type in, and the JavaScript controls don't allow us to put anything less than 1 or more than 12 in the basket.
+
+20
+00:01:37,620 --> 00:01:43,180
+Now, as security people, we want to test the exception cases.
+
+21
+00:01:43,300 --> 00:01:44,300
+We want to try things out.
+
+22
+00:01:44,880 --> 00:01:49,460
+And this is annoying, the fact that we can't control these values from the UI.
+
+23
+00:01:50,020 --> 00:01:54,060
+But there are lots of other values we won't be able to control from the UI, like hidden fields.
+
+24
+00:01:54,480 --> 00:01:55,880
+So it's not an unusual case.
+
+25
+00:01:56,520 --> 00:01:59,760
+And what we want to do is we want to change things on the fly.
+
+26
+00:02:00,400 --> 00:02:06,980
+And because ZAP is sitting in between the browser and the target application, that's exactly what we can do.
+
+27
+00:02:08,200 --> 00:02:18,000
+So if we go back to ZAP and look at the main toolbar, you'll see a button here which says set break on all requests and responses.
+
+28
+00:02:18,000 --> 00:02:21,080
+Although you can't see all of that because my picture's in the way.
+
+29
+00:02:21,320 --> 00:02:21,580
+Never mind.
+
+30
+00:02:22,180 --> 00:02:23,620
+But it's this green button.
+
+31
+00:02:24,360 --> 00:02:26,340
+And if I press it, then it turns.
+
+32
+00:02:26,360 --> 00:02:26,640
+It turns red.
+
+33
+00:02:27,460 --> 00:02:29,920
+And it will change to saying unset the break point.
+
+34
+00:02:31,080 --> 00:02:32,060
+So go back to the browser.
+
+35
+00:02:32,560 --> 00:02:34,760
+And then I will add to the basket.
+
+36
+00:02:35,280 --> 00:02:38,540
+And immediately, by default, control switches to ZAP.
+
+37
+00:02:39,360 --> 00:02:45,480
+And you'll see we're using now this break tab here.
+
+38
+00:02:46,000 --> 00:02:49,100
+And what we have is we have the post request from the browser.
+
+39
+00:02:49,460 --> 00:02:51,160
+It's whatever request is next.
+
+40
+00:02:51,720 --> 00:02:52,880
+But in this case, it's the post.
+
+41
+00:02:53,660 --> 00:02:55,560
+And we see the data as well.
+
+42
+00:02:56,360 --> 00:02:56,860
+The post data.
+
+43
+00:02:57,520 --> 00:02:59,360
+Now we can change absolutely anything here.
+
+44
+00:02:59,720 --> 00:03:02,540
+We can change any of these headers.
+
+45
+00:03:02,860 --> 00:03:04,400
+We can do whatever we like.
+
+46
+00:03:04,900 --> 00:03:09,700
+But the most interesting thing usually, sometimes it's header values, but it's often the post data.
+
+47
+00:03:10,500 --> 00:03:12,560
+And we can see a product ID.
+
+48
+00:03:12,700 --> 00:03:14,160
+We can see a price and a quantity.
+
+49
+00:03:14,900 --> 00:03:20,320
+Well, let's change the price to something big and change the quantity to something big.
+
+50
+00:03:20,940 --> 00:03:25,440
+So now we've changed this request, but nothing has happened to it because it's still in ZAP.
+
+51
+00:03:26,360 --> 00:03:33,800
+If you have a look at the, there are some extra controls next to the button, which we use to set the break point.
+
+52
+00:03:34,460 --> 00:03:41,960
+And that is submit and step to the next request or response and submit and continue to the next break point.
+
+53
+00:03:43,220 --> 00:03:49,700
+Now, what this will do is submit and step will basically take you to the next point.
+
+54
+00:03:49,760 --> 00:03:56,200
+So if I press that, then we will actually see we've now got the response coming back from ZAP.
+
+55
+00:03:56,200 --> 00:03:56,320
+
+
+56
+00:03:56,360 --> 00:03:57,640
+So here's all the data.
+
+57
+00:03:58,200 --> 00:04:01,420
+So basically, we're stepping through the requests one at a time.
+
+58
+00:04:02,140 --> 00:04:08,020
+If we've made all the changes we want to, then we can use this submit and continue.
+
+59
+00:04:08,820 --> 00:04:13,220
+And you'll see we've actually, we've unset the global break point.
+
+60
+00:04:14,220 --> 00:04:18,960
+Now, if we switch back to the browser, we will see that actually the price didn't change.
+
+61
+00:04:19,300 --> 00:04:23,200
+So that value in the post data is actually a red herring.
+
+62
+00:04:23,700 --> 00:04:25,220
+But the quantity has changed.
+
+63
+00:04:25,220 --> 00:04:26,340
+So we were able to change.
+
+64
+00:04:26,360 --> 00:04:32,800
+The quantity on the fly, which is what we want to do now, whether we want it to be this value here is another matter.
+
+65
+00:04:33,680 --> 00:04:42,440
+But what it shows you is that we can change any value in any part of any request or response on the fly in ZAP.
+
+66
+00:04:43,020 --> 00:04:46,860
+So this is really powerful, allows you to do lots of fun things.
+
+67
+00:04:47,660 --> 00:04:49,080
+And that is a break functionality.
+
+68
+00:04:50,460 --> 00:04:51,780
+Well, it's not quite everything.
+
+69
+00:04:52,220 --> 00:04:56,160
+So there are more subtleties, which I will cover now.
+
+70
+00:04:56,960 --> 00:05:09,080
+So one thing you will notice is that if we actually put on the global break point, then every time we go anywhere, we actually have to keep on submitting.
+
+71
+00:05:10,760 --> 00:05:13,400
+And it gets quite annoying.
+
+72
+00:05:13,900 --> 00:05:17,680
+Now, in a traditional web app like BodgeIt, it's not too bad.
+
+73
+00:05:18,280 --> 00:05:24,680
+But if you've got a modern web app, then these will often be making lots of requests in the background.
+
+74
+00:05:25,340 --> 00:05:26,340
+And you'll find it's a flood.
+
+75
+00:05:26,360 --> 00:05:31,460
+You won't be able to actually intercept and change the request that you really want.
+
+76
+00:05:32,840 --> 00:05:39,800
+So for that reason, we have this other option, which is adding custom HTTP break points.
+
+77
+00:05:40,640 --> 00:05:44,360
+And that's a little X value with a plus on it.
+
+78
+00:05:45,180 --> 00:05:54,580
+So what we can do now is we can choose either we can match on anything in the URL request header body response header body.
+
+79
+00:05:55,060 --> 00:05:56,320
+We can match
+
+80
+00:05:56,960 --> 00:06:01,340
+a string or a regex and we can break on that basis.
+
+81
+00:06:02,240 --> 00:06:12,560
+Now, you can put all these values in here, but you might find it easier if it's a URL you're looking for to actually go to the history or you can go to the sites tree as well.
+
+82
+00:06:13,020 --> 00:06:14,860
+And here we've got the basket.
+
+83
+00:06:14,900 --> 00:06:24,080
+So in this case, we just want to intercept requests to the basket so we can right click and there's the break option here.
+
+84
+00:06:24,080 --> 00:06:29,500
+And then it's a URL, it's a regex and there's the string.
+
+85
+00:06:29,900 --> 00:06:31,420
+So we'll save that.
+
+86
+00:06:32,120 --> 00:06:39,180
+And you'll see this breakpoints tab breakpoints tab here appears and you'll see it's an HTTP breakpoint.
+
+87
+00:06:39,360 --> 00:06:40,580
+And there's the condition.
+
+88
+00:06:41,420 --> 00:06:49,220
+So now the global breakpoint hasn't been set, but we have this breakpoint on a specific URL.
+
+89
+00:06:50,120 --> 00:06:52,280
+So I go back to BodgeIt.
+
+90
+00:06:52,520 --> 00:06:54,020
+Then I can actually.
+
+91
+00:06:54,020 --> 00:06:58,220
+navigate around here and if it's a modern web app then it can make all
+
+92
+00:06:58,220 --> 00:07:02,960
+these requests responses get responses in the background and you won't have to
+
+93
+00:07:02,960 --> 00:07:09,080
+worry about them it's only when you go to a particular URL is requested that's
+
+94
+00:07:09,080 --> 00:07:15,680
+when you're going okay now I can actually change things and here you can
+
+95
+00:07:15,680 --> 00:07:20,360
+see that basically I have to kind of step through until I get to the point
+
+96
+00:07:20,360 --> 00:07:26,760
+where I want to okay update the basket and then we can update it to say have a
+
+97
+00:07:26,760 --> 00:07:33,740
+negative number in and there's the response coming back and we will see
+
+98
+00:07:33,740 --> 00:07:38,340
+that we don't have a negative quantity and the store owes us money which is
+
+99
+00:07:38,340 --> 00:07:44,180
+always nice so that is what these breakpoints are conditional breakpoints
+
+100
+00:07:44,180 --> 00:07:48,480
+and you can enable them and disable them very quickly so if you don't want to
+
+101
+00:07:48,480 --> 00:07:50,360
+actually so if you want to have a set of
+
+102
+00:07:50,360 --> 00:07:56,920
+breakpoints available to you you can then enable them whenever you want and
+
+103
+00:07:56,920 --> 00:08:03,600
+then ZAP will you intercept the requests as required and you can disable them
+
+104
+00:08:03,600 --> 00:08:11,160
+something else I should have mentioned is we can drop requests so you can bin
+
+105
+00:08:11,160 --> 00:08:16,840
+requests or responses via the kind of no entry sign button there and that
+
+106
+00:08:16,840 --> 00:08:20,340
+basically just gets rid of whatever that request or response so it
+
+107
+00:08:20,360 --> 00:08:25,600
+means the browser will just not see either browser or the
+
+108
+00:08:25,600 --> 00:08:29,080
+server will not see them and sometimes it's quite useful for you to drop
+
+109
+00:08:29,080 --> 00:08:36,480
+requests or responses particularly modern web applications so that is most
+
+110
+00:08:36,480 --> 00:08:42,560
+of the break functionality but there are a few options so if you go to the
+
+111
+00:08:42,560 --> 00:08:46,860
+options they actually split across a couple of screens just to make things a
+
+112
+00:08:46,860 --> 00:08:49,720
+little bit confusing I think it's historical rather than anything else so
+
+113
+00:08:50,360 --> 00:08:57,620
+if we go to display then there's an option for the break buttons only in the
+
+114
+00:08:57,620 --> 00:09:02,900
+toolbar only the break panel or in both the break panel and toolbar so I will
+
+115
+00:09:02,900 --> 00:09:09,140
+select that option and you will now see that we've got the break options down
+
+116
+00:09:09,140 --> 00:09:14,960
+here in the break toolbar as well as in the main toolbar is that more useful for
+
+117
+00:09:14,960 --> 00:09:18,500
+you you can choose wherever you want these things to be some people prefer
+
+118
+00:09:18,500 --> 00:09:20,240
+them one way some people prefer them the other
+
+119
+00:09:20,360 --> 00:09:26,680
+way we also have a break points option tab you can see you've got an option here
+
+120
+00:09:26,680 --> 00:09:37,020
+to confirm where they drop the trapped message so I just set that go and update
+
+121
+00:09:37,020 --> 00:09:44,620
+and if I say drop now it'll do you want to drop the trap message and I'll choose
+
+122
+00:09:44,620 --> 00:09:50,020
+to drop it in this case so that allows you to choose whether you you know du you want a
+
+123
+00:09:50,360 --> 00:09:56,860
+confirmation or not. We also have an option to break only on messages in scope. Hopefully you
+
+124
+00:09:56,860 --> 00:10:03,040
+know what scope means but that's all to do with contexts. There are other videos on these things
+
+125
+00:10:03,040 --> 00:10:09,460
+but that can be very useful if you have a quite narrowly defined scope or if your
+
+126
+00:10:09,460 --> 00:10:16,520
+application is making lots of requests to other URLs. Here's the option for ZAP always being on
+
+127
+00:10:16,520 --> 00:10:22,340
+top when the break point is hit so you can turn that off and you can show buttons to select
+
+128
+00:10:22,340 --> 00:10:29,500
+requests you don't want ZAP to break on and these buttons are kind of shown defined below so if I
+
+129
+00:10:29,500 --> 00:10:34,880
+enable that you will actually see now this doesn't these don't appear in the main toolbar because
+
+130
+00:10:34,880 --> 00:10:41,960
+that's getting quite crowded but you will see let me move ZAP down a little bit so hopefully
+
+131
+00:10:41,960 --> 00:10:46,500
+we can see the hover overs. We will see we have
+
+132
+00:10:46,500 --> 00:10:56,580
+an option to set ignore breaks on JavaScript files, ignore on CSS fonts, ignore on multimedia,
+
+133
+00:10:56,580 --> 00:11:02,820
+so these are all options you can just enable those buttons to make sure that you don't keep
+
+134
+00:11:02,820 --> 00:11:16,200
+on get breaking on things you're really not interested in. And finally we do have an option
+
+135
+00:11:16,200 --> 00:11:16,480
+
+
+136
+00:11:16,480 --> 00:11:22,180
+for the break button by default is combined button but we can have separate ones for
+
+137
+00:11:22,180 --> 00:11:29,800
+requests and responses so if I choose that then you'll see both in the break tab we have these
+
+138
+00:11:29,800 --> 00:11:36,680
+buttons for just breaking on all requests and breaking on all responses and we've got the same
+
+139
+00:11:36,680 --> 00:11:41,680
+thing in the main toolbar so if you know you only want to break on requests or just break
+
+140
+00:11:41,680 --> 00:11:45,500
+on responses or be able to choose between them then you can set these they are
+
+141
+00:11:46,480 --> 00:11:52,780
+as you can see they they change dynamically so it just gives you more control over the break
+
+142
+00:11:52,780 --> 00:11:59,020
+functionality. So that is it for the break functionality now one thing I want to point
+
+143
+00:11:59,020 --> 00:12:04,720
+out is this is very much a manual technique if you want to automate these things and always
+
+144
+00:12:04,720 --> 00:12:14,980
+change things in requests or responses then we have a replacer option and I will quickly so that
+
+145
+00:12:14,980 --> 00:12:15,640
+is down here.
+
+146
+00:12:16,480 --> 00:12:22,880
+And that's something I don't think I've covered in videos either so that's something I probably
+
+147
+00:12:22,880 --> 00:12:28,780
+ought to cover in another video but we're trying to keep these ones very focused on particular
+
+148
+00:12:28,780 --> 00:12:35,680
+features so that's it from the break functionality hope you enjoyed it please leave comments below
+
+149
+00:12:35,680 --> 00:12:41,020
+and let us know what else you'd like us to cover thank you very much.
+
