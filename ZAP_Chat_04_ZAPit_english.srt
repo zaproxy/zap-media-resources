@@ -100,7 +100,7 @@ Yeah, sure.
 
 26
 00:01:38,880 --> 00:01:41,680
-Just keeping it short, my name is Yiannis Papouasoglou.
+Just keeping it short, my name is Yiannis Pavlosoglou.
 
 27
 00:01:41,680 --> 00:01:50,340
@@ -744,7 +744,7 @@ security policy wildcard director they actually need that in order to allow
 
 187
 00:12:43,680 --> 00:12:48,940
-video to be functioning right so going back to simon's quote it's not about taking a medium risk
+video to be functioning right so going back to Simon's quote it's not about taking a medium risk
 
 188
 00:12:48,940 --> 00:12:54,460
@@ -880,7 +880,7 @@ to see here there we are we see the 404 now what's interesting straight away eve
 
 221
 00:15:41,800 --> 00:15:45,120
-i can see http/3 is beeing used as a technology
+i can see http/3 is being used as a technology
 
 222
 00:15:45,120 --> 00:15:49,220
@@ -936,7 +936,7 @@ because after being in the corporate world for for more than 10 years i set up m
 
 235
 00:17:01,720 --> 00:17:06,460
-company kyberna and one of the services of course that we had to offer right was pentesting, because
+company Kiberna and one of the services of course that we had to offer right was pentesting, because
 
 236
 00:17:06,460 --> 00:17:11,480
