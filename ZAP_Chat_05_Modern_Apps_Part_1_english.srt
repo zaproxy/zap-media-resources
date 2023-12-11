@@ -12,11 +12,11 @@ And once again, I'm not on my own.
 
 4
 00:00:16,440 --> 00:00:18,440
-I'm joined by Yanis.
+I'm joined by Yiannis.
 
 5
 00:00:18,440 --> 00:00:19,440
-Hi, Yanis.
+Hi, Yiannis.
 
 6
 00:00:19,440 --> 00:00:20,440
@@ -24,15 +24,15 @@ Hello.
 
 7
 00:00:20,440 --> 00:00:26,320
-So, the last time we did a demo was on zapit.
+So, the last time we did a demo was on ZAPit.
 
 8
 00:00:26,320 --> 00:00:28,400
-It seemed to work really well between the two of us with Yanis here.
+It seemed to work really well between the two of us with Yiannis here.
 
 9
 00:00:28,400 --> 00:00:30,620
-So that's why I've asked Yanis to come back.
+So that's why I've asked Yiannis to come back.
 
 10
 00:00:30,620 --> 00:00:33,020
@@ -196,7 +196,7 @@ There's nothing there.
 
 50
 00:02:31,380 --> 00:02:40,380
-Now, Yanis, as I'm wandering around this application, what can you tell me about what it's doing?
+Now, Yiannis, as I'm wandering around this application, what can you tell me about what it's doing?
 
 51
 00:02:40,380 --> 00:02:43,380
@@ -408,7 +408,7 @@ We're just seeing the requests and responses in the background.
 
 103
 00:05:21,380 --> 00:05:27,380
-And I think you alluded to this earlier, Yanis, but why are we not seeing the fragments
+And I think you alluded to this earlier, Yiannis, but why are we not seeing the fragments
 
 104
 00:05:27,380 --> 00:05:28,380
