@@ -8,11 +8,11 @@ And this is going to be a video about a new feature in the new ZAP release, 2.14
 
 3
 00:00:17,680 --> 00:00:19,680
-it's called zapit.
+it's called ZAPit.
 
 4
 00:00:19,680 --> 00:00:22,640
-And this time I'm actually joined by Yanis.
+And this time I'm actually joined by Yiannis.
 
 5
 00:00:22,640 --> 00:00:24,640
@@ -52,7 +52,7 @@ Now why is that relevant?
 
 14
 00:01:05,080 --> 00:01:08,480
-Because that was the first time I met Yanis, who was the pentester who logged in, who
+Because that was the first time I met Yiannis, who was the pentester who logged in, who
 
 15
 00:01:08,480 --> 00:01:10,380
@@ -60,7 +60,7 @@ cracked the single sign-on service.
 
 16
 00:01:10,380 --> 00:01:14,500
-So Yanis, I don't think I've had a chance to publicly thank you for ruining my week
+So Yiannis, I don't think I've had a chance to publicly thank you for ruining my week
 
 17
 00:01:14,500 --> 00:01:19,760
@@ -100,7 +100,7 @@ Yeah, sure.
 
 26
 00:01:38,880 --> 00:01:41,680
-Just keeping it short, my name is Yanis Papouasoglou.
+Just keeping it short, my name is Yiannis Papouasoglou.
 
 27
 00:01:41,680 --> 00:01:50,340
@@ -112,7 +112,7 @@ And currently, one of the things that I've really enjoyed is getting
 
 29
 00:01:54,120 --> 00:01:59,240
-back into contributing to zapit and seeing some of the great work, Simon,
+back into contributing to ZAPit and seeing some of the great work, Simon,
 
 30
 00:01:59,240 --> 00:02:06,320
@@ -120,7 +120,7 @@ that you've been doing with the team and the code and how much of a tool, how li
 
 31
 00:02:06,320 --> 00:02:09,800
-is zapit within the webapp sec community.
+is ZAPit within the webapp sec community.
 
 32
 00:02:09,800 --> 00:02:12,520
@@ -148,7 +148,7 @@ So give us an overview.
 
 38
 00:02:25,140 --> 00:02:26,140
-What is zapit?
+What is ZAPit?
 
 39
 00:02:26,140 --> 00:02:27,140
@@ -168,7 +168,7 @@ state of the tool set that we're using and was not happy with it.
 
 43
 00:02:46,380 --> 00:02:50,680
-zapit being a prime good example, but most of the tools out there, if you download any
+ZAPit being a prime good example, but most of the tools out there, if you download any
 
 44
 00:02:50,680 --> 00:02:53,500
@@ -212,7 +212,7 @@ need to look after it.
 
 54
 00:03:30,980 --> 00:03:37,100
-So the basic premise of zapit started with what is the maximum we can get out in terms
+So the basic premise of ZAPit started with what is the maximum we can get out in terms
 
 55
 00:03:37,100 --> 00:03:41,520
@@ -416,7 +416,7 @@ Yes, indeed.
 
 105
 00:06:15,980 --> 00:06:20,020
-So first of all, let's start with zapit itself and the great 2.14 Release.
+So first of all, let's start with ZAPit itself and the great 2.14 Release.
 
 106
 00:06:20,020 --> 00:06:21,020
@@ -516,7 +516,7 @@ As you'll see, we've got a whole load of command line options.
 
 130
 00:07:27,020 --> 00:07:35,020
-And lower down here, we'll see zapit target URL from a quick reconnaissance scan and also
+And lower down here, we'll see ZAPit target URL from a quick reconnaissance scan and also
 
 131
 00:07:35,020 --> 00:07:38,020
@@ -660,7 +660,7 @@ installed so we're now we're looking good and what i'm going to do is i'm just g
 
 166
 00:10:37,420 --> 00:10:43,740
-and run zapit against example.com again. And now we'll see a little bit more about the tech.
+and run ZAPit against example.com again. And now we'll see a little bit more about the tech.
 
 167
 00:10:43,740 --> 00:10:52,020
@@ -716,7 +716,7 @@ input fields and remember this is on the very first page. So that's the informat
 
 180
 00:11:57,600 --> 00:12:02,240
-which is not a particularly interesting application actually so Yanis what else should we test?
+which is not a particularly interesting application actually so Yiannis what else should we test?
 
 181
 00:12:03,760 --> 00:12:08,400
@@ -748,7 +748,7 @@ video to be functioning right so going back to simon's quote it's not about taki
 
 188
 00:12:48,940 --> 00:12:54,460
-finding from zapit and then including it in your pentest report it needs further analysis and
+finding from ZAPit and then including it in your pentest report it needs further analysis and
 
 189
 00:12:54,460 --> 00:13:03,180
@@ -1032,7 +1032,7 @@ running out of time on my zoom unfortunately so better wrap this up quite quickl
 
 259
 00:19:41,800 --> 00:19:47,560
-very much for that introduction to zapit and the suggestion now i mean one thing we do want to
+very much for that introduction to ZAPit and the suggestion now i mean one thing we do want to
 
 260
 00:19:47,560 --> 00:19:54,040
