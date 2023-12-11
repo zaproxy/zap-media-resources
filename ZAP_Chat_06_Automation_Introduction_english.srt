@@ -200,7 +200,7 @@ I'm doing this on the command line minus ZAPit and the target url and we'll see 
 
 51
 00:05:01,120 --> 00:05:08,280
-it's made one request and it got a 200. I haven't actually got the wappalizer add-on installed so
+it's made one request and it got a 200. I haven't actually got the wappalyzer add-on installed so
 
 52
 00:05:08,280 --> 00:05:14,720
@@ -332,7 +332,7 @@ give you more information than ZAPit. But depending on the website could take a 
 
 84
 00:07:56,780 --> 00:08:03,180
-But as Yannis said it uses traditional spider there's no option for the AJAX spider and no
+But as Yiannis said it uses traditional spider there's no option for the AJAX spider and no
 
 85
 00:08:03,180 --> 00:08:09,140
@@ -476,7 +476,7 @@ just real quickly where have we specified in the command line options that this 
 
 120
 00:11:49,180 --> 00:11:56,700
-if you don't mind just showing us that? It was actually there so zapbaseline.py so it's a python
+if you don't mind just showing us that? It was actually there so zap-baseline.py so it's a python
 
 121
 00:11:56,700 --> 00:12:02,240
@@ -612,7 +612,7 @@ even more advanced scan and then you want to be ready to go from a baseline pers
 
 154
 00:15:12,480 --> 00:15:16,160
-before you get into the more advanced stuff that simon's about to show us. Yeah and one thing we've
+before you get into the more advanced stuff that Simon's about to show us. Yeah and one thing we've
 
 155
 00:15:16,160 --> 00:15:23,360
