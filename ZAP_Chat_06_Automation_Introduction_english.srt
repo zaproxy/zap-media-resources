@@ -1,6 +1,6 @@
 1
 00:00:00,000 --> 00:00:12,480
-Hello and welcome to another ZAP Chat video. Once again, I am joined with by Yanis.
+Hello and welcome to another ZAP Chat video. Once again, I am joined with by Yiannis.
 
 2
 00:00:12,480 --> 00:00:13,920
@@ -104,7 +104,7 @@ in web applications is hard and you know do well you have to do you really need 
 
 27
 00:02:31,180 --> 00:02:39,760
-like Yanis for example but so we have lots of options for manual pentesters but what we try
+like Yiannis for example but so we have lots of options for manual pentesters but what we try
 
 28
 00:02:39,760 --> 00:02:45,640
@@ -132,7 +132,7 @@ switch back
 
 34
 00:03:22,200 --> 00:03:27,860
-is ZAPit. So Yanis you know about ZAPit don't you? Do you want to give a quick summary?
+is ZAPit. So Yiannis you know about ZAPit don't you? Do you want to give a quick summary?
 
 35
 00:03:28,780 --> 00:03:33,500
@@ -196,7 +196,7 @@ port because I've got tomcat on 8080 and I don't want to clash with that. Minus 
 
 50
 00:04:52,140 --> 00:05:01,120
-I'm doing this on the command line minus zapit and the target url and we'll see very quickly that
+I'm doing this on the command line minus ZAPit and the target url and we'll see very quickly that
 
 51
 00:05:01,120 --> 00:05:08,280
@@ -208,7 +208,7 @@ it can't tell you what technology involved. Five alerts it's found on the root p
 
 53
 00:05:14,720 --> 00:05:20,960
-eight html tags no fields. So this is and you know if you're interested in this zapit scan
+eight html tags no fields. So this is and you know if you're interested in this ZAPit scan
 
 54
 00:05:20,960 --> 00:05:22,120
@@ -220,7 +220,7 @@ we actually recorded another video on it so keep going watch that for more detai
 
 56
 00:05:26,000 --> 00:05:32,940
-The idea as Yanis said it's a very quick tell me about this stuff. So great but it's not really
+The idea as Yiannis said it's a very quick tell me about this stuff. So great but it's not really
 
 57
 00:05:32,940 --> 00:05:36,200
@@ -228,7 +228,7 @@ good for finding you know you're not going to find a cross-site scripting vulner
 
 58
 00:05:36,200 --> 00:05:44,300
-all of these things SQL injection that's not what zapit is for. So yeah this is simple and effective
+all of these things SQL injection that's not what ZAPit is for. So yeah this is simple and effective
 
 59
 00:05:44,300 --> 00:05:48,480
@@ -328,7 +328,7 @@ getting along. So this is useful it's
 
 83
 00:07:50,920 --> 00:07:55,740
-give you more information than zapit. But depending on the website could take a lot longer.
+give you more information than ZAPit. But depending on the website could take a lot longer.
 
 84
 00:07:56,780 --> 00:08:03,180
@@ -596,7 +596,7 @@ So it's very important to tie this into the earlier if you like basic functional
 
 150
 00:14:54,520 --> 00:14:59,560
-say you've zapit right ideally you want to be checking during zapit what the milliseconds
+say you've ZAPit right ideally you want to be checking during ZAPit what the milliseconds
 
 151
 00:14:59,560 --> 00:15:06,560
@@ -1740,7 +1740,7 @@ I think everything I wanted to cover.
 
 436
 00:36:30,700 --> 00:36:34,120
-I don't know if there's anything else you want to add, Yanis, about ZAP Automation?
+I don't know if there's anything else you want to add, Yiannis, about ZAP Automation?
 
 437
 00:36:34,940 --> 00:36:35,440
