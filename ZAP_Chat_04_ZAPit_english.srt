@@ -580,11 +580,11 @@ so let me install that so minus command and then we want to do addoninstall
 
 146
 00:08:38,520 --> 00:08:45,860
-right number of l's. So Simon while you do that tell us a little bit about the wappanalyzer
+right number of l's. So Simon while you do that tell us a little bit about the wappalyzer
 
 147
 00:08:45,860 --> 00:08:53,000
-add-on what does it do? Yeah so wappanalyzer is a third party product it's actually
+add-on what does it do? Yeah so wappalyzer is a third party product it's actually
 
 148
 00:08:53,000 --> 00:08:58,180
@@ -624,7 +624,7 @@ information there's just extra things but these rules are not quite as stable an
 
 157
 00:09:44,600 --> 00:09:52,620
-as the release quality ones. So you basically have to install the two add-ons wappanalyzer and p
+as the release quality ones. So you basically have to install the two add-ons wappalyzer and p
 
 158
 00:09:52,620 --> 00:09:57,140
