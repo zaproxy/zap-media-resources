@@ -64,7 +64,7 @@ Great. And I'll move some of the toolbars out of my way so I can see what's goin
 
 17
 00:01:13,640 --> 00:01:18,180
-So what I wanted to show you is start with if we go to docentation.
+So what I wanted to show you is start with if we go to documentation.
 
 18
 00:01:19,120 --> 00:01:26,380
