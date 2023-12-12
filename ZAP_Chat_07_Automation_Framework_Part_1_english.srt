@@ -248,11 +248,11 @@ And one thing I will..
 
 63
 00:04:27,300 --> 00:04:35,580
-the docs and go to docentation and then we got automate and automation framework.
+the docs and go to documentation and then we got automate and automation framework.
 
 64
 00:04:35,940 --> 00:04:38,460
-So this is all the docentation of the automation framework.
+So this is all the documentation of the automation framework.
 
 65
 00:04:38,820 --> 00:04:42,660
