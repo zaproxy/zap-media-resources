@@ -64,7 +64,7 @@ Great. And I'll move some of the toolbars out of my way so I can see what's goin
 
 17
 00:01:13,640 --> 00:01:18,180
-So what I wanted to show you is start with if we go to documentation.
+So what I wanted to show you is start with if we go to docentation.
 
 18
 00:01:19,120 --> 00:01:26,380
@@ -248,11 +248,11 @@ And one thing I will..
 
 63
 00:04:27,300 --> 00:04:35,580
-the docs and go to documentation and then we got automate and automation framework.
+the docs and go to docentation and then we got automate and automation framework.
 
 64
 00:04:35,940 --> 00:04:38,460
-So this is all the documentation of the automation framework.
+So this is all the docentation of the automation framework.
 
 65
 00:04:38,820 --> 00:04:42,660
@@ -384,7 +384,7 @@ We have these jobs down here.
 
 97
 00:07:16,320 --> 00:07:22,080
-And at some point I'll try and make these columns better size automatically.
+And at some point I'll try and make these colns better size automatically.
 
 98
 00:07:22,080 --> 00:07:23,220
@@ -396,7 +396,7 @@ Yeah.
 
 100
 00:07:23,440 --> 00:07:26,200
-So just for argument's sake, Simon, let's just say that.
+So just for argent's sake, Simon, let's just say that.
 
 101
 00:07:26,220 --> 00:07:34,100
@@ -660,7 +660,7 @@ And we can choose
 
 166
 00:12:54,100 --> 00:12:59,980
-the threshold, which is off, low, medium, or high to go very fine rate.
+the threshold, which is off, low, medi, or high to go very fine rate.
 
 167
 00:13:00,760 --> 00:13:02,620
@@ -740,7 +740,7 @@ So what happens is the passive scanner has a set of threads and it will passivel
 
 186
 00:14:23,900 --> 00:14:29,780
-So it goes through ZAP, um, but you don't want to run the report straight away or do things immediately.
+So it goes through ZAP, but you don't want to run the report straight away or do things immediately.
 
 187
 00:14:29,780 --> 00:14:31,720
