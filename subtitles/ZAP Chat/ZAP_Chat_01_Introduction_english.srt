@@ -1,0 +1,44 @@
+1
+00:00:00,000 --> 00:00:11,000
+Hello and welcome to a brand new series of videos about the Zed Attack Proxy, otherwise known as ZAP.
+
+2
+00:00:11,000 --> 00:00:16,000
+For those of you who don't know, ZAP is a tool for finding vulnerabilities in web applications.
+
+3
+00:00:16,000 --> 00:00:19,000
+It's open source and completely free.
+
+4
+00:00:19,000 --> 00:00:27,000
+In this series, we plan on having pretty short videos, 10 to 15 minutes, covering specific ZAP features.
+
+5
+00:00:27,000 --> 00:00:34,000
+And these could be new features, older features we haven't covered in videos before, or maybe we have covered them, but they've changed quite a bit.
+
+6
+00:00:34,000 --> 00:00:36,000
+And there are quite a few of those.
+
+7
+00:00:36,000 --> 00:00:40,000
+So it's probably not ideal for people completely new to ZAP.
+
+8
+00:00:40,000 --> 00:00:48,000
+So if you are new to ZAP, then have a look at zaproxy.org, because we've got lots of other videos that might be better for you.
+
+9
+00:00:48,000 --> 00:00:51,000
+But if these videos appeal, then please subscribe.
+
+10
+00:00:51,000 --> 00:00:57,000
+And if there is anything specific you'd like us to cover, then please mention it in the comments below.
+
+11
+00:00:57,000 --> 00:00:59,000
+Hope you enjoy them.
+

@@ -1,0 +1,1304 @@
+1
+00:00:00,000 --> 00:00:09,720
+Hello, and welcome again to another episode of ZAP Chat.
+
+2
+00:00:10,260 --> 00:00:12,960
+And once again, we have Yiannis with us. Hi, Yiannis.
+
+3
+00:00:13,860 --> 00:00:17,100
+Hello. Yes, yes, yes. That time of week, everyone.
+
+4
+00:00:17,820 --> 00:00:20,660
+So what are we doing this week, Simon?
+
+5
+00:00:21,720 --> 00:00:26,580
+Good question. So this week, we are going to cover the automation framework.
+
+6
+00:00:27,000 --> 00:00:29,980
+Although we're not going to cover all of the automation frameworks, there's quite a lot.
+
+7
+00:00:30,220 --> 00:00:37,000
+And we want to keep these talks between 10 and 20 minutes each.
+
+8
+00:00:37,080 --> 00:00:39,260
+I think we've ran over last week. Never mind.
+
+9
+00:00:40,300 --> 00:00:44,020
+So we'll probably have several episodes on the automation framework.
+
+10
+00:00:44,020 --> 00:00:49,760
+And that means you can just watch the ones that you want to watch about the relevant sections, relevant bits.
+
+11
+00:00:50,820 --> 00:00:57,200
+So without further ado, we will get into this and I will share my screen.
+
+12
+00:00:58,220 --> 00:00:59,520
+Let's dive straight in.
+
+13
+00:01:00,240 --> 00:01:02,240
+Make sure I share the right one.
+
+14
+00:01:02,860 --> 00:01:05,240
+And hopefully you can see the ZAP website.
+
+15
+00:01:06,380 --> 00:01:08,200
+We can indeed. We can indeed.
+
+16
+00:01:08,380 --> 00:01:13,640
+Great. And I'll move some of the toolbars out of my way so I can see what's going on.
+
+17
+00:01:13,640 --> 00:01:18,180
+So what I wanted to show you is start with if we go to documentation.
+
+18
+00:01:19,120 --> 00:01:26,380
+Now, I did mention that last week when we're talking about the different options for automation,
+
+19
+00:01:26,840 --> 00:01:29,060
+that we had some getting started..
+
+20
+00:01:29,100 --> 00:01:29,780
+getting started guide.
+
+21
+00:01:30,000 --> 00:01:31,720
+And we were going to add some getting further guides.
+
+22
+00:01:32,180 --> 00:01:35,180
+And we have the start of the getting further guide with automation.
+
+23
+00:01:36,240 --> 00:01:38,700
+And as you'll see, it's not finished yet.
+
+24
+00:01:39,020 --> 00:01:44,160
+But what I wanted to show was the automation options, because these are the things we covered last week.
+
+25
+00:01:44,800 --> 00:01:53,180
+And what we've got is a table at the top, which shows all the options, ZAPit, Quick Start, Package Scans, GitHub Actions, Automation Framework, and API.
+
+26
+00:01:53,720 --> 00:01:57,060
+And it compares ease of use with the flexibility and functionality.
+
+27
+00:01:58,440 --> 00:01:59,840
+So as you can see,
+
+28
+00:02:00,660 --> 00:02:06,820
+the easiest ones to use are things like ZAPit and Quick Start, but they don't have very much flexibility.
+
+29
+00:02:08,240 --> 00:02:17,700
+So what we have is, and I talked about the other options last week, but the automation framework is really what we're aiming for.
+
+30
+00:02:17,940 --> 00:02:21,160
+It's a good balance of ease of use and flexibility and functionality.
+
+31
+00:02:21,880 --> 00:02:25,520
+So something like the API is really powerful, but it's harder to use.
+
+32
+00:02:26,180 --> 00:02:29,980
+And the idea is the automation framework should be a really good option.
+
+33
+00:02:30,280 --> 00:02:32,780
+For most people automating ZAP.
+
+34
+00:02:35,900 --> 00:02:44,700
+So I think it's important, Simon, to just quickly cover that, you know, basically the automation framework is made up of a set of jobs, right?
+
+35
+00:02:44,760 --> 00:02:45,240
+Exactly.
+
+36
+00:02:45,240 --> 00:02:47,880
+You'll have different needs based on your different jobs.
+
+37
+00:02:47,940 --> 00:02:51,660
+And as you said, like, we'll be here for two and a half hours, we've covered all of them.
+
+38
+00:02:51,940 --> 00:02:57,960
+So what are you thinking that we're covering today in terms of the jobs of explaining further the automation?
+
+39
+00:02:57,960 --> 00:03:04,500
+So I was just going to really start with the GUI, which is a bit strange because it's automation.
+
+40
+00:03:04,500 --> 00:03:05,480
+So why have we got a GUI?
+
+41
+00:03:05,780 --> 00:03:07,500
+Well, it kind of makes things easy to set up.
+
+42
+00:03:08,020 --> 00:03:14,980
+But actually, when you said that, I just realized something that came up in a user group on the ZAP user group post recently.
+
+43
+00:03:15,100 --> 00:03:18,620
+Someone saying, well, if I start ZAP in different ways, does it do different things?
+
+44
+00:03:19,060 --> 00:03:19,960
+And the answer is no.
+
+45
+00:03:20,480 --> 00:03:26,620
+If you start ZAP by the automation framework, it'll do the same thing if you do the same things via the API or the desktop.
+
+46
+00:03:27,340 --> 00:03:27,580
+So.
+
+47
+00:03:27,960 --> 00:03:31,440
+All of these interfaces are just ways of controlling ZAP.
+
+48
+00:03:32,040 --> 00:03:40,380
+And most of them you can, depending on how flexible they are, but you can do exactly the same with the package scans that you can do with the automation framework.
+
+49
+00:03:40,380 --> 00:03:46,020
+Or the automation framework can do everything the package scans can do, but the package scans can't do everything the automation framework does.
+
+50
+00:03:47,880 --> 00:03:52,200
+So let me switch over to ZAP.
+
+51
+00:03:52,640 --> 00:03:54,460
+So I'm running the latest weekly again.
+
+52
+00:03:55,100 --> 00:03:57,300
+And what you need to do is.
+
+53
+00:03:57,300 --> 00:04:02,420
+The automation framework is configured via the automation tab here at the bottom.
+
+54
+00:04:03,440 --> 00:04:04,180
+And actually.
+
+55
+00:04:04,280 --> 00:04:06,540
+And we covered this a little bit last week, right?
+
+56
+00:04:06,620 --> 00:04:07,740
+We said that it's very important.
+
+57
+00:04:08,580 --> 00:04:17,200
+You're probably going to fail miserably doing this on a plan on a TXT file if you can't get it right in the GUI, right?
+
+58
+00:04:17,320 --> 00:04:20,560
+So it's best to start with the graphical user interface.
+
+59
+00:04:21,060 --> 00:04:24,420
+And what better place than to put the plan here in?
+
+60
+00:04:24,980 --> 00:04:25,360
+Exactly.
+
+61
+00:04:25,360 --> 00:04:26,260
+And one thing I will..
+
+62
+00:04:26,300 --> 00:04:27,220
+..I will switch back to
+
+63
+00:04:27,300 --> 00:04:35,580
+the docs and go to documentation and then we got automate and automation framework.
+
+64
+00:04:35,940 --> 00:04:38,460
+So this is all the documentation of the automation framework.
+
+65
+00:04:38,820 --> 00:04:42,660
+It has over the framework, all and all of the jobs here.
+
+66
+00:04:43,020 --> 00:04:48,300
+So you won't necessarily have all of these jobs available because it depends on what add-ons you've got installed.
+
+67
+00:04:50,160 --> 00:04:56,440
+And if you go into each of these, you can actually see, let's have a look at the active scan.
+
+68
+00:04:56,440 --> 00:04:57,160
+You'll actually see.
+
+69
+00:04:57,160 --> 00:04:59,660
+We give the YAML free for that particular job.
+
+70
+00:04:59,660 --> 00:05:01,780
+So every job here has its own YAML.
+
+71
+00:05:02,040 --> 00:05:12,340
+So as you said, Yiannis, you can go in and create the YAML file in a text editor and hopefully it will work, but you know, it's, it's a bit of messing around.
+
+72
+00:05:12,460 --> 00:05:13,840
+So if you're used to these things, great.
+
+73
+00:05:14,560 --> 00:05:16,900
+But if you're new, then start with the desktop.
+
+74
+00:05:18,780 --> 00:05:20,800
+So we have various options here.
+
+75
+00:05:20,800 --> 00:05:27,160
+We've got some toolbar buttons and we've got an option for the only ones that are enabled at the moment
+
+76
+00:05:27,160 --> 00:05:29,280
+are a new plan and loading a plan.
+
+77
+00:05:30,280 --> 00:05:36,460
+So this is new plan and we have, one of the key things is you have to choose a context.
+
+78
+00:05:36,780 --> 00:05:49,120
+So automation framework plans have to have a context and those contexts have to have URLs, which I think we covered last time because we didn't actually, we created one.
+
+79
+00:05:49,120 --> 00:05:50,260
+It didn't have a URL and it failed.
+
+80
+00:05:51,340 --> 00:05:53,320
+So we also have all of the jobs.
+
+81
+00:05:53,320 --> 00:05:56,940
+So these are all of the jobs that I have available based on the add-ons that I've got installed.
+
+82
+00:05:56,940 --> 00:05:59,580
+And we have profiles.
+
+83
+00:05:59,700 --> 00:06:04,620
+Now you don't have to use these profiles, but these are just quick ways of selecting relevant jobs.
+
+84
+00:06:05,040 --> 00:06:15,480
+So we have the baseline, we have importing, where we, with import job, we've got GraphQL, OpenAPI.
+
+85
+00:06:15,480 --> 00:06:20,320
+So this just selects different jobs based on profiles.
+
+86
+00:06:20,320 --> 00:06:25,140
+You know, if you've got an OpenAPI definition, you probably don't need the spiders.
+
+87
+00:06:26,220 --> 00:06:26,900
+Absolutely.
+
+88
+00:06:27,200 --> 00:06:35,640
+And I think it's important to say here, Simon, that basically the profile is a collection, a pre-configured collection of jobs.
+
+89
+00:06:36,060 --> 00:06:51,480
+For example, when somebody says, Hey, I've just done a ZAP baseline scan, effectively with or without the automation framework, they are in some contexts, having selected a predefined set of jobs, which correspond to that profile, which is the baseline.
+
+90
+00:06:52,660 --> 00:06:53,160
+Exactly, exactly.
+
+91
+00:06:53,400 --> 00:06:56,220
+And you don't, you know, if you, if you actually select, you know, 
+
+92
+00:06:56,220 --> 00:07:03,480
+you say, okay, I'm going to do a custom scan and you can select whichever of these jobs you like, and you can change them afterwards as well, which I'll show.
+
+93
+00:07:04,320 --> 00:07:07,680
+But I'm going to start with a baseline scan because it's nice and quick.
+
+94
+00:07:08,780 --> 00:07:12,240
+And what you'll see is I will just make this tab a little bit bigger.
+
+95
+00:07:12,600 --> 00:07:13,200
+You'll see them.
+
+96
+00:07:13,200 --> 00:07:15,540
+We have these jobs down here.
+
+97
+00:07:16,320 --> 00:07:22,080
+And at some point I'll try and make these columns better size automatically.
+
+98
+00:07:22,080 --> 00:07:23,220
+Slightly better size.
+
+99
+00:07:23,220 --> 00:07:23,400
+Yeah.
+
+100
+00:07:23,440 --> 00:07:26,200
+So just for argument's sake, Simon, let's just say that.
+
+101
+00:07:26,220 --> 00:07:34,100
+The website that we're using, well, actually the website that we are going to be targeting, does not have any Ajax, right?
+
+102
+00:07:34,100 --> 00:07:35,800
+There's no asynchronous JavaScript there.
+
+103
+00:07:35,800 --> 00:07:36,300
+Exactly.
+
+104
+00:07:36,300 --> 00:07:40,380
+How would I remove the Ajax spider job?
+
+105
+00:07:41,040 --> 00:07:50,600
+Well, so what we've got, we've got these jobs and if you select any one of them, you will see that some of these other buttons are enabled.
+
+106
+00:07:51,180 --> 00:07:54,480
+So what we can actually do is we can add jobs.
+
+107
+00:07:54,480 --> 00:07:55,260
+We can move jobs.
+
+108
+00:07:55,300 --> 00:07:56,120
+
+
+109
+00:07:56,120 --> 00:07:57,620
+We can move jobs up and down.
+
+110
+00:07:57,620 --> 00:08:07,000
+So let's say, to start with, say you actually wanted one of the Ajax spider before the standard spider, you could just move it up and then we'll see it changes.
+
+111
+00:08:07,000 --> 00:08:19,940
+Now, as you said, I mean, one reason for, you know, we're going to use example.com and we know that doesn't need the Ajax spider, so we can just go in and we can remove the job and there it's gone.
+
+112
+00:08:20,340 --> 00:08:25,280
+And if you want to add it back in or add any of the other jobs back in, then you've got the full list.
+
+113
+00:08:25,280 --> 00:08:36,780
+So you can basically add, even though you've, you know, this initial new plan dialogue gives you a list of jobs, but you can change them.
+
+114
+00:08:37,200 --> 00:08:45,260
+And one thing you'll see is, you know, you can only actually have what, if you start the plan that way, you can only have one of each jobs, but say you want two reports.
+
+115
+00:08:45,260 --> 00:08:50,500
+Well, we could actually then go in and say, we will add a, another report job.
+
+116
+00:08:52,700 --> 00:08:55,260
+And then it brings up the
+
+117
+00:08:55,280 --> 00:08:56,940
+full template.
+
+118
+00:08:58,040 --> 00:09:04,100
+So we then got two jobs, report jobs, but I will remove one of those because we don't need them.
+
+119
+00:09:04,680 --> 00:09:14,880
+And what that also shows is if you actually double click on any of these things, if I can get the, my mouse to work, then you'll see a lot more information.
+
+120
+00:09:15,200 --> 00:09:20,420
+So each of these jobs has the problem, the GUI there.
+
+121
+00:09:20,840 --> 00:09:24,740
+So you can actually see each of these jobs has a whole set of options.
+
+122
+00:09:26,040 --> 00:09:28,520
+And what we try and do is make sure out of the box, they work well.
+
+123
+00:09:29,360 --> 00:09:32,060
+But let's work, let's go through these very quickly.
+
+124
+00:09:32,360 --> 00:09:36,620
+We have the environment and the environment is actually absolutely key.
+
+125
+00:09:36,840 --> 00:09:42,920
+So you can't have an automation framework plan without an environment and we've got some parameters.
+
+126
+00:09:42,920 --> 00:09:47,760
+We can fail on error, fail on warning and put the progress to standard out.
+
+127
+00:09:48,680 --> 00:09:54,920
+So what you can say is each of these jobs can give warnings or errors, and you can choose.
+
+128
+00:09:55,040 --> 00:09:57,860
+What the exit code is based on those things.
+
+129
+00:09:58,940 --> 00:09:59,660
+Very important.
+
+130
+00:09:59,660 --> 00:10:03,320
+If you're doing any type of continuous integration or continuous development, right?
+
+131
+00:10:03,380 --> 00:10:04,140
+Exactly.
+
+132
+00:10:04,580 --> 00:10:19,040
+And we have variables here, which I think I'll cover, more in more detail in a future episode, but basically you can put any variables in and you can actually use things like system environmental variables as well, which is great for credentials.
+
+133
+00:10:21,280 --> 00:10:24,300
+So we can add more context if we like.
+
+134
+00:10:24,300 --> 00:10:31,260
+And if we double click on this context, we can actually see we've got the standard include, exclude and technology.
+
+135
+00:10:31,260 --> 00:10:36,120
+So we can say what technologies are relevant for this particular context.
+
+136
+00:10:37,360 --> 00:10:54,280
+And I'm going to start with, Oh, if it's spelled correctly... now, if I had, so I didn't have a URL previously in
+
+137
+00:10:54,280 --> 00:11:09,460
+my default context, but if I'd chosen the context with configuration, then we'd have picked up all of that configuration and it's worth saying that it'll pick up things like authentication, even though it doesn't currently appear in this automation GUI.
+
+138
+00:11:09,500 --> 00:11:10,400
+We need to fix that.
+
+139
+00:11:12,520 --> 00:11:17,720
+So we now have the environment set up now, the passive scan config.
+
+140
+00:11:18,020 --> 00:11:21,780
+Now this job, all it does is configure the passive scanner.
+
+141
+00:11:22,300 --> 00:11:23,760
+And so this is something that you.
+
+142
+00:11:23,760 --> 00:11:24,260
+typically
+
+143
+00:11:24,420 --> 00:11:26,100
+want to run very early on.
+
+144
+00:11:26,520 --> 00:11:33,900
+Now you might actually want to have more than one instance of these things because you can actually configure rules.
+
+145
+00:11:34,280 --> 00:11:39,300
+So you can say, okay, I want to turn specific rules on or off.
+
+146
+00:11:40,220 --> 00:11:46,340
+And if you have a look here we have an option to disable all rules if we want.
+
+147
+00:11:46,780 --> 00:11:50,040
+And this is something you can't actually do from the standard GUI.
+
+148
+00:11:50,440 --> 00:11:54,240
+We can say, I want to disable all rules and then enable specific ones.
+
+149
+00:11:54,440 --> 00:11:59,360
+And this will then apply to all of the passive scanning from this point.
+
+150
+00:12:00,000 --> 00:12:02,180
+And this is why you might want to have another of these.
+
+151
+00:12:02,400 --> 00:12:07,500
+So you might want to spider with specific set of rules and then spider again with a different set of rules.
+
+152
+00:12:09,920 --> 00:12:10,620
+If that makes sense.
+
+153
+00:12:11,300 --> 00:12:15,360
+Yeah, that's, that's really important in the context of narrowing down specific checks.
+
+154
+00:12:15,360 --> 00:12:15,620
+Right.
+
+155
+00:12:15,620 --> 00:12:22,560
+And now we're doing the passive scan, but imagine it in the context of an active scan where you're only checking for, let's say, I don't know, SQL injection.
+
+156
+00:12:22,740 --> 00:12:23,000
+Right.
+
+157
+00:12:23,000 --> 00:12:24,120
+And you just want to make sure.
+
+158
+00:12:24,120 --> 00:12:24,260
+Yep.
+
+159
+00:12:24,260 --> 00:12:26,820
+Same with passive scan config.
+
+160
+00:12:27,020 --> 00:12:27,780
+You could do that.
+
+161
+00:12:27,880 --> 00:12:32,280
+And then you could have different rules different type of config.
+
+162
+00:12:32,820 --> 00:12:33,200
+Exactly.
+
+163
+00:12:33,460 --> 00:12:43,940
+And so, as you would have seen there with the rules, by did there, you know, basically we've got the option here to, turn them all on and off.
+
+164
+00:12:43,940 --> 00:12:53,360
+But then we can actually have every, all of the passive scan rules that I have available to me are available here.
+
+165
+00:12:53,360 --> 00:12:54,100
+And we can choose
+
+166
+00:12:54,100 --> 00:12:59,980
+the threshold, which is off, low, medium, or high to go very fine rate.
+
+167
+00:13:00,760 --> 00:13:02,620
+Yeah, very fine control of this.
+
+168
+00:13:02,860 --> 00:13:10,480
+And this is true across all of ZAP you've got, you know, there's huge amount of configuration, which can be a bit confusing to start with.
+
+169
+00:13:12,060 --> 00:13:13,880
+Then what we're going to do is run the spider.
+
+170
+00:13:14,280 --> 00:13:19,400
+So we really need to, you need to explore your application for that.
+
+171
+00:13:19,400 --> 00:13:20,400
+We're going to use the spider.
+
+172
+00:13:20,820 --> 00:13:23,580
+Now we can choose the context but
+
+173
+00:13:23,580 --> 00:13:23,900
+
+
+174
+00:13:23,900 --> 00:13:25,580
+basically we'll choose the first one.
+
+175
+00:13:25,580 --> 00:13:31,900
+If we don't specify anything we don't have a user set up, so we can't do authentication.
+
+176
+00:13:32,360 --> 00:13:35,280
+You can choose to start a different URL.
+
+177
+00:13:35,680 --> 00:13:38,220
+So we've got example.com as our context.
+
+178
+00:13:38,220 --> 00:13:46,180
+We could choose to start a lower URL example.com\app1 one or something, but we're not going to do that here.
+
+179
+00:13:47,200 --> 00:13:49,080
+Max duration, depth and children...
+
+180
+00:13:49,080 --> 00:13:53,900
+..These are all standard ZAP spider configurations, but we've got advanced options.
+
+181
+00:13:53,900 --> 00:14:03,080
+So we've got a whole load of things that you don't usually need to configure, particularly when you're getting started, but they're there.
+
+182
+00:14:03,340 --> 00:14:10,340
+So if you need to, then you can still configure all these things from the from this dialogue.
+
+183
+00:14:11,820 --> 00:14:14,900
+Then one thing we've got is this passive scan wait.
+
+184
+00:14:15,260 --> 00:14:23,840
+So what happens is the passive scanner has a set of threads and it will passively scan all of the requests and responses.
+
+185
+00:14:23,840 --> 00:14:23,880
+
+
+186
+00:14:23,900 --> 00:14:29,780
+So it goes through ZAP, but you don't want to run the report straight away or do things immediately.
+
+187
+00:14:29,780 --> 00:14:31,720
+You want to wait until these, these threads are finished.
+
+188
+00:14:31,760 --> 00:14:42,040
+So, we never know when something really has finished because you could then start making more requests, but basically we have a passive scan queue.
+
+189
+00:14:42,360 --> 00:14:45,460
+When that drops to zero, that's when this job will finish.
+
+190
+00:14:46,800 --> 00:14:48,460
+So again, you could have multiple of these.
+
+191
+00:14:48,460 --> 00:14:53,760
+You could actually wait for the passive scanner to finish off the spider and then carry on to do the
+
+192
+00:14:54,120 --> 00:14:56,040
+Ajax spider.
+
+193
+00:14:56,700 --> 00:15:06,180
+And one reason you might want to do that is the standard spider can detect whether there are, whether it looks like it's a modern web application.
+
+194
+00:15:06,280 --> 00:15:11,560
+And then the Ajax spider has an option to actually, only run if it looks like it's a modern web app.
+
+195
+00:15:13,000 --> 00:15:13,240
+Yeah.
+
+196
+00:15:13,240 --> 00:15:21,780
+So you want to cover all of spidering modern and classic before you, you know, say that you've tested a website for, again, SQL injection for argument's sake.
+
+197
+00:15:21,840 --> 00:15:22,120
+Right.
+
+198
+00:15:22,120 --> 00:15:22,920
+Because otherwise.
+
+199
+00:15:23,700 --> 00:15:23,760
+Yeah.
+
+200
+00:15:23,760 --> 00:15:27,900
+If you haven't done your spidering, you're going to be lacking a few parameters and locations.
+
+201
+00:15:28,000 --> 00:15:28,500
+Exactly.
+
+202
+00:15:28,500 --> 00:15:35,580
+You know, if you, you have to explore your application effectively in order to actually, allow ZAP to do its job.
+
+203
+00:15:37,860 --> 00:15:39,260
+And finally, we've got this report.
+
+204
+00:15:39,640 --> 00:15:53,640
+So we have a whole, you know, I think I choose, I'll choose traditional, PDF report and you see, we have sections, we have filters that we can, choose which risks and
+
+205
+00:15:53,640 --> 00:15:53,740
+confidences
+
+206
+00:15:53,760 --> 00:16:07,100
+can put in, we can choose which sites we want description, all these things, we can set the name so we can do all of these wonderful things and we can actually choose to display the report automatically.
+
+207
+00:16:07,100 --> 00:16:13,040
+So that is the, that's walking through this very quickly.
+
+208
+00:16:13,040 --> 00:16:22,840
+And one thing you may or may not have noticed is we have automatically, when you add the spider, either of the spiders, then you get a job test.
+
+209
+00:16:22,840 --> 00:16:35,520
+And tests are actually key, because one thing with automation is you can set it up, you can check it's working, and then you want it to just run day in, day out.
+
+210
+00:16:36,020 --> 00:16:39,860
+Now, what happens if something changes and it doesn't do what you expect?
+
+211
+00:16:40,680 --> 00:16:46,060
+This is something that is, a significant problem with these, this type of testing.
+
+212
+00:16:46,240 --> 00:16:52,060
+So what we have is you can add job tests and we automatically add
+
+213
+00:16:52,060 --> 00:16:53,860
+ones into the spider.
+
+214
+00:16:55,060 --> 00:16:59,320
+And what you'll see is right now, we're not failing.
+
+215
+00:16:59,500 --> 00:17:06,340
+We're looking for at least 100, automation.spider.urls.added.
+
+216
+00:17:07,160 --> 00:17:12,460
+So this is checking that ZAP has actually found as many URLs as we expect.
+
+217
+00:17:12,500 --> 00:17:16,320
+Now we won't find a hundred URLs on example.com, but that's the default we put in.
+
+218
+00:17:17,000 --> 00:17:21,940
+So if we go back to the documentation and go up to documentation.
+
+219
+00:17:21,940 --> 00:17:29,680
+And scroll down, you'll see internal statistics, and these are all of the statistics that ZAP maintains.
+
+220
+00:17:30,040 --> 00:17:34,360
+So you can see there's quite a few, and these are filterable.
+
+221
+00:17:34,700 --> 00:17:41,320
+So we put in spider, you'll see automation.spider.urls.added.
+
+222
+00:17:41,660 --> 00:17:46,900
+So this is the, statistic that we're going to test.
+
+223
+00:17:47,620 --> 00:17:50,320
+And as you see, there's lots more statistics.
+
+224
+00:17:50,560 --> 00:17:51,460
+
+
+225
+00:17:51,940 --> 00:17:59,200
+So there's lots of ways you can check that these scans are doing exactly what you expect and continue doing whatever you expect.
+
+226
+00:17:59,620 --> 00:18:08,080
+And you can change these rules and you can kind of, you can add more so we could actually add more tests here.
+
+227
+00:18:08,740 --> 00:18:13,900
+And again, this is something that I'll probably, well, I think we will definitely cover in a future episode.
+
+228
+00:18:15,700 --> 00:18:21,220
+But what I'll do now is I've kind of showed adding, removing jobs, moving jobs up and down.
+
+229
+00:18:21,280 --> 00:18:21,780
+
+
+230
+00:18:21,940 --> 00:18:23,440
+and briefly touched on removing and adding tests.
+
+231
+00:18:23,800 --> 00:18:25,420
+So now I'll run it.
+
+232
+00:18:26,020 --> 00:18:29,620
+And what you'll see is you can see the progress.
+
+233
+00:18:30,520 --> 00:18:30,940
+There you go.
+
+234
+00:18:31,040 --> 00:18:38,800
+The report gets, because I chose the report to be displayed, it gets popped up on my screen and we can see that.
+
+235
+00:18:39,960 --> 00:18:40,160
+Yep.
+
+236
+00:18:40,180 --> 00:18:46,160
+You can actually see the progress and you can see how long these things took and you can see one of these things failed.
+
+237
+00:18:47,300 --> 00:18:47,800
+And.
+
+238
+00:18:48,260 --> 00:18:48,920
+This makes sense.
+
+239
+00:18:48,920 --> 00:18:51,920
+That's failed because example.com for, for those viewers that don't know
+
+240
+00:18:51,940 --> 00:18:52,440
+
+
+241
+00:18:52,440 --> 00:18:55,620
+it is a domain that has been reserved for use and documentation, right?
+
+242
+00:18:55,620 --> 00:18:59,560
+There's a single static page with one link to IANA.org.
+
+243
+00:19:00,220 --> 00:19:06,460
+So of course there are no hundred URLs to be crawled or spiders.
+
+244
+00:19:07,660 --> 00:19:08,160
+Exactly.
+
+245
+00:19:08,920 --> 00:19:09,680
+And that's why I did it.
+
+246
+00:19:09,680 --> 00:19:14,620
+I did a passive scan here because I do not have permission to do an active scan on example.com.
+
+247
+00:19:14,620 --> 00:19:18,560
+And remember, you should only do use ZAP to attack applications
+
+248
+00:19:18,560 --> 00:19:19,840
+you have permission to test.
+
+249
+00:19:20,180 --> 00:19:20,620
+Yes.
+
+250
+00:19:20,680 --> 00:19:21,400
+Permission
+
+251
+00:19:21,400 --> 00:19:21,760
+very important,
+
+252
+00:19:21,760 --> 00:19:23,140
+very important permission.
+
+253
+00:19:23,140 --> 00:19:24,340
+Yes, absolutely.
+
+254
+00:19:24,500 --> 00:19:29,140
+So here you'll see, we have an output tab and we can see the progress.
+
+255
+00:19:29,140 --> 00:19:37,640
+So you can see that the passive scan job was started, how long it took it found four URLs and it failed because the
+
+256
+00:19:37,640 --> 00:19:42,620
+job test failed because we were expecting a hundred URLs and four is less than a hundred.
+
+257
+00:19:43,660 --> 00:19:50,740
+But we didn't fail at the overall, job because that was just an info level rather than warn or fail.
+
+258
+00:19:51,980 --> 00:19:53,080
+So what we can do now.
+
+259
+00:19:53,080 --> 00:20:02,580
+So this is what we've seen is you can create automation framework plans in the ZAP desktop and you can run them and you can check what's going on.
+
+260
+00:20:03,080 --> 00:20:09,980
+This is great because then you can then see exactly what's happening and prove to yourself that it's doing what you expect and what you want it to do.
+
+261
+00:20:11,540 --> 00:20:16,160
+And what we can do now is we can save the plan and yep.
+
+262
+00:20:16,440 --> 00:20:16,940
+Good.
+
+263
+00:20:20,000 --> 00:20:21,660
+So I will call it ZAP Chat.
+
+264
+00:20:21,760 --> 00:20:31,140
+And what we'll do now is I will quit out and no more graphical user interface for today.
+
+265
+00:20:31,140 --> 00:20:43,200
+Exactly, and so I should be in the right place and we have a look at, I think it was in the zap chat directory.
+
+266
+00:20:43,480 --> 00:20:46,140
+You'll see zapchat.yaml.
+
+267
+00:20:46,880 --> 00:20:50,140
+So I'm now going to run ZAP again and...
+
+268
+00:20:52,420 --> 00:20:56,000
+So I'm running the, I said weekly, the latest weekly.
+
+269
+00:20:56,440 --> 00:21:01,100
+..So, what I - so this is the command I used to start the ZAP desktop.
+
+270
+00:21:01,100 --> 00:21:14,880
+So start on port 9090, because I've got Tomcat on 8080, and I specified a directory so that it didn't carry on using my, the standard directory that I use for testing because that would just mess things up.
+
+271
+00:21:15,380 --> 00:21:20,420
+But what I want to do now is I want to run from the command line and not have the GUI.
+
+272
+00:21:20,440 --> 00:21:21,640
+So minus command.
+
+273
+00:21:22,220 --> 00:21:25,420
+And then minus auto run.
+
+274
+00:21:26,520 --> 00:21:32,540
+And actually, I could really do with the current working directory.
+
+275
+00:21:32,540 --> 00:21:41,420
+So that's always better to actually specify the full directory directory.
+
+276
+00:21:41,680 --> 00:21:50,140
+So minus command minus auto run that directory slash zap.
+
+277
+00:21:50,140 --> 00:21:57,860
+it was zapchat.. zapchat.yaml.
+
+278
+00:21:59,780 --> 00:22:00,280
+
+
+279
+00:22:00,840 --> 00:22:07,700
+So there we have it, we've got the port just so it's not starting on the standard on the 8080.
+
+280
+00:22:08,120 --> 00:22:12,200
+I've got a directory there, minus command and minus auto run.
+
+281
+00:22:12,980 --> 00:22:15,780
+So start up and there we have it.
+
+282
+00:22:15,800 --> 00:22:16,340
+We see that...
+
+283
+00:22:16,900 --> 00:22:18,740
+Yeah, exactly.
+
+284
+00:22:18,780 --> 00:22:20,120
+So it did exactly the same
+
+285
+00:22:20,140 --> 00:22:25,080
+thing so the report gets shown on my desktop because I chose that option it's not the default
+
+286
+00:22:25,080 --> 00:22:33,020
+but just good for demos and we can see that what happens was we've seen exactly the same thing
+
+287
+00:22:33,020 --> 00:22:40,020
+we found and we found it's failed again but that hasn't but we're still saying the automation
+
+288
+00:22:40,020 --> 00:22:48,200
+automation plan has succeeded. Now what I'll just do is I will go in and I'm going to show you this
+
+289
+00:22:48,200 --> 00:22:51,200
+plan and change it actually just quickly.
+
+290
+00:22:51,200 --> 00:23:04,640
+Oh yeah so here we have it and you'll see that we've got the the environment first with
+
+291
+00:23:04,640 --> 00:23:12,420
+the context and it's put a load of default stuff in here and we've got fail on error
+
+292
+00:23:12,420 --> 00:23:15,540
+and fail on warning. So I'm going to actually change to fail on warning.
+
+293
+00:23:18,200 --> 00:23:24,160
+Oh.. And we'll go down and again we've just got all the default stuff has been put in
+
+294
+00:23:24,160 --> 00:23:27,280
+but here I'm going to change it on fail.
+
+295
+00:23:27,280 --> 00:23:34,900
+So we're actually failing if we don't find as many files as we expect.
+
+296
+00:23:34,900 --> 00:23:41,180
+So basically we're going to get to the job that involves testing for the 100 urls I think it was
+
+297
+00:23:41,180 --> 00:23:47,360
+job number three or four from memory.. yep.. and then it's going to stop. That's the hope.
+
+298
+00:23:48,200 --> 00:23:56,400
+That's the hope indeed. Oh and cannot invite on fail value so I put the wrong thing in. So it's
+
+299
+00:23:56,400 --> 00:24:06,320
+lucky we have documentation around this so let me just go in and check so automate automation
+
+300
+00:24:06,320 --> 00:24:10,620
+framework I thought fail was a good op but it was a good chance there but..
+
+301
+00:24:10,620 --> 00:24:17,120
+Info warning.. oh there we are.. So
+
+302
+00:24:18,200 --> 00:24:31,040
+error..error..there you go and it's not warning it's one so it's four letters.. yep yeah so yeah so so it's
+
+303
+00:24:31,040 --> 00:24:39,560
+shown I haven't done as good preparation I should have done so on fail so that was on fail..
+
+304
+00:24:43,400 --> 00:24:46,400
+..but this is yeah error..
+
+305
+00:24:48,200 --> 00:24:54,800
+The other thing that we can do but let's not do stay for this is a good exercise for the people
+
+306
+00:24:54,800 --> 00:25:00,860
+at home is you can change this to be a warning and then set the fail to warning so that the plan
+
+307
+00:25:00,860 --> 00:25:03,680
+fails upon a warning as well which.. Exactly.
+
+308
+00:25:07,760 --> 00:25:15,920
+So there.. We are right.. So they see so it's failed and one thing it does show that if we
+
+309
+00:25:15,920 --> 00:25:18,020
+pick up that there was a bug in the
+
+310
+00:25:18,200 --> 00:25:24,980
+the if there's a mistake in the yaml it also won't run. So.. so.. so if that being good about done
+
+311
+00:25:24,980 --> 00:25:31,100
+it deliberately but just for you with us it doesn't mean we you know you can still put in
+
+312
+00:25:31,100 --> 00:25:37,820
+some yaml that gets past the ZAP parser and it still can cause problems but where we can we
+
+313
+00:25:37,820 --> 00:25:42,080
+will try and identify things that are wrong and fail before we actually run any of the jobs.
+
+314
+00:25:42,620 --> 00:25:48,140
+But here you can see that we failed the Spider because it didn't find enough
+
+315
+00:25:48,200 --> 00:25:54,080
+URLs and it didn't go ahead and create the report. So it just stopped
+
+316
+00:25:54,080 --> 00:26:04,380
+where we were. So that is an introduction to the Automation Framework. Wonderful
+
+317
+00:26:04,380 --> 00:26:09,820
+stuff Simon. So just to remind people basically the Automation Framework we
+
+318
+00:26:09,820 --> 00:26:18,080
+think is a really good mix of ease of use and functionality and so it's a kind
+
+319
+00:26:18,080 --> 00:26:21,980
+of recommended way to automate ZAP unless you're doing some trivial automation
+
+320
+00:26:21,980 --> 00:26:27,620
+and it's easy to set up via the desktop. You can see exactly what's going on and
+
+321
+00:26:27,620 --> 00:26:32,060
+test it there then you can export it as a YAML file and run it from the command
+
+322
+00:26:32,060 --> 00:26:37,040
+line. And that's it and so next week I think we're gonna I think we should
+
+323
+00:26:37,040 --> 00:26:42,980
+carry on with the Automation Framework. There's quite a lot to cover. There's loads more, exactly what we'll cover.
+
+324
+00:26:42,980 --> 00:26:47,600
+We'll have a chat and work out. So until then thank you very much and
+
+325
+00:26:47,600 --> 00:26:54,620
+please add comments to the YouTube video. Let us know what you think and
+
+326
+00:26:54,620 --> 00:27:00,640
+what else you'd like us to cover. Thank you very much and until next time.
+

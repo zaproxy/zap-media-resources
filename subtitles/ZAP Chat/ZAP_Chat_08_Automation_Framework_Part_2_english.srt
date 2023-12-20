@@ -1,0 +1,1116 @@
+1
+00:00:00,000 --> 00:00:10,380
+Hello, and welcome to another episode of ZAP Chat.
+
+2
+00:00:10,840 --> 00:00:13,020
+And once again, I am joined by Yiannis.
+
+3
+00:00:13,660 --> 00:00:14,080
+Hello.
+
+4
+00:00:15,560 --> 00:00:21,100
+Great. So this week we are going to be talking about the automation framework again.
+
+5
+00:00:21,680 --> 00:00:26,900
+This is part two of, I actually don't know how many parts it's going to be of.
+
+6
+00:00:27,020 --> 00:00:28,420
+It's a big framework, right?
+
+7
+00:00:28,420 --> 00:00:29,040
+It's a big framework.
+
+8
+00:00:29,560 --> 00:00:31,180
+And I was actually, so what I was thinking of doing,
+
+9
+00:00:31,260 --> 00:00:36,060
+we would start going into details of the environment and the different types of jobs.
+
+10
+00:00:36,420 --> 00:00:41,040
+But I mentioned this to Ricardo, that's THC202 online.
+
+11
+00:00:41,580 --> 00:00:45,300
+He's working, he's one of his key guys working on ZAP.
+
+12
+00:00:45,400 --> 00:00:47,320
+He's been working with us since 2011.
+
+13
+00:00:48,260 --> 00:00:52,280
+And he's working full time on ZAP now, thanks to the secure software project.
+
+14
+00:00:52,960 --> 00:00:55,200
+And I mentioned this to him and he said, great,
+
+15
+00:00:55,200 --> 00:00:58,400
+I will try and keep creating new jobs so you never get to finish this.
+
+16
+00:00:58,420 --> 00:01:00,420
+Classic.
+
+17
+00:01:00,420 --> 00:01:04,120
+I hope he's joking, but maybe not.
+
+18
+00:01:04,120 --> 00:01:05,180
+He worked quickly.
+
+19
+00:01:05,420 --> 00:01:11,120
+So, so we're going to see how far we get and exactly what we cover may change over the course of the
+
+20
+00:01:11,120 --> 00:01:15,800
+period and see what we all get up to on the automation framework, which is definitely one of our
+
+21
+00:01:15,800 --> 00:01:17,000
+focuses right now.
+
+22
+00:01:18,340 --> 00:01:22,540
+So without further ado, I will share my screen.
+
+23
+00:01:23,960 --> 00:01:28,400
+And the first thing I'm going to do actually is take you to,
+
+24
+00:01:28,420 --> 00:01:33,700
+zaproxy.org, because I just want to show you the documentation here,
+
+25
+00:01:33,700 --> 00:01:34,800
+which I have shown before.
+
+26
+00:01:35,200 --> 00:01:41,880
+So documentation, automate, and then automation framework.
+
+27
+00:01:42,660 --> 00:01:46,740
+And what this does, it shows you, it's all the help pages.
+
+28
+00:01:47,040 --> 00:01:53,740
+And so you can actually go in and you can see all of the details and you can see, as you see here,
+
+29
+00:01:53,740 --> 00:01:58,180
+we've got the environment and all of the different options that are
+
+30
+00:01:58,180 --> 00:01:58,420
+available
+
+31
+00:01:58,740 --> 00:01:59,740
+in the YAML file.
+
+32
+00:02:01,000 --> 00:02:05,360
+So what is the environment and how do you use it?
+
+33
+00:02:06,280 --> 00:02:10,660
+So the environment is kind of the, it's, it is the environment for this particular job.
+
+34
+00:02:11,080 --> 00:02:12,400
+So it's the context.
+
+35
+00:02:12,520 --> 00:02:13,660
+I don't want to use the code context.
+
+36
+00:02:13,660 --> 00:02:15,360
+We use that already in ZAP.
+
+37
+00:02:15,940 --> 00:02:23,740
+So it is actually a set of contexts potentially, but it is the applications and URLs that we're
+
+38
+00:02:23,740 --> 00:02:25,480
+dealing with, with this particular plan.
+
+39
+00:02:27,040 --> 00:02:27,400
+Everything
+
+40
+00:02:27,400 --> 00:02:28,180
+you're going to be attacking
+
+41
+00:02:28,180 --> 00:02:34,000
+in the context of your automation set of...Exactly!... actions.
+
+42
+00:02:34,360 --> 00:02:36,220
+So you want to set this up, this is set up at the beginning.
+
+43
+00:02:36,220 --> 00:02:38,500
+It has to be the first thing and you can't change it.
+
+44
+00:02:38,940 --> 00:02:41,580
+So this is for one particular job.
+
+45
+00:02:41,860 --> 00:02:46,940
+You can obviously change it while you're registering the job, but one in the actual plan, it's fixed.
+
+46
+00:02:48,100 --> 00:02:52,420
+So the environment consists of one or more contexts.
+
+47
+00:02:52,540 --> 00:02:58,120
+You have to have a context or the plan won't run, but there's a lot of information here and I'm not going to
+
+48
+00:02:58,120 --> 00:02:58,720
+go through it
+
+49
+00:02:58,720 --> 00:03:00,000
+right all of it right now.
+
+50
+00:03:00,360 --> 00:03:08,140
+We will have another session later on where we're going to more details, but if you have a look, key things are a
+
+51
+00:03:08,260 --> 00:03:13,480
+mandatory list of top level URLs and everything underneath will be included.
+
+52
+00:03:14,500 --> 00:03:19,920
+So you have to have at least one URL, and then we have these include and exclude paths.
+
+53
+00:03:20,720 --> 00:03:27,580
+Now, if you're used to ZAP, then you will know that, well, if you've played around with context, you will know that context is defined by
+
+54
+00:03:28,120 --> 00:03:31,120
+include and exclude paths, and these are regexes.
+
+55
+00:03:31,380 --> 00:03:36,340
+So these allow you to find any set of URLs that you want.
+
+56
+00:03:36,820 --> 00:03:45,700
+And a context can be, typically it'd be an application, but it could be part of an application or it could be an application that spans multiple hosts.
+
+57
+00:03:46,140 --> 00:03:47,080
+It's really up to you.
+
+58
+00:03:48,080 --> 00:03:57,760
+So it's... Classic include path typically involves a star followed by, you know, the URL.com domain.
+
+59
+00:03:57,880 --> 00:03:58,100
+Right.
+
+60
+00:03:58,120 --> 00:04:02,960
+With a forward slash of whatever is in scope of the penetration test, of course.
+
+61
+00:04:03,780 --> 00:04:11,760
+And the most standard exclude is anything that is not part of the target host, right?
+
+62
+00:04:11,820 --> 00:04:12,940
+For a penetration test. 
+
+63
+00:04:12,940 --> 00:04:25,820
+I mean, if you've got, I mean, say you've got example.com, which we'll be attacking, but you'd have example.com, HTTPS, example.com.star, just to include everything underneath there.
+
+64
+00:04:26,080 --> 00:04:27,600
+And nothing else.
+
+65
+00:04:27,700 --> 00:04:28,100
+Everything else.
+
+66
+00:04:28,120 --> 00:04:32,660
+It's treated as being out of scope, but you might well exclude paths.
+
+67
+00:04:32,820 --> 00:04:43,320
+You might well have your logout URL, particularly if you're doing authentication, or you might have a section of your application that's particularly sensitive that you don't want to touch as part of this particular test.
+
+68
+00:04:45,040 --> 00:04:46,340
+Yeah, that's a good example, actually.
+
+69
+00:04:47,680 --> 00:04:55,820
+So those, and I'll show those in a minute, but the rest of this, the authentication part, I said, we will cover that in a future session.
+
+70
+00:04:56,640 --> 00:04:57,120
+And that's.
+
+71
+00:04:57,680 --> 00:05:07,240
+So we've got authentication, verification, session management, technology, which, again, we'll talk about probably in the future, and users as well.
+
+72
+00:05:07,500 --> 00:05:10,800
+So that means there's not so much to cover here, which is great.
+
+73
+00:05:11,300 --> 00:05:12,540
+The one thing is variables.
+
+74
+00:05:13,080 --> 00:05:16,100
+So you can have, you can define variables here.
+
+75
+00:05:16,660 --> 00:05:20,080
+And these then get used throughout the rest of the plan.
+
+76
+00:05:20,640 --> 00:05:23,880
+And these also cover environmental variables.
+
+77
+00:05:23,880 --> 00:05:26,280
+So if you've got environmental variables.
+
+78
+00:05:27,120 --> 00:05:29,760
+Then you can use them in exactly the same way.
+
+79
+00:05:30,980 --> 00:05:36,600
+Simon, why are environmental variables important in the context of automation?
+
+80
+00:05:37,760 --> 00:05:39,420
+Well, there's two things.
+
+81
+00:05:39,420 --> 00:05:48,200
+I mean, one classic one is if you've got authentication and you want to specify credentials and you don't want those hard-coded.
+
+82
+00:05:48,780 --> 00:05:54,800
+Even on test systems, it's not great to have hard-coded credentials in your configuration.
+
+83
+00:05:55,440 --> 00:05:56,420
+So you could have these in
+
+84
+00:05:57,120 --> 00:05:59,700
+you're CI/CD secrets.
+
+85
+00:06:00,120 --> 00:06:04,140
+And then they will be set in environmental variables and the plan will pick them up from there.
+
+86
+00:06:05,080 --> 00:06:07,800
+Another one is where you have a generic plan.
+
+87
+00:06:07,800 --> 00:06:13,900
+So you've got lots of services, half a dozen or dozens of services, and you've got a plan that covers all of them.
+
+88
+00:06:14,300 --> 00:06:17,320
+So it's you've got set of similar services.
+
+89
+00:06:17,320 --> 00:06:18,740
+So you want to test in a similar way,
+
+90
+00:06:19,000 --> 00:06:22,800
+but rather than have a plan for every single service, you have a generic plan
+
+91
+00:06:23,340 --> 00:06:25,920
+and you use a variable for the URL
+
+92
+00:06:26,440 --> 00:06:26,880
+
+
+93
+00:06:26,880 --> 00:06:34,800
+and then you can actually set that and run the same plan for all of your services. Yeah very good. And
+
+94
+00:06:34,800 --> 00:06:40,520
+then we have finally we have these parameters so basically you can choose to fail if there's a
+
+95
+00:06:40,520 --> 00:06:47,420
+warning if any of the jobs warn or if any of the jobs fail and you can choose whether to write the
+
+96
+00:06:47,420 --> 00:06:53,780
+job progress to standard out. Very important the fail on error or on warning when you're doing
+
+97
+00:06:53,780 --> 00:06:57,500
+CI/CD continuous integration or continuous development because that will determine
+
+98
+00:06:57,500 --> 00:07:03,720
+effectively you know which stage do you get a phone call from the dev team complaining about
+
+99
+00:07:03,720 --> 00:07:10,420
+the fact that you've just ruined their pipeline. Or if you have scheduled scans and you actually
+
+100
+00:07:10,420 --> 00:07:15,920
+want to know if something goes horribly wrong. So you might have a scheduled scan and you know
+
+101
+00:07:15,920 --> 00:07:23,160
+you're expecting some particular vulnerabilities because either they're low priority or I mean
+
+102
+00:07:23,160 --> 00:07:23,760
+they're false positive
+
+103
+00:07:23,780 --> 00:07:30,900
+I'll show you how you can set those but it'll show you know you can choose to ignore those
+
+104
+00:07:30,900 --> 00:07:35,580
+things but you might want to fail if you don't find isn't enough URLs because that might imply
+
+105
+00:07:35,580 --> 00:07:40,520
+something's gone wrong or if you don't if authentication appears to have failed those
+
+106
+00:07:40,520 --> 00:07:48,780
+are the kind of things you'll want to fail on. So that was the environment and what I'll do is so
+
+107
+00:07:48,780 --> 00:07:53,580
+I'm going to now start talking about some jobs and we'll talk we'll you'll see the environment as
+
+108
+00:07:53,580 --> 00:07:53,760
+as
+
+109
+00:07:53,760 --> 00:08:01,760
+we're going through this and you can see there's a lot of jobs here, but one is switch to ZAP
+
+110
+00:08:02,400 --> 00:08:12,000
+and we want to go to the automation tab and if I try and make this bigger sometimes it doesn't
+
+111
+00:08:12,000 --> 00:08:17,920
+seem to like doing it yep when I'm recording a video but now we can see a bit more of the plan
+
+112
+00:08:17,920 --> 00:08:23,360
+and I will create a new plan and now you can see the jobs they're not in alphabetical order
+
+113
+00:08:23,760 --> 00:08:31,960
+they are in kind of a logical order and I think the first few things like alert filter
+
+114
+00:08:31,960 --> 00:08:38,900
+passiveScan-config, replacer and script they are all kind of configuration type jobs
+
+115
+00:08:38,900 --> 00:08:44,400
+and so they're the ones we'll focus on and then we've got a set of jobs which are much more
+
+116
+00:08:44,400 --> 00:08:52,920
+exploring so the requestor, graphql, import, openapi, soap and the two spiders.. Yeah.. then we've got
+
+117
+00:08:52,920 --> 00:08:53,740
+a couple of delay
+
+118
+00:08:53,760 --> 00:08:59,580
+jobs delay and a passiveScan-wait so they're another category and we'll cover to
+
+119
+00:08:59,580 --> 00:09:06,080
+come to those after explaining the exploring side. Then we've got the activeScan the attacking one
+
+120
+00:09:06,080 --> 00:09:11,060
+all on it's own at the moment and a couple of reporting jobs so they're kind of and I think
+
+121
+00:09:11,060 --> 00:09:20,420
+we'll go through the jobs in that order really. So.. All right on the top. Yeah so what I'm going to
+
+122
+00:09:20,420 --> 00:09:23,740
+do is first of all how do you actually create
+
+123
+00:09:23,760 --> 00:09:29,860
+a context? So you can just say use a default context, but that's kind of empty for me at the
+
+124
+00:09:29,860 --> 00:09:37,700
+moment and you can configure the context of the environment through the plan, but it's usually
+
+125
+00:09:37,700 --> 00:09:44,560
+better actually setting it up separately.. So it's much easier just going to go to I'm
+
+126
+00:09:44,560 --> 00:09:52,960
+going to use BodgeIt it's nice and simple and all I do is just go to the BodgeIt first page and
+
+127
+00:09:52,960 --> 00:09:53,680
+that will do me.
+
+128
+00:09:53,760 --> 00:10:01,740
+So we now have BodgeIt in our sites tree and I'm going to right click on the top
+
+129
+00:10:01,740 --> 00:10:09,700
+URL and including context and I'll create a new context.. so we can..
+
+130
+00:10:16,420 --> 00:10:22,400
+and what we'll see is we've got an including context we've got the regex and we don't have
+
+131
+00:10:22,400 --> 00:10:23,740
+any excludes them
+
+132
+00:10:23,740 --> 00:10:31,120
+the moment and we've got loads of options here for configuring the context. Now not all of
+
+133
+00:10:31,120 --> 00:10:36,820
+those are supported by the automation framework yet they will be in time, but this is generally
+
+134
+00:10:36,820 --> 00:10:44,240
+the easiest way to actually use the sites tree and the context dialogue to configure the context
+
+135
+00:10:44,240 --> 00:10:50,480
+for your automation framework plan and we've got other videos on the context which go into more
+
+136
+00:10:50,480 --> 00:10:53,720
+detail than context they're a bit older but they're still very relevant. 
+
+137
+00:10:53,740 --> 00:11:05,600
+So now we've actually got our BodgeIt context and we're going to choose it and what I'll do is I'll choose the alertFilter and
+
+138
+00:11:05,600 --> 00:11:12,120
+the passiveScan and because they're configuration ones they don't do anything so I'm going to choose
+
+139
+00:11:12,120 --> 00:11:17,060
+a requestor I know it's an exploring one we're just going to use it as a way to actually do
+
+140
+00:11:17,060 --> 00:11:23,720
+things. So we've now created our context and we can have a look at 
+
+141
+00:11:23,740 --> 00:11:26,560
+this and we can see that by
+
+142
+00:11:26,560 --> 00:11:30,640
+default we fail on error and not on warning we have no variables and
+
+143
+00:11:30,640 --> 00:11:40,000
+if we go into BodgeIt we'll see we've got the top level URL and we've got an include regex including
+
+144
+00:11:40,000 --> 00:11:48,100
+all of that and no exclude regexes. So at the moment they won't do very much none of them
+
+145
+00:11:48,100 --> 00:11:52,900
+will do anything so what I'll do is go to the requestor
+
+146
+00:11:53,740 --> 00:12:00,520
+and the requestor's job is to make requests and you can make any number of requests and you don't
+
+147
+00:12:00,520 --> 00:12:07,120
+have to do at the beginning you can do it at any point. So I will select a URL and we'll select the
+
+148
+00:12:07,120 --> 00:12:14,080
+top URL and I'll do so that is all this job's going to do so what I'm going to do is actually
+
+149
+00:12:14,080 --> 00:12:21,100
+start a new ZAP session, a normally ZAP session if you start a new ZAP session it clears everything.
+
+150
+00:12:22,120 --> 00:12:23,620
+It doesn't clear the
+
+151
+00:12:23,740 --> 00:12:29,080
+automation framework plan because it's a really useful thing way of being to test things and
+
+152
+00:12:29,080 --> 00:12:35,620
+you often want to be on to test your plan in isolation and against a clean ZAP session so you
+
+153
+00:12:35,620 --> 00:12:40,720
+can see it's doing what you expect. Right, right. So that's why we're not clearing the the automation
+
+154
+00:12:40,720 --> 00:12:47,680
+framework plan. So I will now run the plan and as you see it runs very quickly we're not doing very
+
+155
+00:12:47,680 --> 00:12:53,620
+much and again we've created this context called BodgeIt and we've made a request.
+
+156
+00:12:53,740 --> 00:13:01,720
+Now what about these configurations? Well the first one I'm talk about is the passive
+
+157
+00:13:01,720 --> 00:13:09,400
+scan configuration. So we don't need it - as you'll see we've actually got a whole set of alerts here
+
+158
+00:13:09,400 --> 00:13:16,120
+and but what happens if you actually don't want the passive scan to work in exactly in
+
+159
+00:13:16,120 --> 00:13:22,720
+the default way and the default way is to enable everything. So let's pick one particular
+
+160
+00:13:23,740 --> 00:13:30,820
+alert it doesn't really matter but I'll go for the missing anti-clickjacking header. So say for
+
+161
+00:13:30,820 --> 00:13:35,080
+some reason you're not interested in this this is not something that you're worried about for
+
+162
+00:13:35,080 --> 00:13:43,000
+whatever reason maybe you actually need to embed this site in another portal. So what we can do is
+
+163
+00:13:43,000 --> 00:13:50,920
+we can go to the automation framework plan and configure passiveScan-config. So this is a job
+
+164
+00:13:50,920 --> 00:13:53,320
+you have to run at the beginning. Well,
+
+165
+00:13:53,740 --> 00:13:58,420
+you typically have to run at the beginning, because it doesn't have any effect on things
+
+166
+00:13:58,420 --> 00:14:01,720
+that have already happened it only thing affects things that happen in the future.
+
+167
+00:14:02,680 --> 00:14:08,080
+So you're configuring a passive scanner and then for whatever it does in the future what's
+
+168
+00:14:08,080 --> 00:14:15,700
+happened in the past has been and gone. So one thing you can see scan only in scope that's by
+
+169
+00:14:15,700 --> 00:14:22,720
+default true, enable tags we don't really use tags in automation so at the moment anyway so you
+
+170
+00:14:22,720 --> 00:14:23,680
+probably don't want these enabled
+
+171
+00:14:23,740 --> 00:14:29,920
+and you have an option to disable all rules. Now I don't want to do that I just want to disable one rule.
+
+172
+00:14:31,120 --> 00:14:38,020
+So we can head over to the rules tab.. Yep, yep so we now know that all the rules are enabled
+
+173
+00:14:38,020 --> 00:14:42,340
+because I'm disabled them and the one I want to is the anti-clickjacking header.
+
+174
+00:14:44,800 --> 00:14:48,580
+That one there and I want to turn it off which is comes up by default and we can
+
+175
+00:14:48,580 --> 00:14:53,560
+choose the threshold which is off, low, medium, high. So I will save that
+
+176
+00:14:53,740 --> 00:15:00,340
+and I've now configured passive scan comfort job how I want you'll notice it's now got a gray
+
+177
+00:15:01,120 --> 00:15:04,480
+icon rather than the green one because it's changed since we've actually
+
+178
+00:15:05,140 --> 00:15:12,940
+ran things and I will start the session again and run the plan.
+
+179
+00:15:14,440 --> 00:15:20,560
+I think what's interesting here is that you can include rules and I think for our viewers you can
+
+180
+00:15:20,560 --> 00:15:23,080
+include rules which effectively
+
+181
+00:15:23,740 --> 00:15:25,540
+turn off specific
+
+182
+00:15:26,560 --> 00:15:31,500
+scans in this case it was one involving the header.. clickjacking, exactly - yeah..
+
+183
+00:15:32,440 --> 00:15:38,080
+So that took a little bit of you know rewiring in my brain when I first did it because effectively
+
+184
+00:15:38,740 --> 00:15:42,520
+you know the question is always do you set up a blacklist of rules or a white list of rules
+
+185
+00:15:42,520 --> 00:15:46,900
+right and generally you want to do what you're doing Simon because if you disable all of them
+
+186
+00:15:46,900 --> 00:15:53,500
+then you risk disabling something that potentially you want, right? Instead you want to have the scanner
+
+187
+00:15:53,500 --> 00:15:59,020
+typically configured with a ruleset that is wider than the scope that you have in case throughout
+
+188
+00:15:59,020 --> 00:16:03,580
+the build process or the test it's a penetration test somebody comes across a specific
+
+189
+00:16:03,580 --> 00:16:09,480
+misconfiguration of low-hanging fruit or similar which you're meant to catch but you don't catch
+
+190
+00:16:09,480 --> 00:16:14,240
+because you've started with a disable all rules, right? Exactly, but there again if you've got some
+
+191
+00:16:14,240 --> 00:16:20,960
+like CI/CD you may well say we've got a set of rules that we absolutely want to run and nothing
+
+192
+00:16:20,960 --> 00:16:27,700
+else. So we're actually going to fail if we fail to find anti-csrf tokens or missing headers
+
+193
+00:16:27,700 --> 00:16:34,000
+something like that so as a security professional you might say okay we're going to run a baseline
+
+194
+00:16:34,000 --> 00:16:39,060
+scan against every PR we know it's going to be quick it won't take long and we're actually only
+
+195
+00:16:39,060 --> 00:16:44,220
+going to enable a very small set of rules that are absolutely must for us and if they fail we fail
+
+196
+00:16:44,220 --> 00:16:49,120
+the build or we warn on the build or something like that, but so you've got yeah your two
+
+197
+00:16:49,120 --> 00:16:50,940
+different cases you know enable and disable
+
+198
+00:16:50,960 --> 00:16:54,640
+everything and then go and tweak things how you want.
+
+199
+00:16:54,640 --> 00:17:00,360
+And we'll see we now no longer have the missing anti-clickjacking header.
+
+200
+00:17:00,360 --> 00:17:06,420
+So that's really what the passiveScan configuration is about it's configuring the
+
+201
+00:17:06,420 --> 00:17:12,300
+passive scanner and it means you can turn things on and off and whether you can set the threshold
+
+202
+00:17:12,300 --> 00:17:17,060
+and the threshold is a level at which the rule will actually tell you that something's wrong
+
+203
+00:17:17,060 --> 00:17:20,940
+and not all of the rules support all
+
+204
+00:17:20,940 --> 00:17:27,480
+of thresholds but the help should explain when to use which ones and if you have it off then
+
+205
+00:17:27,480 --> 00:17:33,660
+turn this off then you won't get the any alerts from this particular rule so you know if you're
+
+206
+00:17:33,660 --> 00:17:38,180
+not interested then turn them off and it will speed things up ever so slightly.
+
+207
+00:17:38,180 --> 00:17:48,100
+So what else can we do well we've got the alert filter now the alert filter is there if you want
+
+208
+00:17:48,100 --> 00:17:50,920
+a bit for fine grain control so let's go back
+
+209
+00:17:50,940 --> 00:17:56,700
+and we've got a cookie without same site attribute and if we have a look at this
+
+210
+00:17:56,700 --> 00:18:03,240
+we'll see it's jsessionid so you know it's actually a reasonable alert but say this is
+
+211
+00:18:03,240 --> 00:18:09,460
+not one we're interested in. Say that this this particular cookie that's fine but for other
+
+212
+00:18:09,460 --> 00:18:13,940
+cookies we might actually want to alert on this so we don't want to disable this rule.
+
+213
+00:18:13,940 --> 00:18:20,440
+So what can we do with that? So with that what we can actually do is we can
+
+214
+00:18:20,940 --> 00:18:26,060
+thats what the alert is for and again this is something that has to be you
+
+215
+00:18:26,080 --> 00:18:30,400
+typically want to do this early on so anything afterwards is affected by the
+
+216
+00:18:30,400 --> 00:18:35,500
+alert filter. Yeah, yeah that's important right, because you want to basically be
+
+217
+00:18:35,500 --> 00:18:36,000
+doing configuration first
+
+218
+00:18:36,040 --> 00:18:36,340
+
+
+219
+00:18:36,380 --> 00:18:41,120
+you know broadly speaking then you want to be doing any sort of discovery or 
+
+220
+00:18:41,120 --> 00:18:45,780
+censorship and then you want to be doing the more active scanning
+
+221
+00:18:45,780 --> 00:18:49,200
+type of jobs. Exactly. So
+
+222
+00:18:49,200 --> 00:18:49,860
+
+
+223
+00:18:49,860 --> 00:18:50,700
+all of the things we've
+
+224
+00:18:50,700 --> 00:18:50,900
+
+
+225
+00:18:50,900 --> 00:18:50,940
+
+
+226
+00:18:50,940 --> 00:18:55,660
+job name you can change this and again we've got this option to delete the global alerts so we have
+
+227
+00:18:55,660 --> 00:19:02,680
+actually that should be global filters i think that's a mistake there so there's a typo
+
+228
+00:19:02,680 --> 00:19:08,120
+which i'll need to fix.. so we have filters and we got global filters and we've got context filters
+
+229
+00:19:08,120 --> 00:19:14,620
+and.. What's the difference between the two? So the global ones apply to absolutely everything
+
+230
+00:19:14,620 --> 00:19:21,460
+so all of the sites and actually what i'll do is if we go into these ZAP properties
+
+231
+00:19:21,460 --> 00:19:28,780
+we'll actually see we have global alert filters here and they apply to everything and then we
+
+232
+00:19:28,780 --> 00:19:36,860
+actually have the alert for context filters in the context themselves itself. Now normally
+
+233
+00:19:36,860 --> 00:19:42,120
+well i would normally choose the context filters myself because particularly if you're using the
+
+234
+00:19:42,120 --> 00:19:44,200
+desktop they apply to everything you do
+
+235
+00:19:44,200 --> 00:19:51,240
+and they don't change when you change a session. Yeah. So keeping things local is you know the
+
+236
+00:19:51,240 --> 00:19:57,280
+Simon's point of course yeah. Exactly! So what i'm going to do is it cookie without samesite
+
+237
+00:19:57,280 --> 00:20:06,660
+wasn't it so go up to "Cookie without SameSite Attribute" and i do want this to be a context
+
+238
+00:20:06,660 --> 00:20:11,140
+specific one and we're going to have it we're going to put it down on false positive
+
+239
+00:20:11,140 --> 00:20:13,440
+well actually we could put it as info.
+
+240
+00:20:13,440 --> 00:20:14,160
+Yeah, i think info is better.
+
+241
+00:20:14,160 --> 00:20:24,200
+One thing is if you have telemetry turned on then we get stats on false positives
+
+242
+00:20:24,200 --> 00:20:30,780
+and this is really helpful for us because what you're saying is ZAP has got something wrong
+
+243
+00:20:30,780 --> 00:20:35,440
+and we don't get details so we don't see the requests and responses or anything like that
+
+244
+00:20:35,440 --> 00:20:38,780
+but we do get stats on the number of false positives per scan rule
+
+245
+00:20:38,780 --> 00:20:44,000
+and we actually publish these on the website. So if we go back to
+
+246
+00:20:44,160 --> 00:20:54,380
+the website and go to documentation and statistics then highest false positives last month
+
+247
+00:20:54,380 --> 00:20:58,160
+and you can actually see "Cookie without SameSite Attribute".
+
+248
+00:20:58,160 --> 00:21:08,920
+So this is actually one way you know if it's you know this would probably be better to have it as
+
+249
+00:21:08,920 --> 00:21:14,000
+info rather than false positive. So that's not one where we're going to go okay we're now not
+
+250
+00:21:14,000 --> 00:21:14,140
+
+
+251
+00:21:14,160 --> 00:21:17,520
+going to we're going to change this rule there's probably no bug in the rule
+
+252
+00:21:17,520 --> 00:21:24,520
+it's more a configuration thing, but it's you know we do get information about specifically
+
+253
+00:21:24,520 --> 00:21:28,820
+false positives which is very useful it helps us understand which rules have problems.
+
+254
+00:21:28,820 --> 00:21:34,420
+So i'm going to say info and i'm actually going to choose the parameters well now it was actually
+
+255
+00:21:34,420 --> 00:21:43,820
+jsessionid and this means that if another if ZAP finds another cookie
+
+256
+00:21:44,160 --> 00:21:50,180
+without the samesite attribute which is not called jsessionid then it will raise an alert
+
+257
+00:21:50,180 --> 00:21:56,540
+for it at low priority rather than info. Now you might say why is that important, right? Well
+
+258
+00:21:56,540 --> 00:22:02,000
+if all of a sudden a dev team has gone rogue so to speak and decided to just code their own
+
+259
+00:22:02,000 --> 00:22:11,660
+authentication stack and cookies right this is how you would find that out. Exactly! So let's start
+
+260
+00:22:11,660 --> 00:22:12,000
+again
+
+261
+00:22:12,000 --> 00:22:14,000
+
+
+262
+00:22:14,160 --> 00:22:22,560
+and run it and hopefully now we will see ah cookie about samesite attributes so did i get
+
+263
+00:22:22,560 --> 00:22:30,580
+something wrong? Let's have a look at the yeah filter filter BodgeIt info...
+
+264
+00:22:30,580 --> 00:22:40,940
+Yes i got three "S" there. Ah, yes! Not the most obvious one so this this is a good reason
+
+265
+00:22:40,940 --> 00:22:43,940
+always test your configurations before
+
+266
+00:22:44,160 --> 00:22:49,280
+putting them live because there's you know that's one you could go okay i've now sorted go away
+
+267
+00:22:49,280 --> 00:22:54,720
+and particularly in this case it was i meant i got an extra thing but it could mean you're
+
+268
+00:22:54,720 --> 00:22:58,880
+actually your configuration is excluding too much you don't find out things you want to know.
+
+269
+00:23:00,480 --> 00:23:07,200
+Trying to find this rule on command line right it would just be... Yes.. so let's have a look and yay
+
+270
+00:23:07,200 --> 00:23:13,360
+this time "Cookie without SameSite attribute" is being logged at information level rather than a
+
+271
+00:23:13,360 --> 00:23:14,080
+low finding.
+
+272
+00:23:14,160 --> 00:23:20,800
+So this is something now you can still fail your build or raise warnings or something
+
+273
+00:23:20,800 --> 00:23:26,240
+if you find "cookies without the SameSite attribute" apart from jsessionid.
+
+274
+00:23:26,240 --> 00:23:33,520
+Very good! So that is i mean how are we doing how long have you been now?
+
+275
+00:23:33,520 --> 00:23:42,580
+It's four o'clock so we've been on for 30 minutes minus four six minutes at the beginning
+
+276
+00:23:42,580 --> 00:23:43,360
+where we chatted about things 
+
+277
+00:23:43,360 --> 00:23:46,800
+minus - yeah i think it's time to wrap up actually.
+
+278
+00:23:46,800 --> 00:23:54,400
+Okay great well in that case we'll wrap up now and thank you all very much and see you next time.
+
+279
+00:23:55,760 --> 00:23:56,480
+See you.
+
