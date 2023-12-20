@@ -384,7 +384,7 @@ We have these jobs down here.
 
 97
 00:07:16,320 --> 00:07:22,080
-And at some point I'll try and make these colns better size automatically.
+And at some point I'll try and make these columns better size automatically.
 
 98
 00:07:22,080 --> 00:07:23,220
@@ -396,7 +396,7 @@ Yeah.
 
 100
 00:07:23,440 --> 00:07:26,200
-So just for argent's sake, Simon, let's just say that.
+So just for argument's sake, Simon, let's just say that.
 
 101
 00:07:26,220 --> 00:07:34,100
@@ -660,7 +660,7 @@ And we can choose
 
 166
 00:12:54,100 --> 00:12:59,980
-the threshold, which is off, low, medi, or high to go very fine rate.
+the threshold, which is off, low, medium, or high to go very fine rate.
 
 167
 00:13:00,760 --> 00:13:02,620
