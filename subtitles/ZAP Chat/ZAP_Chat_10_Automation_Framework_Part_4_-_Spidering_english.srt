@@ -1,0 +1,1776 @@
+1
+00:00:00,000 --> 00:00:12,000
+Hello and welcome to another episode of ZapChat with me, Simon Bennett and Yanis.
+
+2
+00:00:12,000 --> 00:00:16,000
+Hello! Spidering is the topic of the day today, right Simon?
+
+3
+00:00:16,000 --> 00:00:25,000
+That's right. I think in the last one I said we were going to do API imports, but we've had a chat and we think spides are probably better.
+
+4
+00:00:25,000 --> 00:00:31,000
+So we're still on the automation framework. So we're still going through all the automation framework jobs.
+
+5
+00:00:31,000 --> 00:00:36,000
+There's a lot of them, but we're still on the exploring stage.
+
+6
+00:00:36,000 --> 00:00:43,000
+So exploring is absolutely key to Zap and to any similar DAST type scanner,
+
+7
+00:00:43,000 --> 00:00:48,000
+because if your scanner doesn't know about something, it can't attack it.
+
+8
+00:00:48,000 --> 00:00:54,000
+So exploring is absolutely key. If you don't explore something effectively, you're not going to test it effectively.
+
+9
+00:00:54,000 --> 00:00:55,000
+How many times?
+
+10
+00:00:55,000 --> 00:00:58,000
+How many times do you run a penetration test or some sort of activity?
+
+11
+00:00:58,000 --> 00:01:02,000
+And it's like, oh, the spider didn't pick this up. It was out of scope.
+
+12
+00:01:02,000 --> 00:01:05,000
+It's like, no, it wasn't. We just didn't find it in time.
+
+13
+00:01:05,000 --> 00:01:10,000
+So this video is all about what spiders you use when and what indicators you also have
+
+14
+00:01:10,000 --> 00:01:18,000
+to switch to the modern spider that involves Ajax versus the traditional, you know, get request response spider.
+
+15
+00:01:18,000 --> 00:01:24,000
+Exactly. So let's go and share my screen.
+
+16
+00:01:25,000 --> 00:01:32,000
+Now, traditionally, we've had a spider that basically looks for links and goes and gets a set of results, right?
+
+17
+00:01:32,000 --> 00:01:36,000
+That's your traditional crawler, just a normal crawler.
+
+18
+00:01:36,000 --> 00:01:42,000
+Now, there's two things that normally play a really important role when it comes to crawling.
+
+19
+00:01:42,000 --> 00:01:45,000
+And one is depth and the other is also breadth. Right.
+
+20
+00:01:45,000 --> 00:01:51,000
+So please remember that the demos that you're about to see are against websites that we've triaged and seen before.
+
+21
+00:01:51,000 --> 00:01:54,000
+And it's very important that you go through the process of setting up.
+
+22
+00:01:54,000 --> 00:02:03,000
+Those parameters and trying out different crawling parameters in the context of the website that you're about to attack.
+
+23
+00:02:03,000 --> 00:02:07,000
+Yeah, it's very easy to end up, you know, particularly if you start with a big website,
+
+24
+00:02:07,000 --> 00:02:12,000
+you could end up going down rabbit holes or, you know, the classic one is something like a calendar app.
+
+25
+00:02:12,000 --> 00:02:17,000
+You know, how long will it take you to crawl the calendar app? Well, it's never going to finish.
+
+26
+00:02:17,000 --> 00:02:22,000
+You know, you're going to get to year 3000 and something.
+
+27
+00:02:22,000 --> 00:02:23,000
+So you have to have limits on that.
+
+28
+00:02:24,000 --> 00:02:29,000
+You have to have limits on spiders. And sometimes we see, you know, loops and things like that, which the spider should detect.
+
+29
+00:02:29,000 --> 00:02:37,000
+But, you know, if you generate unique URLs, then the spider might not notice that and you'll carry on potentially forever.
+
+30
+00:02:37,000 --> 00:02:45,000
+So I'm going to start with a very simple basic application called Budget, which you'll have seen before, probably.
+
+31
+00:02:45,000 --> 00:02:49,000
+And this is a very traditional web application.
+
+32
+00:02:49,000 --> 00:02:53,000
+So you can you can see we're getting new URLs here.
+
+33
+00:02:53,000 --> 00:03:00,000
+It looks very basic. So we know it's kind of a it's fairly obviously a traditional web application.
+
+34
+00:03:00,000 --> 00:03:06,000
+And what we want to do is want to create an automation framework plan from that.
+
+35
+00:03:06,000 --> 00:03:14,000
+And what I'll just do is I will add that in or create a new context for it.
+
+36
+00:03:14,000 --> 00:03:21,000
+So let's actually know let's I'm going to delete that one because I did the top level, which isn't ideal.
+
+37
+00:03:21,000 --> 00:03:22,000
+We want to go there.
+
+38
+00:03:23,000 --> 00:03:28,000
+And include that because otherwise we'll include too much.
+
+39
+00:03:28,000 --> 00:03:36,000
+So when I go back to automation and we want to create a start a new plan.
+
+40
+00:03:36,000 --> 00:03:39,000
+So did I add the default one I must have done?
+
+41
+00:03:39,000 --> 00:03:45,000
+OK, not a problem. So what we want to do is we just want to run the spider.
+
+42
+00:03:45,000 --> 00:03:47,000
+That's all we're going to do.
+
+43
+00:03:47,000 --> 00:03:51,000
+Starting off with the traditional spider, assuming that we know nothing about the website.
+
+44
+00:03:51,000 --> 00:03:53,000
+Right. You start with the basic.
+
+45
+00:03:53,000 --> 00:03:56,000
+And let me check. Yeah, so I did get the right URL in there.
+
+46
+00:03:56,000 --> 00:04:06,000
+And what you can see is from the spider, we've got some very, you know, we've got the name that gets filled in for you.
+
+47
+00:04:06,000 --> 00:04:10,000
+Our context. So by default, we will just use the first context.
+
+48
+00:04:10,000 --> 00:04:13,000
+And we don't have we haven't set up authentication yet.
+
+49
+00:04:13,000 --> 00:04:17,000
+So we've got no authenticated user. We will cover that in future ones.
+
+50
+00:04:17,000 --> 00:04:21,000
+The URL by default will choose the top URL, which is fine in this case.
+
+51
+00:04:21,000 --> 00:04:26,000
+But sometimes you might want to crawl a particular subtree or something like that in our application.
+
+52
+00:04:26,000 --> 00:04:31,000
+And then we've got this, you know, max duration, max depth and max children.
+
+53
+00:04:31,000 --> 00:04:35,000
+And these are all by default zero, so unlimited.
+
+54
+00:04:35,000 --> 00:04:40,000
+But these are things you want to play around with, particularly if your crawl takes too long.
+
+55
+00:04:40,000 --> 00:04:43,000
+And we have some advanced options.
+
+56
+00:04:43,000 --> 00:04:46,000
+Simon, we talked a little bit about max duration and max depth.
+
+57
+00:04:46,000 --> 00:04:50,000
+Right. What's the difference between max depth and max children?
+
+58
+00:04:50,000 --> 00:04:55,000
+Think about your application in terms of the tree.
+
+59
+00:04:55,000 --> 00:04:59,000
+So actually, let's go back to the the sites tree here.
+
+60
+00:04:59,000 --> 00:05:07,000
+And so basically the max number of children here with Bodget, it already has one, two, three, four, five children.
+
+61
+00:05:07,000 --> 00:05:13,000
+So that is the children underneath the individual particular nodes.
+
+62
+00:05:13,000 --> 00:05:16,000
+So you might say you want a maximum of 100 children.
+
+63
+00:05:16,000 --> 00:05:18,000
+So that's breadth wise.
+
+64
+00:05:18,000 --> 00:05:20,000
+And depth is going down.
+
+65
+00:05:20,000 --> 00:05:21,000
+It's hierarchy.
+
+66
+00:05:21,000 --> 00:05:23,000
+So the top level is one.
+
+67
+00:05:23,000 --> 00:05:24,000
+So local host is one.
+
+68
+00:05:24,000 --> 00:05:25,000
+Bodget is two.
+
+69
+00:05:25,000 --> 00:05:27,000
+JS is three.
+
+70
+00:05:27,000 --> 00:05:29,000
+Utils.js is four.
+
+71
+00:05:29,000 --> 00:05:37,000
+So if you have a really deep tree, that might imply you're kind of iterating too much, you know, ending up in some calendar type thing.
+
+72
+00:05:37,000 --> 00:05:45,000
+Or you might be finding lots of instances which are very similar, you know, a shop or something like that.
+
+73
+00:05:45,000 --> 00:05:46,000
+That's more like breadth.
+
+74
+00:05:46,000 --> 00:05:48,000
+It could be a combination of breadth and depth.
+
+75
+00:05:48,000 --> 00:05:50,000
+So children is breadth.
+
+76
+00:05:50,000 --> 00:05:51,000
+Effectively.
+
+77
+00:05:51,000 --> 00:05:52,000
+And depth is depth.
+
+78
+00:05:52,000 --> 00:05:53,000
+Right.
+
+79
+00:05:53,000 --> 00:05:54,000
+As defined there.
+
+80
+00:05:54,000 --> 00:05:55,000
+Yeah.
+
+81
+00:05:55,000 --> 00:05:56,000
+Perfect.
+
+82
+00:05:56,000 --> 00:05:57,000
+Thank you for that clarification.
+
+83
+00:05:57,000 --> 00:05:59,000
+Hopefully we've cleared it up for some of our audience.
+
+84
+00:05:59,000 --> 00:06:00,000
+Well, good.
+
+85
+00:06:00,000 --> 00:06:01,000
+Well remembered.
+
+86
+00:06:01,000 --> 00:06:02,000
+So I'll just run this.
+
+87
+00:06:02,000 --> 00:06:05,000
+And what we'll see is the spider runs very quickly.
+
+88
+00:06:05,000 --> 00:06:08,000
+It's very fast and furious.
+
+89
+00:06:08,000 --> 00:06:10,000
+And we'll see we actually have a test here.
+
+90
+00:06:10,000 --> 00:06:18,000
+So we automatically add a test in to see whether we actually added more than 100 URLs or not.
+
+91
+00:06:18,000 --> 00:06:19,000
+I think we've covered that before.
+
+92
+00:06:19,000 --> 00:06:25,000
+But this is a kind of useful, you know, Zap has no idea that Bodget has more than 100 URLs.
+
+93
+00:06:25,000 --> 00:06:27,000
+We just put that in by default.
+
+94
+00:06:27,000 --> 00:06:29,000
+And that's just an info level to start with.
+
+95
+00:06:29,000 --> 00:06:38,000
+But that's something you can change to make sure that you actually find the expected number of URLs or at least the expected number of URLs.
+
+96
+00:06:38,000 --> 00:06:41,000
+And if we have another look at the job.
+
+97
+00:06:41,000 --> 00:06:43,000
+So we've got advanced options.
+
+98
+00:06:43,000 --> 00:06:48,000
+So we have options for parsing and maximum size to parse in by year.
+
+99
+00:06:48,000 --> 00:06:59,000
+If you've got some, say you've got videos on your website, you don't want Zap to start trying to parse those or very large documents which we know won't have URLs in or anything.
+
+100
+00:06:59,000 --> 00:07:03,000
+How long to wait for a particular request.
+
+101
+00:07:03,000 --> 00:07:04,000
+That's unlimited.
+
+102
+00:07:04,000 --> 00:07:05,000
+Number of threads.
+
+103
+00:07:05,000 --> 00:07:09,000
+That's by default we get.
+
+104
+00:07:09,000 --> 00:07:13,000
+We should probably change that because of the default is going to be the number of cores.
+
+105
+00:07:13,000 --> 00:07:16,000
+So that will default to 16.
+
+106
+00:07:16,000 --> 00:07:17,000
+What we do with parameters.
+
+107
+00:07:17,000 --> 00:07:19,000
+There's a whole load of extra things in here.
+
+108
+00:07:19,000 --> 00:07:22,000
+But a lot of the time you won't need these advanced options.
+
+109
+00:07:22,000 --> 00:07:26,000
+So you can just go complete with the default.
+
+110
+00:07:26,000 --> 00:07:33,000
+So that's the, these options are, you know, they're all options on the Zap standard spider if you use it from the desktop.
+
+111
+00:07:33,000 --> 00:07:35,000
+So you can go back and have it.
+
+112
+00:07:35,000 --> 00:07:38,000
+You can play around with them in the desktop, see what works.
+
+113
+00:07:38,000 --> 00:07:44,000
+And then you can use whichever options you want within the automation framework plan in the desktop.
+
+114
+00:07:44,000 --> 00:07:46,000
+You can try it out here.
+
+115
+00:07:46,000 --> 00:07:53,000
+And then you can actually go and run it again from the command line with your automation plan.
+
+116
+00:07:53,000 --> 00:08:01,000
+Normally, I don't really go after updating the advanced options until I'm happy with, let's call it the basic options, right?
+
+117
+00:08:01,000 --> 00:08:06,000
+Until I've figured out the children and the depth and those parameters.
+
+118
+00:08:06,000 --> 00:08:10,000
+And only then will I go and look at, you know, is my thread pool okay?
+
+119
+00:08:10,000 --> 00:08:11,000
+Is like 16 threads okay?
+
+120
+00:08:11,000 --> 00:08:12,000
+Or do I need more?
+
+121
+00:08:12,000 --> 00:08:13,000
+Do I need less?
+
+122
+00:08:13,000 --> 00:08:14,000
+Right?
+
+123
+00:08:14,000 --> 00:08:15,000
+Exactly.
+
+124
+00:08:15,000 --> 00:08:19,000
+So that's the advanced parameters if you haven't sorted out, you know, the basic parameters, if you like.
+
+125
+00:08:19,000 --> 00:08:20,000
+Absolutely.
+
+126
+00:08:20,000 --> 00:08:21,000
+Yeah.
+
+127
+00:08:21,000 --> 00:08:28,000
+We try and make sure that the standard, the default parameters sensible for the widest range of users and target applications.
+
+128
+00:08:28,000 --> 00:08:30,000
+Yep.
+
+129
+00:08:30,000 --> 00:08:34,000
+So let's, so that's the basic spider.
+
+130
+00:08:34,000 --> 00:08:36,000
+So that's all good.
+
+131
+00:08:36,000 --> 00:08:39,000
+But let's start a new session.
+
+132
+00:08:39,000 --> 00:08:45,000
+And this time we're going to look at another well-known application.
+
+133
+00:08:45,000 --> 00:08:46,000
+Called GShop.
+
+134
+00:08:46,000 --> 00:08:47,000
+Oh, it's GShop.
+
+135
+00:08:47,000 --> 00:08:51,000
+Now, this one is quite different from Budget.
+
+136
+00:08:51,000 --> 00:08:58,000
+What you'll see is as you navigate around, things seem to update quicker and you see these fragments.
+
+137
+00:08:58,000 --> 00:09:04,000
+And this is a fairly good indication that this is a modern web application.
+
+138
+00:09:04,000 --> 00:09:09,000
+So something is going on, Simon, in the context of I'm not getting a, you know, a JSP page back, right?
+
+139
+00:09:09,000 --> 00:09:12,000
+But something else is loading as a fragment.
+
+140
+00:09:12,000 --> 00:09:13,000
+Yeah.
+
+141
+00:09:13,000 --> 00:09:18,000
+So that's a first indicator that we might be on to a, let's call it a modern web app, right?
+
+142
+00:09:18,000 --> 00:09:19,000
+Exactly.
+
+143
+00:09:19,000 --> 00:09:26,000
+Now, we can run the standard spider against GShop and actually is quite useful.
+
+144
+00:09:26,000 --> 00:09:33,000
+It does find a lot of things, but it doesn't find all of the functionality that we'd expect.
+
+145
+00:09:33,000 --> 00:09:36,000
+And the reason for that is because it's a modern web application.
+
+146
+00:09:36,000 --> 00:09:39,000
+So it makes heavy use of JavaScript.
+
+147
+00:09:39,000 --> 00:09:41,000
+So it loads JavaScript libraries.
+
+148
+00:09:41,000 --> 00:09:45,000
+And a lot of the links come from those libraries.
+
+149
+00:09:45,000 --> 00:09:50,000
+And the traditional spider looks for links in HTML.
+
+150
+00:09:50,000 --> 00:09:55,000
+So it can't find links that have been generated from JavaScript.
+
+151
+00:09:55,000 --> 00:10:02,000
+And modern web apps are traditionally difficult for security tools.
+
+152
+00:10:02,000 --> 00:10:04,000
+But what we've got is we've got the AJAX spider.
+
+153
+00:10:04,000 --> 00:10:09,000
+And the AJAX spider works by launching browsers and clicking on links and filling in forms.
+
+154
+00:10:09,000 --> 00:10:18,000
+So this takes longer, but works with modern web applications, which is good.
+
+155
+00:10:18,000 --> 00:10:19,000
+So let me...
+
+156
+00:10:19,000 --> 00:10:24,000
+So let's have a look what happens when we spider through...
+
+157
+00:10:24,000 --> 00:10:26,000
+Are we going to do a default scan first?
+
+158
+00:10:26,000 --> 00:10:31,000
+Yeah, let's just create a new context.
+
+159
+00:10:31,000 --> 00:10:34,000
+And let's run the spider against it.
+
+160
+00:10:34,000 --> 00:10:37,000
+So we will create a...
+
+161
+00:10:37,000 --> 00:10:38,000
+Actually, I don't have to...
+
+162
+00:10:38,000 --> 00:10:42,000
+What I can do is I can just go into this environment.
+
+163
+00:10:42,000 --> 00:10:44,000
+And you can edit the URL.
+
+164
+00:10:44,000 --> 00:10:47,000
+Yeah, let's make it easy for myself.
+
+165
+00:10:47,000 --> 00:10:52,000
+So we want 3000.
+
+166
+00:10:52,000 --> 00:10:56,000
+And without budget.
+
+167
+00:10:56,000 --> 00:10:57,000
+There we are.
+
+168
+00:10:57,000 --> 00:11:01,000
+And what I'll do is I will create a new session.
+
+169
+00:11:01,000 --> 00:11:04,000
+Just so we see everything.
+
+170
+00:11:04,000 --> 00:11:07,000
+And the new session is not a requirement each time.
+
+171
+00:11:07,000 --> 00:11:09,000
+We're doing this just to give you a clean output, right?
+
+172
+00:11:09,000 --> 00:11:10,000
+Exactly.
+
+173
+00:11:10,000 --> 00:11:11,000
+Yeah.
+
+174
+00:11:11,000 --> 00:11:16,000
+We just want to make sure that, you know, we can see what's going on.
+
+175
+00:11:16,000 --> 00:11:23,000
+And we will see that Zap is finding a lot of stuff.
+
+176
+00:11:23,000 --> 00:11:32,000
+But if we have a look here, we can see we found assets and FTP and juice shop.
+
+177
+00:11:32,000 --> 00:11:34,000
+But there are no API calls.
+
+178
+00:11:34,000 --> 00:11:36,000
+And this is unusual.
+
+179
+00:11:36,000 --> 00:11:39,000
+So if I remember, I've actually looked before.
+
+180
+00:11:39,000 --> 00:11:42,000
+And actually, what we can do is we can launch a browser.
+
+181
+00:11:42,000 --> 00:11:44,000
+So you can see here.
+
+182
+00:11:44,000 --> 00:11:51,000
+And one thing you will notice is all of these URLs have this little fuzzy black thing, which is actually...
+
+183
+00:11:51,000 --> 00:11:52,000
+It's a spider.
+
+184
+00:11:52,000 --> 00:11:55,000
+And the black one means it's the standard spider.
+
+185
+00:11:55,000 --> 00:12:05,000
+So let's launch the browser again and navigate around.
+
+186
+00:12:06,000 --> 00:12:07,000
+Yeah.
+
+187
+00:12:07,000 --> 00:12:12,000
+So you've got the hashtag slash login as an example of a login page.
+
+188
+00:12:12,000 --> 00:12:16,000
+But you don't actually get something back, right, in the context of that location.
+
+189
+00:12:16,000 --> 00:12:21,000
+What we'll see here is we actually now have these API things, these API calls.
+
+190
+00:12:21,000 --> 00:12:23,000
+And we didn't have those before.
+
+191
+00:12:23,000 --> 00:12:27,000
+And we can see, you know, these don't have the spider icon.
+
+192
+00:12:27,000 --> 00:12:32,000
+As soon as you actually navigate to something manually, that's when you'll...
+
+193
+00:12:32,000 --> 00:12:34,000
+We get rid of the spider icon.
+
+194
+00:12:34,000 --> 00:12:35,000
+So it's a way of seeing what you want.
+
+195
+00:12:35,000 --> 00:12:38,000
+It's a way of seeing what you haven't explored manually.
+
+196
+00:12:38,000 --> 00:12:42,000
+But we didn't get any of these API calls when we used the traditional spider.
+
+197
+00:12:42,000 --> 00:12:45,000
+And that's a pain because that's a significant part of the functionality.
+
+198
+00:12:45,000 --> 00:12:49,000
+That's where we're actually doing stuff in modern web applications.
+
+199
+00:12:49,000 --> 00:12:54,000
+And we didn't get the API calls because we were making direct requests to the application.
+
+200
+00:12:54,000 --> 00:12:55,000
+And we didn't...
+
+201
+00:12:55,000 --> 00:12:58,000
+The traditional spider doesn't understand about JavaScript.
+
+202
+00:12:58,000 --> 00:13:01,000
+It wasn't generating all those links.
+
+203
+00:13:01,000 --> 00:13:04,000
+So that's the top indicator that we are up against an application
+
+204
+00:13:04,000 --> 00:13:05,000
+whereby it's got something back.
+
+205
+00:13:05,000 --> 00:13:09,000
+It's got some active JavaScript component that is not returning in the context of a 200
+
+206
+00:13:09,000 --> 00:13:12,000
+or some sort of ESP type of response,
+
+207
+00:13:12,000 --> 00:13:18,000
+which triggers the mental note that we need to spider this further and above and beyond the traditional spider.
+
+208
+00:13:18,000 --> 00:13:19,000
+Exactly.
+
+209
+00:13:19,000 --> 00:13:26,000
+But there's something else because if we go and have a look at alerts and we scroll down,
+
+210
+00:13:26,000 --> 00:13:30,000
+we will see we actually have an alert for modern web app.
+
+211
+00:13:30,000 --> 00:13:31,000
+So...
+
+212
+00:13:31,000 --> 00:13:32,000
+That's just cheating.
+
+213
+00:13:32,000 --> 00:13:33,000
+That's just...
+
+214
+00:13:33,000 --> 00:13:34,000
+Exactly.
+
+215
+00:13:34,000 --> 00:13:41,000
+So what we're doing is Zap actually tries to identify whether we've got a modern web app or not.
+
+216
+00:13:41,000 --> 00:13:43,000
+And it is looking for whole...
+
+217
+00:13:43,000 --> 00:13:44,000
+Here's a classic thing.
+
+218
+00:13:44,000 --> 00:13:50,000
+We've got a link here which has no href.
+
+219
+00:13:50,000 --> 00:13:55,000
+So that is unlikely that that won't actually make a real request.
+
+220
+00:13:55,000 --> 00:14:00,000
+So that indicates, well, it's a good indication there's some JavaScript involved.
+
+221
+00:14:00,000 --> 00:14:03,000
+And we can see we're actually pulling in a significant JavaScript line.
+
+222
+00:14:03,000 --> 00:14:06,000
+We've got a significant JavaScript library here.
+
+223
+00:14:06,000 --> 00:14:12,000
+So there's lots of indication that we actually have a modern web application.
+
+224
+00:14:12,000 --> 00:14:15,000
+And we actually now have this alert to tell us that.
+
+225
+00:14:15,000 --> 00:14:17,000
+It's an information only.
+
+226
+00:14:17,000 --> 00:14:23,000
+Now, this makes things quite useful when it comes to automation because in many cases,
+
+227
+00:14:23,000 --> 00:14:28,000
+if you're a developer and you're running Zap against your own application, you know how it's built.
+
+228
+00:14:28,000 --> 00:14:31,000
+You will know whether it's traditional or modern.
+
+229
+00:14:31,000 --> 00:14:37,000
+If you're a security person and you're running Zap scans against half a dozen, a dozen,
+
+230
+00:14:37,000 --> 00:14:40,000
+hundreds of web applications in your organization,
+
+231
+00:14:40,000 --> 00:14:45,000
+you won't necessarily know the details of every single application, how it's put together.
+
+232
+00:14:45,000 --> 00:14:55,000
+So we have this option where we can actually tell Zap to only use the AJAX spider if necessary.
+
+233
+00:14:55,000 --> 00:14:59,000
+So let's create a new application...
+
+234
+00:14:59,000 --> 00:15:00,000
+A new...
+
+235
+00:15:01,000 --> 00:15:03,000
+Automation plan.
+
+236
+00:15:03,000 --> 00:15:07,000
+Do you want to have a new plan or do you want to have one plan with spiders in it?
+
+237
+00:15:07,000 --> 00:15:09,000
+OK, let's do that then.
+
+238
+00:15:09,000 --> 00:15:10,000
+So let's have a look.
+
+239
+00:15:10,000 --> 00:15:12,000
+So we've got the traditional spider.
+
+240
+00:15:12,000 --> 00:15:18,000
+So what I'm going to do now is I am going to add a couple of jobs.
+
+241
+00:15:18,000 --> 00:15:19,000
+A couple of jobs, actually.
+
+242
+00:15:19,000 --> 00:15:20,000
+A couple of jobs, yeah.
+
+243
+00:15:20,000 --> 00:15:25,000
+So we've got the AJAX spider and we will add that.
+
+244
+00:15:25,000 --> 00:15:26,000
+Now you see we've got...
+
+245
+00:15:26,000 --> 00:15:27,000
+Here's the option here.
+
+246
+00:15:27,000 --> 00:15:28,000
+Run only of modern.
+
+247
+00:15:28,000 --> 00:15:30,000
+And that's the one I want to use.
+
+248
+00:15:30,000 --> 00:15:37,000
+Now, if I try that straight off, we will probably get an error because of how Zap actually works.
+
+249
+00:15:37,000 --> 00:15:40,000
+So what happens is the...
+
+250
+00:15:40,000 --> 00:15:42,000
+We detect whether Zap...
+
+251
+00:15:42,000 --> 00:15:46,000
+Whether the application is modern and all of the other passive...
+
+252
+00:15:46,000 --> 00:15:47,000
+We do it by passive...
+
+253
+00:15:47,000 --> 00:15:49,000
+The passive scanner.
+
+254
+00:15:49,000 --> 00:15:51,000
+And the passive scanner runs in the background.
+
+255
+00:15:51,000 --> 00:15:58,000
+So what the danger has happened is if you run the traditional spider and then immediately try and run the AJAX spider,
+
+256
+00:15:58,000 --> 00:16:00,000
+asking whether it's modern or not,
+
+257
+00:16:00,000 --> 00:16:06,000
+Zap might not have finished the passive scanning and it might not know whether it's modern or not.
+
+258
+00:16:06,000 --> 00:16:07,000
+Right.
+
+259
+00:16:07,000 --> 00:16:16,000
+So that should fail if we run it on a clean new session.
+
+260
+00:16:16,000 --> 00:16:22,000
+Because what we really need to do is we need to actually wait for the passive scan to finish.
+
+261
+00:16:22,000 --> 00:16:29,000
+And we actually want that to happen after the spider and before the AJAX spider.
+
+262
+00:16:29,000 --> 00:16:34,000
+Could we also add a delay in the passive spider?
+
+263
+00:16:34,000 --> 00:16:39,000
+Or do we need to have the passive scan wait as a job in order to make sure that it's completed?
+
+264
+00:16:39,000 --> 00:16:40,000
+It's much...
+
+265
+00:16:40,000 --> 00:16:43,000
+We could add a delay, but we don't know how long to delay for.
+
+266
+00:16:43,000 --> 00:16:48,000
+It kind of depends on how long the passive scan runs for.
+
+267
+00:16:48,000 --> 00:16:49,000
+It might run...
+
+268
+00:16:49,000 --> 00:16:53,000
+Might finish in a couple of seconds or it might take a minute or so.
+
+269
+00:16:53,000 --> 00:16:54,000
+We can actually...
+
+270
+00:16:54,000 --> 00:16:57,000
+With the passive scan wait, we've got an option to have a maximum duration.
+
+271
+00:16:57,000 --> 00:16:58,000
+So this is...
+
+272
+00:16:58,000 --> 00:17:01,000
+This is the best option in this case.
+
+273
+00:17:01,000 --> 00:17:02,000
+There you go, everyone.
+
+274
+00:17:02,000 --> 00:17:03,000
+Top tip.
+
+275
+00:17:03,000 --> 00:17:09,000
+So between the spider, the traditional spider, and the AJAX spider, add a passive scan wait job
+
+276
+00:17:09,000 --> 00:17:11,000
+so that you make sure that it completes...
+
+277
+00:17:11,000 --> 00:17:12,000
+Get the spidering...
+
+278
+00:17:12,000 --> 00:17:15,000
+Traditional spidering completes before the AJAX spidering starts.
+
+279
+00:17:15,000 --> 00:17:16,000
+Exactly.
+
+280
+00:17:16,000 --> 00:17:23,000
+And if you're going to run a report, say you want to run a report after this AJAX spider,
+
+281
+00:17:23,000 --> 00:17:26,000
+then also wait for the passive scan to finish after that.
+
+282
+00:17:26,000 --> 00:17:27,000
+Because the passive scan...
+
+283
+00:17:27,000 --> 00:17:28,000
+Yes.
+
+284
+00:17:28,000 --> 00:17:31,000
+It's going to explore both more things and that will still be passive scanning.
+
+285
+00:17:31,000 --> 00:17:32,000
+Exactly.
+
+286
+00:17:32,000 --> 00:17:33,000
+Exactly.
+
+287
+00:17:33,000 --> 00:17:34,000
+We don't want to do that here.
+
+288
+00:17:34,000 --> 00:17:35,000
+So...
+
+289
+00:17:35,000 --> 00:17:38,000
+Because it will just take a bit too long.
+
+290
+00:17:38,000 --> 00:17:41,000
+So what I'll do now is clear that.
+
+291
+00:17:41,000 --> 00:17:43,000
+And I think the environment was...
+
+292
+00:17:43,000 --> 00:17:46,000
+That should be still be set up right, shouldn't it?
+
+293
+00:17:46,000 --> 00:17:48,000
+I think we've got the old...
+
+294
+00:17:48,000 --> 00:17:49,000
+No, that's okay.
+
+295
+00:17:49,000 --> 00:17:50,000
+Yeah.
+
+296
+00:17:50,000 --> 00:17:51,000
+URL is correct.
+
+297
+00:17:51,000 --> 00:17:52,000
+That's okay.
+
+298
+00:17:52,000 --> 00:17:54,000
+So what we've got now is the traditional spider.
+
+299
+00:17:54,000 --> 00:17:57,000
+We are then waiting for the passive scanner.
+
+300
+00:17:57,000 --> 00:17:58,000
+Passive scanner.
+
+301
+00:17:58,000 --> 00:18:05,000
+And then we are only running the AJAX spider if it is a modern application.
+
+302
+00:18:05,000 --> 00:18:08,000
+So let's run that.
+
+303
+00:18:08,000 --> 00:18:13,000
+And we should see the traditional spider running on.
+
+304
+00:18:13,000 --> 00:18:14,000
+Taking...
+
+305
+00:18:14,000 --> 00:18:16,000
+It'll take a little while and...
+
+306
+00:18:16,000 --> 00:18:19,000
+But not as long as the AJAX spider will do.
+
+307
+00:18:19,000 --> 00:18:24,000
+So we can see the spidering is running and the alerts are starting to pile up.
+
+308
+00:18:24,000 --> 00:18:25,000
+Yeah.
+
+309
+00:18:25,000 --> 00:18:26,000
+And we can see it's already detected.
+
+310
+00:18:26,000 --> 00:18:28,000
+We've got the modern web application, which is good.
+
+311
+00:18:28,000 --> 00:18:30,000
+And so that's finished.
+
+312
+00:18:30,000 --> 00:18:33,000
+And we actually finished waiting for the passive scanner.
+
+313
+00:18:33,000 --> 00:18:37,000
+And you can see that the AJAX spider is running.
+
+314
+00:18:37,000 --> 00:18:38,000
+So...
+
+315
+00:18:38,000 --> 00:18:41,000
+Now, Simon, why was the passive scan so quick to finish?
+
+316
+00:18:41,000 --> 00:18:47,000
+So what we've actually got is we now have a threaded passive scanner.
+
+317
+00:18:47,000 --> 00:18:51,000
+So previously, we just had one thread sitting there.
+
+318
+00:18:51,000 --> 00:18:55,000
+And it could take a long time.
+
+319
+00:18:55,000 --> 00:19:00,000
+Whereas now, by default, we have as many threads as we have cores.
+
+320
+00:19:00,000 --> 00:19:02,000
+And I've got 16 cores here.
+
+321
+00:19:02,000 --> 00:19:07,000
+So the passive scanner is significantly quicker, which is good.
+
+322
+00:19:07,000 --> 00:19:09,000
+So that's very important for our audience, right?
+
+323
+00:19:09,000 --> 00:19:14,000
+So expect the spidering to happen in normal time, seconds, depending on the website, request, response.
+
+324
+00:19:14,000 --> 00:19:16,000
+You might want to measure the TTLs there, etc.
+
+325
+00:19:16,000 --> 00:19:23,000
+The passive scan will take a minimum number of seconds because of the number of threads that are running.
+
+326
+00:19:23,000 --> 00:19:30,000
+And then the spidering on the AJAX side is going to take the maximum time because, of course, it involves the asynchronous JavaScript cores.
+
+327
+00:19:30,000 --> 00:19:31,000
+Yeah.
+
+328
+00:19:31,000 --> 00:19:32,000
+You know, we've got to launch browsers.
+
+329
+00:19:32,000 --> 00:19:33,000
+We've got to control them.
+
+330
+00:19:33,000 --> 00:19:35,000
+We've got to wait for things.
+
+331
+00:19:35,000 --> 00:19:40,000
+It's very difficult to know how long to wait after you click on something in a web application.
+
+332
+00:19:40,000 --> 00:19:42,000
+So we've got configuration there.
+
+333
+00:19:42,000 --> 00:19:44,000
+And this is all, you know, you can do that via the UI.
+
+334
+00:19:44,000 --> 00:19:47,000
+You can do it via the automation framework as well.
+
+335
+00:19:47,000 --> 00:19:50,000
+And there you see we've actually finished now.
+
+336
+00:19:50,000 --> 00:19:51,000
+And we have a look.
+
+337
+00:19:51,000 --> 00:19:52,000
+We should see that we've finished.
+
+338
+00:19:52,000 --> 00:19:55,000
+We should see that we've now got a load of API calls.
+
+339
+00:19:55,000 --> 00:20:01,000
+So we have the gray spidering versus the red spidering.
+
+340
+00:20:01,000 --> 00:20:02,000
+What's the difference there?
+
+341
+00:20:02,000 --> 00:20:03,000
+Great.
+
+342
+00:20:03,000 --> 00:20:04,000
+Yeah.
+
+343
+00:20:04,000 --> 00:20:05,000
+Thank you for pointing that out.
+
+344
+00:20:05,000 --> 00:20:10,000
+So the gray spider, that's the it may just look like a fuzzy blob on the video.
+
+345
+00:20:10,000 --> 00:20:15,000
+But that is a spider icon indicates that traditional spider found it.
+
+346
+00:20:15,000 --> 00:20:18,000
+And the red spider is the AJAX spider.
+
+347
+00:20:18,000 --> 00:20:20,000
+So I can't remember.
+
+348
+00:20:20,000 --> 00:20:21,000
+I think we may just.
+
+349
+00:20:21,000 --> 00:20:27,000
+Well, we probably only have.
+
+350
+00:20:27,000 --> 00:20:28,000
+I can't remember.
+
+351
+00:20:28,000 --> 00:20:29,000
+I can't see both.
+
+352
+00:20:29,000 --> 00:20:31,000
+So maybe we just have one or the other.
+
+353
+00:20:31,000 --> 00:20:33,000
+I can't remember offhand.
+
+354
+00:20:33,000 --> 00:20:35,000
+But I can see both here.
+
+355
+00:20:35,000 --> 00:20:36,000
+Right.
+
+356
+00:20:36,000 --> 00:20:39,000
+And the red one is sockets.io, which makes sense.
+
+357
+00:20:39,000 --> 00:20:40,000
+Exactly.
+
+358
+00:20:40,000 --> 00:20:46,000
+And as soon as you start exploring this manually, then those icons will disappear as you explore them manually.
+
+359
+00:20:46,000 --> 00:20:48,000
+So this is not something for automation.
+
+360
+00:20:48,000 --> 00:20:50,000
+But it's if you're doing manual testing.
+
+361
+00:20:50,000 --> 00:20:55,000
+The spiders are a great way to explore an application, give you the breadth.
+
+362
+00:20:55,000 --> 00:20:59,000
+But it won't help you as a pen tester understand the application for that.
+
+363
+00:20:59,000 --> 00:21:02,000
+You should get in there and try things out.
+
+364
+00:21:02,000 --> 00:21:07,000
+But the spiders will tell you we'll explore the application much more quickly than you can.
+
+365
+00:21:07,000 --> 00:21:10,000
+And we'll actually show you things you might have missed.
+
+366
+00:21:10,000 --> 00:21:14,000
+So from the manual pen testing point of view, they're really important.
+
+367
+00:21:14,000 --> 00:21:19,000
+But you should also definitely explore the application manually to get understand the application.
+
+368
+00:21:19,000 --> 00:21:27,000
+And start, you know, thinking about it and going, okay, how should I actually start attacking this thing?
+
+369
+00:21:27,000 --> 00:21:28,000
+Very good.
+
+370
+00:21:28,000 --> 00:21:30,000
+So we've got a lot done.
+
+371
+00:21:30,000 --> 00:21:32,000
+We've got the traditional spider.
+
+372
+00:21:32,000 --> 00:21:34,000
+We did a passive scan.
+
+373
+00:21:34,000 --> 00:21:37,000
+And we've got the AJAX spider that we have completed.
+
+374
+00:21:37,000 --> 00:21:44,000
+So what would the next step be here in terms of, you know, verifying that we have covered enough breadth and depth for our application?
+
+375
+00:21:44,000 --> 00:21:47,000
+Well, it kind of depends what you've got access to.
+
+376
+00:21:47,000 --> 00:21:48,000
+If you're, you know.
+
+377
+00:21:48,000 --> 00:21:55,000
+There's a difference between scanning hundreds of thousands of applications or scanning individual ones.
+
+378
+00:21:55,000 --> 00:22:03,000
+If you're, you know, if you're a developer and you're scanning an individual application, you should have a look at this site's tree and go, okay, yeah, that makes sense.
+
+379
+00:22:03,000 --> 00:22:06,000
+It looks like it's exploring the right kind of things.
+
+380
+00:22:06,000 --> 00:22:08,000
+So there's a lot of feedback that Zap gives.
+
+381
+00:22:08,000 --> 00:22:16,000
+And this is one advantage of Zap having the desktop UI in addition to all the automation things.
+
+382
+00:22:16,000 --> 00:22:17,000
+But it also depends on the application.
+
+383
+00:22:17,000 --> 00:22:19,000
+But it also depends what you've got available.
+
+384
+00:22:19,000 --> 00:22:23,000
+Because a lot of modern web applications.
+
+385
+00:22:23,000 --> 00:22:25,000
+So we've got the AJAX spider.
+
+386
+00:22:25,000 --> 00:22:28,000
+But what they do, they use JavaScript frameworks.
+
+387
+00:22:28,000 --> 00:22:31,000
+And then they make API calls in the background.
+
+388
+00:22:31,000 --> 00:22:35,000
+Now, Zap will detect those API calls.
+
+389
+00:22:35,000 --> 00:22:40,000
+But there's often a lot more API calls that you can easily discover via the desktop.
+
+390
+00:22:40,000 --> 00:22:44,000
+And there might be some API calls that the desktop doesn't actually use at the moment.
+
+391
+00:22:44,000 --> 00:22:45,000
+Yes.
+
+392
+00:22:45,000 --> 00:22:46,000
+So what happens is.
+
+393
+00:22:46,000 --> 00:22:54,000
+If the Zap traditional spider finds an API definition that it understands, it will import that automatically.
+
+394
+00:22:54,000 --> 00:23:03,000
+However, we know that most applications, even if they've got an API definition, they don't actually put it on the application itself.
+
+395
+00:23:03,000 --> 00:23:05,000
+You know, they're held separately.
+
+396
+00:23:05,000 --> 00:23:10,000
+They might be available via URL or they might be just on the file store somewhere.
+
+397
+00:23:10,000 --> 00:23:15,000
+So if you have an API definition, it is really worth importing it into Zap.
+
+398
+00:23:16,000 --> 00:23:19,000
+And for that, we have a separate set of jobs.
+
+399
+00:23:19,000 --> 00:23:23,000
+And I think those are ones which we should probably cover in the next session.
+
+400
+00:23:23,000 --> 00:23:24,000
+Yeah, absolutely.
+
+401
+00:23:24,000 --> 00:23:26,000
+Agree.
+
+402
+00:23:26,000 --> 00:23:27,000
+Great.
+
+403
+00:23:27,000 --> 00:23:29,000
+So let me.
+
+404
+00:23:29,000 --> 00:23:31,000
+In that case, I will stop sharing.
+
+405
+00:23:31,000 --> 00:23:33,000
+And yeah.
+
+406
+00:23:33,000 --> 00:23:37,000
+So as I said, we went through the traditional spider.
+
+407
+00:23:37,000 --> 00:23:43,000
+Fast and furious, but only good for traditional web applications, which don't make heavy use of JavaScript.
+
+408
+00:23:43,000 --> 00:23:45,000
+If you've got a lot of JavaScript, then use the AJAX spider.
+
+409
+00:23:45,000 --> 00:23:48,000
+If you don't know, then use both.
+
+410
+00:23:48,000 --> 00:23:59,000
+But wait for the passive scan to finish off the traditional spider and use the option on the AJAX spider to only fall if it's a modern web application.
+
+411
+00:23:59,000 --> 00:24:05,000
+And next time, we'll have a look at the jobs for importing API definitions.
+
+412
+00:24:05,000 --> 00:24:06,000
+We will indeed.
+
+413
+00:24:06,000 --> 00:24:07,000
+Thanks, everyone.
+
+414
+00:24:07,000 --> 00:24:08,000
+Yeah.
+
+415
+00:24:08,000 --> 00:24:09,000
+Hope you enjoyed it.
+
+416
+00:24:09,000 --> 00:24:14,000
+If you did enjoy it, then please subscribe, like and let us know in comments what you think.
+
+417
+00:24:14,000 --> 00:24:17,000
+And what else you would like us to cover.
+
+418
+00:24:17,000 --> 00:24:18,000
+Until next time.
+
+419
+00:24:18,000 --> 00:24:19,000
+Bye.
+
+420
+00:24:19,000 --> 00:24:20,000
+Bye.
+
+421
+00:24:20,000 --> 00:24:21,000
+Bye.
+
+422
+00:24:21,000 --> 00:24:22,000
+Bye.
+
+423
+00:24:22,000 --> 00:24:23,000
+See you all.
+
+424
+00:24:23,000 --> 00:24:24,000
+Bye.
+
+425
+00:24:24,000 --> 00:24:25,000
+Bye.
+
+426
+00:24:25,000 --> 00:24:26,000
+Bye.
+
+427
+00:24:26,000 --> 00:24:27,000
+Bye.
+
+428
+00:24:27,000 --> 00:24:28,000
+Bye.
+
+429
+00:24:28,000 --> 00:24:29,000
+Bye.
+
+430
+00:24:29,000 --> 00:24:30,000
+Bye.
+
+431
+00:24:30,000 --> 00:24:31,000
+Bye.
+
+432
+00:24:31,000 --> 00:24:32,000
+Bye.
+
+433
+00:24:32,000 --> 00:24:33,000
+Bye.
+
+434
+00:24:33,000 --> 00:24:34,000
+Bye.
+
+435
+00:24:34,000 --> 00:24:35,000
+Bye.
+
+436
+00:24:35,000 --> 00:24:36,000
+Bye.
+
+437
+00:24:36,000 --> 00:24:37,000
+Bye.
+
+438
+00:24:37,000 --> 00:24:38,000
+Bye.
+
+439
+00:24:38,000 --> 00:24:39,000
+Bye.
+
+440
+00:24:39,000 --> 00:24:40,000
+Bye.
+
+441
+00:24:40,000 --> 00:24:41,000
+Bye.
+
+442
+00:24:41,000 --> 00:24:42,000
+Bye.
+
+443
+00:24:42,000 --> 00:24:43,000
+Bye.
+
+444
+00:24:43,000 --> 00:24:44,000
+Bye.
+

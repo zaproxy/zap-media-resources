@@ -1,0 +1,960 @@
+1
+00:00:00,000 --> 00:00:10,920
+Hello and welcome to another Zap Chat video with myself, Simon, and Yanis.
+
+2
+00:00:10,920 --> 00:00:16,080
+Hello, and we're here to discuss APIs. What are we going to talk about today, Simon?
+
+3
+00:00:16,080 --> 00:00:25,260
+Yeah. So, confession, we actually failed to record a video last week. So, we're doing two
+
+4
+00:00:25,260 --> 00:00:32,400
+in one day. We just recorded one on the spiders. And in the previous video, we said we were going
+
+5
+00:00:32,400 --> 00:00:37,460
+to cover the API jobs, which we didn't. We covered the spider ones. So, now we're going to the API
+
+6
+00:00:37,460 --> 00:00:43,040
+jobs. So, we're still here on the talk about the automation framework. It's a big framework,
+
+7
+00:00:43,040 --> 00:00:48,920
+so there's a lot to cover. There'll be more videos after this one. And what we're doing is
+
+8
+00:00:48,920 --> 00:00:55,020
+we're now on to exploring your application. So, in last video, we explained that exploring is
+
+9
+00:00:55,020 --> 00:00:55,240
+essential. So, we're now on to exploring your application. So, in last video, we explained
+
+10
+00:00:55,240 --> 00:01:00,460
+that exploring is essential. Because if you don't explore your application effectively,
+
+11
+00:01:00,680 --> 00:01:05,460
+Zap won't know about all the endpoints and won't be able to attack them. The spiders are great ways
+
+12
+00:01:05,460 --> 00:01:12,140
+to explore your applications. But if you've got API definitions, you should absolutely use those
+
+13
+00:01:12,140 --> 00:01:16,460
+in addition to crawling. Now, if you've only got API definitions, if you're trying to attack
+
+14
+00:01:16,460 --> 00:01:25,000
+just an API endpoint, then this is all you've got. So, you'll need to import your APIs. But if you're
+
+15
+00:01:25,000 --> 00:01:30,100
+trying to crawl, you can crawl it probably by one or both of the spiders, but also import the API
+
+16
+00:01:30,100 --> 00:01:36,800
+definitions before you start to attack. What I like about the API aspect of running jobs is
+
+17
+00:01:36,800 --> 00:01:42,380
+that you can very easily get the diff of what the API updates have been and then focus on those
+
+18
+00:01:42,380 --> 00:01:48,860
+updates instead of just having to attack the entire API context that you have, right? If you've got
+
+19
+00:01:48,860 --> 00:01:54,920
+a swaggered or pasted file, that could run for days. So, I'm really keen to see,
+
+20
+00:01:55,000 --> 00:01:57,680
+what we're going to be doing here today when it comes to APIs.
+
+21
+00:01:58,820 --> 00:02:08,040
+Cool. So, let me share my screen and Zap as usual. Now, what I will do is go over to the browser
+
+22
+00:02:08,040 --> 00:02:18,100
+because the first API definition is this one. So, it's an OpenAPI definition, OpenAPI 3.0,
+
+23
+00:02:25,000 --> 00:02:34,880
+which is... Now, one thing you'll notice is the URL is swagger.io, and this isn't where PetStore is.
+
+24
+00:02:34,880 --> 00:02:42,660
+So, that's the first thing. Your API definition may not actually point to the target site. So, that's
+
+25
+00:02:42,660 --> 00:02:44,660
+something to be aware of.
+
+26
+00:02:44,660 --> 00:02:49,820
+Make sure you've got that right, right? You don't want to be attacking the wrong API URL.
+
+27
+00:02:49,820 --> 00:02:54,620
+Exactly. Yeah. And that's key. You know, you always want to know if you're attacking the right thing.
+
+28
+00:02:54,620 --> 00:03:01,820
+So, let's go to the Automation tab, and I've still got it set up from the spider we did before,
+
+29
+00:03:01,820 --> 00:03:09,500
+but what we want to do is we will use that, and we use the default context, and then we will...
+
+30
+00:03:10,140 --> 00:03:15,980
+We've got a set of jobs, and one of them is the OpenAPI one. That's all I will use for the moment.
+
+31
+00:03:17,180 --> 00:03:24,060
+Now, what I'll do is have a look at the API job. So, we can specify a local file,
+
+32
+00:03:24,620 --> 00:03:30,540
+or we can specify a URL, which is good, because I'll just paste that one in there.
+
+33
+00:03:31,820 --> 00:03:41,340
+And then, what I need to do is specify the target, and that is the target. So, it's
+
+34
+00:03:41,340 --> 00:03:49,420
+petstore.swagger.io slash v2. And there's a v3 as well, which I can show if you think that's useful.
+
+35
+00:03:50,220 --> 00:03:54,140
+And that should be it. So, I will just run that, and, of course, we'll see what happens.
+
+36
+00:03:54,620 --> 00:03:59,340
+And, of course, it fails because I forgot to put the URL in the context as well.
+
+37
+00:03:59,340 --> 00:04:00,620
+URL in the context, yeah.
+
+38
+00:04:00,620 --> 00:04:03,260
+So, if you modify that, and just...
+
+39
+00:04:03,260 --> 00:04:10,540
+Save that. Let's try that again. And this time, it's looking better.
+
+40
+00:04:11,980 --> 00:04:17,100
+So, we can see it's running, and we can see it finished.
+
+41
+00:04:17,980 --> 00:04:24,060
+So, we can see we actually made that request to the swagger URL.
+
+42
+00:04:24,620 --> 00:04:28,300
+Go down far enough, we can see the request and response.
+
+43
+00:04:28,940 --> 00:04:36,140
+And then, we look under the target URL. We will see we're actually making these requests,
+
+44
+00:04:36,940 --> 00:04:41,420
+and we are getting the responses back. So, this is a...
+
+45
+00:04:42,860 --> 00:04:49,260
+Using the URL is a really effective way of helping ZAP understand your application properly.
+
+46
+00:04:52,500 --> 00:04:54,380
+What is it that we are seeing here,
+
+47
+00:04:54,380 --> 00:05:00,540
+as a set of requests and responses, Simon, that is different to the crawling,
+
+48
+00:05:00,540 --> 00:05:03,820
+either modern crawling or, you know, traditional crawling?
+
+49
+00:05:04,460 --> 00:05:08,620
+With crawling, we are exercising the application from the front end.
+
+50
+00:05:09,180 --> 00:05:14,140
+So, even the standard spider is looking for links. It's looking for forms.
+
+51
+00:05:14,140 --> 00:05:19,820
+And again, the AJAX spider is filling in forms and doing things like that.
+
+52
+00:05:19,820 --> 00:05:23,660
+So, it is invoking the application as a user would.
+
+53
+00:05:24,380 --> 00:05:28,040
+Now, this is really useful and will actually provide us with good context
+
+54
+00:05:28,040 --> 00:05:30,860
+and potentially some good default values.
+
+55
+00:05:31,080 --> 00:05:35,060
+But it's quite possible that the API is actually much more thorough
+
+56
+00:05:35,060 --> 00:05:39,800
+than the front end actually uses.
+
+57
+00:05:40,120 --> 00:05:44,680
+So there may be extra API points that either the front end doesn't use
+
+58
+00:05:44,680 --> 00:05:46,360
+or we didn't manage to explore.
+
+59
+00:05:46,820 --> 00:05:53,440
+So you might have to go through a series of operations on the front end
+
+60
+00:05:53,440 --> 00:05:56,400
+in order to hit a particular back end API.
+
+61
+00:05:57,160 --> 00:05:59,300
+And for whatever reason, the spiders weren't able to do that.
+
+62
+00:05:59,620 --> 00:06:02,260
+If you're going through an application manually, you might be able to do it
+
+63
+00:06:02,260 --> 00:06:05,520
+because you can have more context and you understand what you're doing.
+
+64
+00:06:05,820 --> 00:06:07,800
+But the spiders don't really understand applications.
+
+65
+00:06:08,300 --> 00:06:10,360
+So they might not have explored everything
+
+66
+00:06:10,360 --> 00:06:12,700
+or it might not be possible to explore everything.
+
+67
+00:06:13,600 --> 00:06:19,160
+So API definitions are great.
+
+68
+00:06:19,540 --> 00:06:22,200
+So if you have access to them, then absolutely use them.
+
+69
+00:06:22,200 --> 00:06:25,360
+And that just shows you how easy it is.
+
+70
+00:06:26,040 --> 00:06:29,300
+Now, we do have other options as well.
+
+71
+00:06:30,120 --> 00:06:32,360
+So Zap has very good API support.
+
+72
+00:06:33,240 --> 00:06:35,940
+And one of them is, another one is Soap.
+
+73
+00:06:36,180 --> 00:06:37,300
+So a bit more traditional.
+
+74
+00:06:38,660 --> 00:06:45,260
+And what I'll do is we'll just add a new job.
+
+75
+00:06:46,940 --> 00:06:49,280
+And while you do that, I think it's important to state
+
+76
+00:06:49,280 --> 00:06:52,160
+that there is the expectation that you know what type,
+
+77
+00:06:52,160 --> 00:06:52,180
+and you're going to be able to do that.
+
+78
+00:06:52,180 --> 00:06:58,840
+So if it's a Swagger.json, we assume that you've either got that
+
+79
+00:06:58,840 --> 00:07:02,500
+during part of the scoping of whatever penetration test
+
+80
+00:07:02,500 --> 00:07:06,760
+or exercise you're doing, or if it's a traditional Soap type of job,
+
+81
+00:07:06,880 --> 00:07:10,060
+then there's a WSDL file or equivalent that you have access to.
+
+82
+00:07:10,320 --> 00:07:14,060
+There is basically an input required when it comes to APIs
+
+83
+00:07:14,060 --> 00:07:15,820
+and looking at APIs.
+
+84
+00:07:16,000 --> 00:07:18,460
+That's very important compared to the traditional crawling
+
+85
+00:07:18,460 --> 00:07:22,000
+where you're effectively counting on,
+
+86
+00:07:22,000 --> 00:07:23,920
+you know, the links and the crawling ability
+
+87
+00:07:23,920 --> 00:07:25,400
+from the front-end perspective.
+
+88
+00:07:25,820 --> 00:07:29,140
+So don't hesitate to request that during the scoping meetings
+
+89
+00:07:29,140 --> 00:07:31,600
+that you might have when it comes to pen tests
+
+90
+00:07:31,600 --> 00:07:32,960
+or rent team engagements.
+
+91
+00:07:33,740 --> 00:07:34,080
+Absolutely.
+
+92
+00:07:34,640 --> 00:07:38,480
+And now if the Zap traditional spider actually discovers
+
+93
+00:07:38,480 --> 00:07:40,860
+one of these endpoints, it will import automatically.
+
+94
+00:07:41,520 --> 00:07:41,860
+Yes.
+
+95
+00:07:41,920 --> 00:07:46,480
+What we found is that most applications don't expose
+
+96
+00:07:46,480 --> 00:07:47,620
+this information.
+
+97
+00:07:48,100 --> 00:07:49,700
+And in fact, you know, in a pen test,
+
+98
+00:07:49,700 --> 00:07:51,680
+you might argue that this is actually,
+
+99
+00:07:51,680 --> 00:07:56,140
+you know, a slight vulnerability because you're giving the attacker
+
+100
+00:07:56,140 --> 00:07:58,520
+more information than they might otherwise have.
+
+101
+00:07:59,040 --> 00:08:03,180
+So, you know, we will flag that we found API definitions,
+
+102
+00:08:03,780 --> 00:08:08,760
+but you might not want those on your public application,
+
+103
+00:08:09,080 --> 00:08:09,860
+your public endpoint.
+
+104
+00:08:10,620 --> 00:08:14,740
+So that's why we have these options for importing the APIs
+
+105
+00:08:14,740 --> 00:08:17,440
+definitions from files and URLs.
+
+106
+00:08:17,440 --> 00:08:21,180
+One of the cardinal mistakes that I've seen
+
+107
+00:08:21,180 --> 00:08:21,660
+in the past is that when you're importing a file,
+
+108
+00:08:21,660 --> 00:08:22,700
+when you're importing a file, when you're importing a pen test
+
+109
+00:08:22,700 --> 00:08:25,160
+that have gone wrong, is that during scoping,
+
+110
+00:08:25,380 --> 00:08:27,400
+we have settled on the website being, you know,
+
+111
+00:08:27,460 --> 00:08:30,400
+website.com or, you know, app.website.com.
+
+112
+00:08:30,740 --> 00:08:32,580
+And nobody has asked the question,
+
+113
+00:08:32,840 --> 00:08:35,000
+is there an API.website.com?
+
+114
+00:08:35,420 --> 00:08:38,360
+And lo and behold, there is, but it's out of scope.
+
+115
+00:08:38,560 --> 00:08:41,280
+But yet that's the one endpoint backend
+
+116
+00:08:41,280 --> 00:08:44,800
+that is going to be attacked royally online.
+
+117
+00:08:45,560 --> 00:08:47,200
+Therefore, you end up with a compromised website
+
+118
+00:08:47,200 --> 00:08:49,840
+that has had a successful and clean penetration test
+
+119
+00:08:49,840 --> 00:08:51,640
+because nobody has looked at the API.
+
+120
+00:08:51,640 --> 00:08:54,640
+The API subdomain of website.com.
+
+121
+00:08:54,780 --> 00:08:56,760
+So make sure you don't fall into that trap
+
+122
+00:08:56,760 --> 00:08:59,620
+and use that when it comes to making sure
+
+123
+00:08:59,620 --> 00:09:02,780
+that you cover that API subdomain.
+
+124
+00:09:03,540 --> 00:09:03,940
+Absolutely.
+
+125
+00:09:05,000 --> 00:09:06,940
+And, you know, if you're doing some manual testing,
+
+126
+00:09:07,040 --> 00:09:09,360
+you could actually, you should be able to identify
+
+127
+00:09:09,360 --> 00:09:10,440
+some of these things.
+
+128
+00:09:11,040 --> 00:09:13,340
+So, you know, if you say, okay, this looks like
+
+129
+00:09:13,340 --> 00:09:15,920
+an open API swagger, something like that,
+
+130
+00:09:15,980 --> 00:09:17,480
+then ask for that definition.
+
+131
+00:09:17,480 --> 00:09:23,000
+So let's have a look at, so what I've got,
+
+132
+00:09:23,440 --> 00:09:27,480
+I've just got a test file on,
+
+133
+00:09:28,440 --> 00:09:29,780
+because I couldn't find any online ones.
+
+134
+00:09:30,280 --> 00:09:33,020
+And it shows that we can actually load these things
+
+135
+00:09:33,020 --> 00:09:38,280
+from file store as well, which might be, you know,
+
+136
+00:09:38,300 --> 00:09:41,200
+if you haven't got it online, then that's the best option.
+
+137
+00:09:41,460 --> 00:09:45,700
+Now I don't actually have a service behind this.
+
+138
+00:09:45,700 --> 00:09:46,800
+So I'm just going to use,
+
+139
+00:09:47,480 --> 00:09:51,060
+my local Tomcat because it will just 404 all of them,
+
+140
+00:09:51,560 --> 00:09:53,980
+but it will show you that we can actually,
+
+141
+00:09:54,140 --> 00:09:57,560
+and I'll remove the open eye, open API.
+
+142
+00:09:59,440 --> 00:10:03,560
+And if we then, I think the important thing is that
+
+143
+00:10:03,560 --> 00:10:06,440
+our audience is able to understand how they import
+
+144
+00:10:06,440 --> 00:10:08,300
+the open API whistle file.
+
+145
+00:10:08,520 --> 00:10:11,500
+And then you can triage that against the URL that you have
+
+146
+00:10:11,500 --> 00:10:15,520
+to basically build your own site context equivalent,
+
+147
+00:10:15,520 --> 00:10:16,860
+but for the APIs,
+
+148
+00:10:17,480 --> 00:10:19,620
+which then of course is the stepping stone
+
+149
+00:10:19,620 --> 00:10:21,440
+for further attacks.
+
+150
+00:10:21,440 --> 00:10:22,580
+Exactly.
+
+151
+00:10:22,580 --> 00:10:26,140
+And what you'll actually see here is for whistle,
+
+152
+00:10:26,140 --> 00:10:29,820
+we actually output to the, if you've got the desktop,
+
+153
+00:10:31,040 --> 00:10:35,200
+so we actually found the service, but we're getting 404s.
+
+154
+00:10:35,200 --> 00:10:37,160
+But if you have a look at automation,
+
+155
+00:10:37,160 --> 00:10:39,400
+you see the job actually succeeded.
+
+156
+00:10:39,400 --> 00:10:44,400
+We've made those requests and you can see they are valid
+
+157
+00:10:44,480 --> 00:10:47,320
+SOAP requests for the, so, you know,
+
+158
+00:10:47,320 --> 00:10:51,300
+ZAP has imported definition, actually understands that,
+
+159
+00:10:51,300 --> 00:10:55,160
+and then has made the correct requests.
+
+160
+00:10:56,380 --> 00:10:57,220
+Perfect.
+
+161
+00:10:58,020 --> 00:11:00,940
+Oh, and you seem to have gone fuzzy all of a sudden,
+
+162
+00:11:00,940 --> 00:11:01,780
+Yanis.
+
+163
+00:11:01,780 --> 00:11:02,620
+Let me restart my video.
+
+164
+00:11:02,620 --> 00:11:05,200
+The wonders of a live broadcast, right?
+
+165
+00:11:06,720 --> 00:11:07,740
+So that's SOAP.
+
+166
+00:11:07,740 --> 00:11:12,320
+And we do have another option, which is GraphQL.
+
+167
+00:11:12,320 --> 00:11:16,720
+So let me add the GraphQL job.
+
+168
+00:11:17,320 --> 00:11:22,320
+And you'll see, this is pretty similar.
+
+169
+00:11:24,760 --> 00:11:26,380
+So we've got the endpoint,
+
+170
+00:11:28,140 --> 00:11:33,140
+which again, I will put in as local host.
+
+171
+00:11:36,980 --> 00:11:41,980
+And this time I've got a simple GraphQL definition
+
+172
+00:11:43,820 --> 00:11:45,660
+on file store again.
+
+173
+00:11:47,320 --> 00:11:50,820
+So Simon, what's the difference between a WSDL file
+
+174
+00:11:50,820 --> 00:11:53,500
+that will get, you know, an OpenAPI definition?
+
+175
+00:11:53,500 --> 00:11:55,580
+Says the fuzzy meme in the live video
+
+176
+00:11:55,580 --> 00:12:00,080
+and a GraphQL equivalent file.
+
+177
+00:12:01,120 --> 00:12:04,200
+They're different definitions, aren't they?
+
+178
+00:12:04,200 --> 00:12:07,780
+So they're very different technologies, but again,
+
+179
+00:12:07,780 --> 00:12:10,640
+all they're doing is defining an API.
+
+180
+00:12:10,640 --> 00:12:14,520
+And these are used to actually typically generate code.
+
+181
+00:12:14,520 --> 00:12:16,780
+So what people can do is you can have your API definition,
+
+182
+00:12:16,780 --> 00:12:20,260
+your API definition, and then you can import that
+
+183
+00:12:20,260 --> 00:12:22,520
+and generate a whole load of code,
+
+184
+00:12:22,520 --> 00:12:24,620
+which will make it possible for,
+
+185
+00:12:24,620 --> 00:12:26,200
+and make it much easier for your developers
+
+186
+00:12:26,200 --> 00:12:27,300
+to develop against.
+
+187
+00:12:27,300 --> 00:12:30,160
+But it also means we can import them into tools like Zap.
+
+188
+00:12:31,200 --> 00:12:32,340
+Right, right.
+
+189
+00:12:33,240 --> 00:12:35,360
+So I've added the GraphQL job
+
+190
+00:12:35,360 --> 00:12:38,840
+and I will remove the SOAP one.
+
+191
+00:12:38,840 --> 00:12:42,980
+And again, we will start a new Zap session.
+
+192
+00:12:42,980 --> 00:12:45,200
+And then if we run that,
+
+193
+00:12:45,200 --> 00:12:48,200
+we will see, again, Zap ran very quickly
+
+194
+00:12:48,200 --> 00:12:51,000
+and imported the URLs.
+
+195
+00:12:51,000 --> 00:12:52,660
+And we will see now,
+
+196
+00:12:52,660 --> 00:12:56,240
+we've actually got a whole lot of requests,
+
+197
+00:12:56,240 --> 00:12:59,220
+which are, again, you can see that this time
+
+198
+00:12:59,220 --> 00:13:01,580
+they look very GraphQL-ish.
+
+199
+00:13:02,440 --> 00:13:06,260
+And the responses are rubbish ones,
+
+200
+00:13:06,260 --> 00:13:07,360
+so we could ignore those
+
+201
+00:13:08,420 --> 00:13:10,300
+because it's not a real endpoint.
+
+202
+00:13:10,300 --> 00:13:13,420
+We're hitting on a real GraphQL endpoint.
+
+203
+00:13:13,420 --> 00:13:14,900
+Now, we do,
+
+204
+00:13:14,900 --> 00:13:18,180
+actually have another,
+
+205
+00:13:18,180 --> 00:13:21,700
+so Zap recently has Postman support.
+
+206
+00:13:21,700 --> 00:13:24,280
+And I ought to point out that all of these,
+
+207
+00:13:24,280 --> 00:13:28,020
+so support for OpenAPI, SOAP, GraphQL, and Postman
+
+208
+00:13:28,020 --> 00:13:30,460
+were all implemented by students
+
+209
+00:13:30,460 --> 00:13:33,020
+through Google Summer of Code over different years,
+
+210
+00:13:33,020 --> 00:13:34,480
+which is actually brilliant.
+
+211
+00:13:34,480 --> 00:13:39,100
+And this year we had a Google Summer of Code student
+
+212
+00:13:39,100 --> 00:13:41,060
+working on Postman importing,
+
+213
+00:13:41,060 --> 00:13:42,900
+and that works from the GUI,
+
+214
+00:13:42,900 --> 00:13:44,700
+and she's actually submitted a PR,
+
+215
+00:13:44,900 --> 00:13:47,220
+and she's actually done a PR for support
+
+216
+00:13:47,220 --> 00:13:48,900
+from the automation framework as well.
+
+217
+00:13:48,900 --> 00:13:51,860
+So very soon we should have a Postman job
+
+218
+00:13:51,860 --> 00:13:53,820
+in the automation framework as well.
+
+219
+00:13:54,740 --> 00:13:56,180
+Great news, great news.
+
+220
+00:13:57,040 --> 00:13:59,440
+So that is a quick rundown
+
+221
+00:13:59,440 --> 00:14:04,520
+of how you actually import the API definitions into Zap.
+
+222
+00:14:04,520 --> 00:14:06,980
+And don't forget that we got loads
+
+223
+00:14:06,980 --> 00:14:10,660
+of documentation on zeddyproxy.org.
+
+224
+00:14:10,660 --> 00:14:12,160
+And for the automation framework,
+
+225
+00:14:12,160 --> 00:14:14,160
+go to Documentation,
+
+226
+00:14:14,160 --> 00:14:21,400
+automation framework and got links to the videos we've been recording here and here are the full
+
+227
+00:14:21,400 --> 00:14:27,000
+set of jobs so we've kind of got the environment authentication job tests and then these are all
+
+228
+00:14:27,000 --> 00:14:33,500
+of the jobs and you can say okay right we'll go in have a look at the GraphQL job and that'll give
+
+229
+00:14:33,500 --> 00:14:39,240
+you a lot more information including if you want to actually write the YAML directly it'll tell
+
+230
+00:14:39,240 --> 00:14:44,040
+you give information about all of the the parameters and what they mean so lots more
+
+231
+00:14:44,040 --> 00:14:53,240
+information there and also check out the blog posts as well so that is the that's the importing
+
+232
+00:14:53,240 --> 00:14:58,860
+API definitions and we haven't actually discussed what we're going to talk about next but it will be
+
+233
+00:14:58,860 --> 00:15:04,500
+probably on the automation framework or we might have a slight diversion but there's a lot more to
+
+234
+00:15:04,500 --> 00:15:09,220
+talk about the automation framework so let me just stop sharing my screen
+
+235
+00:15:09,240 --> 00:15:15,240
+and yeah you're you're you're fuzzy Yanis I've no idea I know I know from a fuzzy Yanis thank
+
+236
+00:15:15,240 --> 00:15:22,260
+you all for watching and promise to have unfuzzed myself by the next video yep thank you very much
+
+237
+00:15:22,260 --> 00:15:28,700
+I haven't decided what we're going to cover next but we aim to do that next week as I said before
+
+238
+00:15:28,700 --> 00:15:33,960
+please like the videos and subscribe and let us know in the comments what else you know any
+
+239
+00:15:33,960 --> 00:15:36,920
+feedback and what else you'd like us to cover thank you very much
+
+240
+00:15:39,240 --> 00:15:41,300
+you
+
