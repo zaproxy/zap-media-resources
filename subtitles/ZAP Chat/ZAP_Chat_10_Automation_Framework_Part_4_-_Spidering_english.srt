@@ -1,6 +1,6 @@
 1
 00:00:00,000 --> 00:00:12,000
-Hello and welcome to another episode of ZapChat with me, Simon Bennett and Yanis.
+Hello and welcome to another episode of ZAP Chat with me, Simon Bennetts and Yiannis.
 
 2
 00:00:12,000 --> 00:00:16,000
@@ -20,7 +20,7 @@ There's a lot of them, but we're still on the exploring stage.
 
 6
 00:00:36,000 --> 00:00:43,000
-So exploring is absolutely key to Zap and to any similar DAST type scanner,
+So exploring is absolutely key to ZAP and to any similar DAST type scanner,
 
 7
 00:00:43,000 --> 00:00:48,000
@@ -32,7 +32,7 @@ So exploring is absolutely key. If you don't explore something effectively, you'
 
 9
 00:00:54,000 --> 00:00:55,000
-How many times?
+
 
 10
 00:00:55,000 --> 00:00:58,000
@@ -104,11 +104,11 @@ You know, you're going to get to year 3000 and something.
 
 27
 00:02:22,000 --> 00:02:23,000
-So you have to have limits on that.
+So 
 
 28
 00:02:24,000 --> 00:02:29,000
-You have to have limits on spiders. And sometimes we see, you know, loops and things like that, which the spider should detect.
+you have to have limits on spiders. And sometimes we see, you know, loops and things like that, which the spider should detect.
 
 29
 00:02:29,000 --> 00:02:37,000
@@ -116,7 +116,7 @@ But, you know, if you generate unique URLs, then the spider might not notice tha
 
 30
 00:02:37,000 --> 00:02:45,000
-So I'm going to start with a very simple basic application called Budget, which you'll have seen before, probably.
+So I'm going to start with a very simple basic application called BodgeIt, which you'll have seen before, probably.
 
 31
 00:02:45,000 --> 00:02:49,000
@@ -236,7 +236,7 @@ So actually, let's go back to the the sites tree here.
 
 60
 00:04:59,000 --> 00:05:07,000
-And so basically the max number of children here with Bodget, it already has one, two, three, four, five children.
+And so basically the max number of children here with BodgeIt, it already has one, two, three, four, five children.
 
 61
 00:05:07,000 --> 00:05:13,000
@@ -264,19 +264,19 @@ So the top level is one.
 
 67
 00:05:23,000 --> 00:05:24,000
-So local host is one.
+So local host is one,
 
 68
 00:05:24,000 --> 00:05:25,000
-Bodget is two.
+BodgeIt is two,
 
 69
 00:05:25,000 --> 00:05:27,000
-JS is three.
+JS is three,
 
 70
 00:05:27,000 --> 00:05:29,000
-Utils.js is four.
+Util.js is four.
 
 71
 00:05:29,000 --> 00:05:37,000
@@ -364,7 +364,7 @@ I think we've covered that before.
 
 92
 00:06:19,000 --> 00:06:25,000
-But this is a kind of useful, you know, Zap has no idea that Bodget has more than 100 URLs.
+But this is a kind of useful, you know, ZAP has no idea that BodgeIt has more than 100 URLs.
 
 93
 00:06:25,000 --> 00:06:27,000
@@ -388,11 +388,11 @@ So we've got advanced options.
 
 98
 00:06:43,000 --> 00:06:48,000
-So we have options for parsing and maximum size to parse in by year.
+So we have options for parsing and maximum size to parse in bytes.
 
 99
 00:06:48,000 --> 00:06:59,000
-If you've got some, say you've got videos on your website, you don't want Zap to start trying to parse those or very large documents which we know won't have URLs in or anything.
+If you've got some, say you've got videos on your website, you don't want ZAP to start trying to parse those or very large documents which we know won't have URLs in or anything.
 
 100
 00:06:59,000 --> 00:07:03,000
@@ -436,7 +436,7 @@ So you can just go complete with the default.
 
 110
 00:07:26,000 --> 00:07:33,000
-So that's the, these options are, you know, they're all options on the Zap standard spider if you use it from the desktop.
+So that's the, these options are, you know, they're all options on the ZAP standard spider if you use it from the desktop.
 
 111
 00:07:33,000 --> 00:07:35,000
@@ -460,7 +460,7 @@ And then you can actually go and run it again from the command line with your au
 
 116
 00:07:53,000 --> 00:08:01,000
-Normally, I don't really go after updating the advanced options until I'm happy with, let's call it the basic options, right?
+Normally, I don't really go after updating the advanced options until I'm happy with, let's call it the basic options, right? Absolutely!
 
 117
 00:08:01,000 --> 00:08:06,000
@@ -528,15 +528,15 @@ And this time we're going to look at another well-known application.
 
 133
 00:08:45,000 --> 00:08:46,000
-Called GShop.
+Called Juice Shop.
 
 134
 00:08:46,000 --> 00:08:47,000
-Oh, it's GShop.
+Oh, it's Juice Shop.
 
 135
 00:08:47,000 --> 00:08:51,000
-Now, this one is quite different from Budget.
+Now, this one is quite different from BodgeIt.
 
 136
 00:08:51,000 --> 00:08:58,000
@@ -568,7 +568,7 @@ Exactly.
 
 143
 00:09:19,000 --> 00:09:26,000
-Now, we can run the standard spider against GShop and actually is quite useful.
+Now, we can run the standard spider against Juice Shop and actually is quite useful.
 
 144
 00:09:26,000 --> 00:09:33,000
@@ -648,7 +648,7 @@ What I can do is I can just go into this environment.
 
 163
 00:10:42,000 --> 00:10:44,000
-And you can edit the URL.
+And you can edit the URL, right?
 
 164
 00:10:44,000 --> 00:10:47,000
@@ -660,7 +660,7 @@ So we want 3000.
 
 166
 00:10:52,000 --> 00:10:56,000
-And without budget.
+And without BodgeIt.
 
 167
 00:10:56,000 --> 00:10:57,000
@@ -696,11 +696,11 @@ We just want to make sure that, you know, we can see what's going on.
 
 175
 00:11:16,000 --> 00:11:23,000
-And we will see that Zap is finding a lot of stuff.
+And we will see that ZAP is finding a lot of stuff.
 
 176
 00:11:23,000 --> 00:11:32,000
-But if we have a look here, we can see we found assets and FTP and juice shop.
+But if we have a look here, we can see we found assets and FTP and Juice Shop.
 
 177
 00:11:32,000 --> 00:11:34,000
@@ -812,11 +812,11 @@ So that's the top indicator that we are up against an application
 
 204
 00:13:04,000 --> 00:13:05,000
-whereby it's got something back.
+whereby 
 
 205
 00:13:05,000 --> 00:13:09,000
-It's got some active JavaScript component that is not returning in the context of a 200
+it's got some active JavaScript component that is not returning in the context of a 200
 
 206
 00:13:09,000 --> 00:13:12,000
@@ -856,7 +856,7 @@ Exactly.
 
 215
 00:13:34,000 --> 00:13:41,000
-So what we're doing is Zap actually tries to identify whether we've got a modern web app or not.
+So what we're doing is ZAP actually tries to identify whether we've got a modern web app or not.
 
 216
 00:13:41,000 --> 00:13:43,000
@@ -880,11 +880,11 @@ So that indicates, well, it's a good indication there's some JavaScript involved
 
 221
 00:14:00,000 --> 00:14:03,000
-And we can see we're actually pulling in a significant JavaScript line.
+And we can see we're actually pulling in
 
 222
 00:14:03,000 --> 00:14:06,000
-We've got a significant JavaScript library here.
+a significant JavaScript library here.
 
 223
 00:14:06,000 --> 00:14:12,000
@@ -904,7 +904,7 @@ Now, this makes things quite useful when it comes to automation because in many 
 
 227
 00:14:23,000 --> 00:14:28,000
-if you're a developer and you're running Zap against your own application, you know how it's built.
+if you're a developer and you're running ZAP against your own application, you know how it's built.
 
 228
 00:14:28,000 --> 00:14:31,000
@@ -912,7 +912,7 @@ You will know whether it's traditional or modern.
 
 229
 00:14:31,000 --> 00:14:37,000
-If you're a security person and you're running Zap scans against half a dozen, a dozen,
+If you're a security person and you're running ZAP scans against half a dozen, a dozen,
 
 230
 00:14:37,000 --> 00:14:40,000
@@ -924,7 +924,7 @@ you won't necessarily know the details of every single application, how it's put
 
 232
 00:14:45,000 --> 00:14:55,000
-So we have this option where we can actually tell Zap to only use the AJAX spider if necessary.
+So we have this option where we can actually tell ZAP to only use the AJAX spider if necessary.
 
 233
 00:14:55,000 --> 00:14:59,000
@@ -988,7 +988,7 @@ And that's the one I want to use.
 
 248
 00:15:30,000 --> 00:15:37,000
-Now, if I try that straight off, we will probably get an error because of how Zap actually works.
+Now, if I try that straight off, we will probably get an error because of how ZAP actually works.
 
 249
 00:15:37,000 --> 00:15:40,000
@@ -996,7 +996,7 @@ So what happens is the...
 
 250
 00:15:40,000 --> 00:15:42,000
-We detect whether Zap...
+We detect whether ZAP...
 
 251
 00:15:42,000 --> 00:15:46,000
@@ -1008,7 +1008,7 @@ We do it by passive...
 
 253
 00:15:47,000 --> 00:15:49,000
-The passive scanner.
+the passive scanner.
 
 254
 00:15:49,000 --> 00:15:51,000
@@ -1024,7 +1024,7 @@ asking whether it's modern or not,
 
 257
 00:16:00,000 --> 00:16:06,000
-Zap might not have finished the passive scanning and it might not know whether it's modern or not.
+ZAP might not have finished the passive scanning and it might not know whether it's modern or not.
 
 258
 00:16:06,000 --> 00:16:07,000
@@ -1084,7 +1084,7 @@ So this is...
 
 272
 00:16:58,000 --> 00:17:01,000
-This is the best option in this case.
+the best option in this case.
 
 273
 00:17:01,000 --> 00:17:02,000
@@ -1196,7 +1196,7 @@ We are then waiting for the passive scanner.
 
 300
 00:17:57,000 --> 00:17:58,000
-Passive scanner.
+
 
 301
 00:17:58,000 --> 00:18:05,000
@@ -1344,7 +1344,7 @@ And we have a look.
 
 337
 00:19:51,000 --> 00:19:52,000
-We should see that we've finished.
+
 
 338
 00:19:52,000 --> 00:19:55,000
@@ -1444,7 +1444,7 @@ The spiders are a great way to explore an application, give you the breadth.
 
 362
 00:20:55,000 --> 00:20:59,000
-But it won't help you as a pen tester understand the application for that.
+But it won't help you as a pentester understand the application for that.
 
 363
 00:20:59,000 --> 00:21:02,000
@@ -1460,7 +1460,7 @@ And we'll actually show you things you might have missed.
 
 366
 00:21:10,000 --> 00:21:14,000
-So from the manual pen testing point of view, they're really important.
+So from the manual pentesting point of view, they're really important.
 
 367
 00:21:14,000 --> 00:21:19,000
@@ -1516,15 +1516,15 @@ It looks like it's exploring the right kind of things.
 
 380
 00:22:06,000 --> 00:22:08,000
-So there's a lot of feedback that Zap gives.
+So there's a lot of feedback that ZAP gives.
 
 381
 00:22:08,000 --> 00:22:16,000
-And this is one advantage of Zap having the desktop UI in addition to all the automation things.
+And this is one advantage of ZAP having the desktop UI in addition to all the automation things.
 
 382
 00:22:16,000 --> 00:22:17,000
-But it also depends on the application.
+
 
 383
 00:22:17,000 --> 00:22:19,000
@@ -1548,7 +1548,7 @@ And then they make API calls in the background.
 
 388
 00:22:31,000 --> 00:22:35,000
-Now, Zap will detect those API calls.
+Now, ZAP will detect those API calls.
 
 389
 00:22:35,000 --> 00:22:40,000
@@ -1568,7 +1568,7 @@ So what happens is.
 
 393
 00:22:46,000 --> 00:22:54,000
-If the Zap traditional spider finds an API definition that it understands, it will import that automatically.
+If the ZAP traditional spider finds an API definition that it understands, it will import that automatically.
 
 394
 00:22:54,000 --> 00:23:03,000
@@ -1584,7 +1584,7 @@ They might be available via URL or they might be just on the file store somewher
 
 397
 00:23:10,000 --> 00:23:15,000
-So if you have an API definition, it is really worth importing it into Zap.
+So if you have an API definition, it is really worth importing it into ZAP.
 
 398
 00:23:16,000 --> 00:23:19,000
@@ -1669,108 +1669,3 @@ And what else you would like us to cover.
 418
 00:24:17,000 --> 00:24:18,000
 Until next time.
-
-419
-00:24:18,000 --> 00:24:19,000
-Bye.
-
-420
-00:24:19,000 --> 00:24:20,000
-Bye.
-
-421
-00:24:20,000 --> 00:24:21,000
-Bye.
-
-422
-00:24:21,000 --> 00:24:22,000
-Bye.
-
-423
-00:24:22,000 --> 00:24:23,000
-See you all.
-
-424
-00:24:23,000 --> 00:24:24,000
-Bye.
-
-425
-00:24:24,000 --> 00:24:25,000
-Bye.
-
-426
-00:24:25,000 --> 00:24:26,000
-Bye.
-
-427
-00:24:26,000 --> 00:24:27,000
-Bye.
-
-428
-00:24:27,000 --> 00:24:28,000
-Bye.
-
-429
-00:24:28,000 --> 00:24:29,000
-Bye.
-
-430
-00:24:29,000 --> 00:24:30,000
-Bye.
-
-431
-00:24:30,000 --> 00:24:31,000
-Bye.
-
-432
-00:24:31,000 --> 00:24:32,000
-Bye.
-
-433
-00:24:32,000 --> 00:24:33,000
-Bye.
-
-434
-00:24:33,000 --> 00:24:34,000
-Bye.
-
-435
-00:24:34,000 --> 00:24:35,000
-Bye.
-
-436
-00:24:35,000 --> 00:24:36,000
-Bye.
-
-437
-00:24:36,000 --> 00:24:37,000
-Bye.
-
-438
-00:24:37,000 --> 00:24:38,000
-Bye.
-
-439
-00:24:38,000 --> 00:24:39,000
-Bye.
-
-440
-00:24:39,000 --> 00:24:40,000
-Bye.
-
-441
-00:24:40,000 --> 00:24:41,000
-Bye.
-
-442
-00:24:41,000 --> 00:24:42,000
-Bye.
-
-443
-00:24:42,000 --> 00:24:43,000
-Bye.
-
-444
-00:24:43,000 --> 00:24:44,000
-Bye.
-
