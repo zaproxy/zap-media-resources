@@ -1,6 +1,6 @@
 1
 00:00:00,000 --> 00:00:10,920
-Hello and welcome to another Zap Chat video with myself, Simon, and Yanis.
+Hello and welcome to another ZAP Chat video with myself, Simon, and Yiannis.
 
 2
 00:00:10,920 --> 00:00:16,080
@@ -32,15 +32,15 @@ we're now on to exploring your application. So, in last video, we explained that
 
 9
 00:00:55,020 --> 00:00:55,240
-essential. So, we're now on to exploring your application. So, in last video, we explained
+essential. 
 
 10
 00:00:55,240 --> 00:01:00,460
-that exploring is essential. Because if you don't explore your application effectively,
+Because if you don't explore your application effectively,
 
 11
 00:01:00,680 --> 00:01:05,460
-Zap won't know about all the endpoints and won't be able to attack them. The spiders are great ways
+ZAP won't know about all the endpoints and won't be able to attack them. The spiders are great ways
 
 12
 00:01:05,460 --> 00:01:12,140
@@ -56,7 +56,7 @@ just an API endpoint, then this is all you've got. So, you'll need to import you
 
 15
 00:01:25,000 --> 00:01:30,100
-trying to crawl, you can crawl it probably by one or both of the spiders, but also import the API
+attacking it via the UI then crawl it probably via well one or both of the spiders but also import the API
 
 16
 00:01:30,100 --> 00:01:36,800
@@ -80,15 +80,15 @@ what we're going to be doing here today when it comes to APIs.
 
 21
 00:01:58,820 --> 00:02:08,040
-Cool. So, let me share my screen and Zap as usual. Now, what I will do is go over to the browser
+Cool. So, let me share my screen and ZAP as usual. Now, what I will do is go over to the browser
 
 22
-00:02:08,040 --> 00:02:18,100
-because the first API definition is this one. So, it's an OpenAPI definition, OpenAPI 3.0,
+00:02:08,040 --> 00:02:24,900
+because the first API definition is this one. So, it's an OpenAPI definition, OpenAPI 3.0, and its Petstore so this is online and what'll do is..
 
 23
 00:02:25,000 --> 00:02:34,880
-which is... Now, one thing you'll notice is the URL is swagger.io, and this isn't where PetStore is.
+Now, one thing you'll notice is the URL is swagger.io, and this isn't where Petstore is.
 
 24
 00:02:34,880 --> 00:02:42,660
@@ -132,15 +132,15 @@ And then, what I need to do is specify the target, and that is the target. So, i
 
 34
 00:03:41,340 --> 00:03:49,420
-petstore.swagger.io slash v2. And there's a v3 as well, which I can show if you think that's useful.
+petstore.swagger.io/v2. And there's a v3 as well, which I can show if you think that's useful.
 
 35
 00:03:50,220 --> 00:03:54,140
-And that should be it. So, I will just run that, and, of course, we'll see what happens.
+And that should be it. So, I will just run that,
 
 36
 00:03:54,620 --> 00:03:59,340
-And, of course, it fails because I forgot to put the URL in the context as well.
+and of course it fails because I forgot to put the URL in the context as well.
 
 37
 00:03:59,340 --> 00:04:00,620
@@ -280,11 +280,11 @@ Now, we do have other options as well.
 
 71
 00:06:30,120 --> 00:06:32,360
-So Zap has very good API support.
+So ZAP has very good API support.
 
 72
 00:06:33,240 --> 00:06:35,940
-And one of them is, another one is Soap.
+And one of them is, another one is soap.
 
 73
 00:06:36,180 --> 00:06:37,300
@@ -304,11 +304,11 @@ that there is the expectation that you know what type,
 
 77
 00:06:52,160 --> 00:06:52,180
-and you're going to be able to do that.
+
 
 78
 00:06:52,180 --> 00:06:58,840
-So if it's a Swagger.json, we assume that you've either got that
+of API definitions you have right? So if it's a Swagger.json, we assume that you've either got that
 
 79
 00:06:58,840 --> 00:07:02,500
@@ -316,7 +316,7 @@ during part of the scoping of whatever penetration test
 
 80
 00:07:02,500 --> 00:07:06,760
-or exercise you're doing, or if it's a traditional Soap type of job,
+or exercise you're doing, or if it's a traditional soap type of job,
 
 81
 00:07:06,880 --> 00:07:10,060
@@ -340,7 +340,7 @@ where you're effectively counting on,
 
 86
 00:07:22,000 --> 00:07:23,920
-you know, the links and the crawling ability
+the links and the crawling ability
 
 87
 00:07:23,920 --> 00:07:25,400
@@ -352,11 +352,11 @@ So don't hesitate to request that during the scoping meetings
 
 89
 00:07:29,140 --> 00:07:31,600
-that you might have when it comes to pen tests
+that you might have when it comes to pentests
 
 90
 00:07:31,600 --> 00:07:32,960
-or rent team engagements.
+or redteam engagements.
 
 91
 00:07:33,740 --> 00:07:34,080
@@ -364,7 +364,7 @@ Absolutely.
 
 92
 00:07:34,640 --> 00:07:38,480
-And now if the Zap traditional spider actually discovers
+And now if the ZAP traditional spider actually discovers
 
 93
 00:07:38,480 --> 00:07:40,860
@@ -384,7 +384,7 @@ this information.
 
 97
 00:07:48,100 --> 00:07:49,700
-And in fact, you know, in a pen test,
+And in fact, you know, in a pentest,
 
 98
 00:07:49,700 --> 00:07:51,680
@@ -392,7 +392,7 @@ you might argue that this is actually,
 
 99
 00:07:51,680 --> 00:07:56,140
-you know, a slight vulnerability because you're giving the attacker
+a slight vulnerability because you're giving the attacker
 
 100
 00:07:56,140 --> 00:07:58,520
@@ -424,11 +424,11 @@ One of the cardinal mistakes that I've seen
 
 107
 00:08:21,180 --> 00:08:21,660
-in the past is that when you're importing a file,
+
 
 108
 00:08:21,660 --> 00:08:22,700
-when you're importing a file, when you're importing a pen test
+in pentest
 
 109
 00:08:22,700 --> 00:08:25,160
@@ -472,11 +472,11 @@ that has had a successful and clean penetration test
 
 119
 00:08:49,840 --> 00:08:51,640
-because nobody has looked at the API.
+because nobody has looked at the API
 
 120
 00:08:51,640 --> 00:08:54,640
-The API subdomain of website.com.
+subdomain of website.com.
 
 121
 00:08:54,780 --> 00:08:56,760
@@ -512,7 +512,7 @@ So, you know, if you say, okay, this looks like
 
 129
 00:09:13,340 --> 00:09:15,920
-an open API swagger, something like that,
+an OpenAPI swagger, something like that,
 
 130
 00:09:15,980 --> 00:09:17,480
@@ -560,7 +560,7 @@ but it will show you that we can actually,
 
 141
 00:09:54,140 --> 00:09:57,560
-and I'll remove the open eye, open API.
+and I'll remove the open eye, OpenAPI.
 
 142
 00:09:59,440 --> 00:10:03,560
@@ -572,7 +572,7 @@ our audience is able to understand how they import
 
 144
 00:10:06,440 --> 00:10:08,300
-the open API whistle file.
+the OpenAPI whistle file.
 
 145
 00:10:08,520 --> 00:10:11,500
@@ -624,7 +624,7 @@ We've made those requests and you can see they are valid
 
 157
 00:10:44,480 --> 00:10:47,320
-SOAP requests for the, so, you know,
+soap requests for the so
 
 158
 00:10:47,320 --> 00:10:51,300
@@ -644,7 +644,7 @@ Oh, and you seem to have gone fuzzy all of a sudden,
 
 162
 00:11:00,940 --> 00:11:01,780
-Yanis.
+Yiannis.
 
 163
 00:11:01,780 --> 00:11:02,620
@@ -656,7 +656,7 @@ The wonders of a live broadcast, right?
 
 165
 00:11:06,720 --> 00:11:07,740
-So that's SOAP.
+So that's soap.
 
 166
 00:11:07,740 --> 00:11:12,320
@@ -675,11 +675,11 @@ And you'll see, this is pretty similar.
 So we've got the endpoint,
 
 170
-00:11:28,140 --> 00:11:33,140
+00:11:28,140 --> 00:11:35,140
 which again, I will put in as local host.
 
 171
-00:11:36,980 --> 00:11:41,980
+00:11:36,980 --> 00:11:43,980
 And this time I've got a simple GraphQL definition
 
 172
@@ -720,7 +720,7 @@ And these are used to actually typically generate code.
 
 181
 00:12:14,520 --> 00:12:16,780
-So what people can do is you can have your API definition,
+So what people can do is you can have
 
 182
 00:12:16,780 --> 00:12:20,260
@@ -744,7 +744,7 @@ to develop against.
 
 187
 00:12:27,300 --> 00:12:30,160
-But it also means we can import them into tools like Zap.
+But it also means we can import them into tools like ZAP.
 
 188
 00:12:31,200 --> 00:12:32,340
@@ -756,11 +756,11 @@ So I've added the GraphQL job
 
 190
 00:12:35,360 --> 00:12:38,840
-and I will remove the SOAP one.
+and I will remove the soap one.
 
 191
 00:12:38,840 --> 00:12:42,980
-And again, we will start a new Zap session.
+And again, we will start a new ZAP session.
 
 192
 00:12:42,980 --> 00:12:45,200
@@ -768,7 +768,7 @@ And then if we run that,
 
 193
 00:12:45,200 --> 00:12:48,200
-we will see, again, Zap ran very quickly
+we will see, again, ZAP ran very quickly
 
 194
 00:12:48,200 --> 00:12:51,000
@@ -816,7 +816,7 @@ actually have another,
 
 205
 00:13:18,180 --> 00:13:21,700
-so Zap recently has Postman support.
+so ZAP recently has Postman support.
 
 206
 00:13:21,700 --> 00:13:24,280
@@ -824,7 +824,7 @@ And I ought to point out that all of these,
 
 207
 00:13:24,280 --> 00:13:28,020
-so support for OpenAPI, SOAP, GraphQL, and Postman
+so support for OpenAPI, soap, GraphQL, and Postman
 
 208
 00:13:28,020 --> 00:13:30,460
@@ -856,7 +856,7 @@ and she's actually submitted a PR,
 
 215
 00:13:44,900 --> 00:13:47,220
-and she's actually done a PR for support
+for support
 
 216
 00:13:47,220 --> 00:13:48,900
@@ -880,7 +880,7 @@ So that is a quick rundown
 
 221
 00:13:59,440 --> 00:14:04,520
-of how you actually import the API definitions into Zap.
+of how you actually import the API definitions into ZAP.
 
 222
 00:14:04,520 --> 00:14:06,980
@@ -888,7 +888,7 @@ And don't forget that we got loads
 
 223
 00:14:06,980 --> 00:14:10,660
-of documentation on zeddyproxy.org.
+of documentation on zaproxy.org.
 
 224
 00:14:10,660 --> 00:14:12,160
@@ -920,7 +920,7 @@ you give information about all of the the parameters and what they mean so lots 
 
 231
 00:14:44,040 --> 00:14:53,240
-information there and also check out the blog posts as well so that is the that's the importing
+information there and also check out the blog posts as well. So that is the that's the importing
 
 232
 00:14:53,240 --> 00:14:58,860
@@ -936,25 +936,25 @@ talk about the automation framework so let me just stop sharing my screen
 
 235
 00:15:09,240 --> 00:15:15,240
-and yeah you're you're you're fuzzy Yanis I've no idea I know I know from a fuzzy Yanis thank
+and yeah you're you're you're fuzzy Yiannis. I've no idea. I know, I know from a fuzzy Yiannis thank
 
 236
 00:15:15,240 --> 00:15:22,260
-you all for watching and promise to have unfuzzed myself by the next video yep thank you very much
+you all for watching and promise to have unfuzzed myself by the next video. Yep thank you very much
 
 237
 00:15:22,260 --> 00:15:28,700
-I haven't decided what we're going to cover next but we aim to do that next week as I said before
+I haven't decided what we're going to cover next, but we aim to do that next week as I said before.
 
 238
 00:15:28,700 --> 00:15:33,960
-please like the videos and subscribe and let us know in the comments what else you know any
+Please like the videos and subscribe and let us know in the comments what else you know any
 
 239
 00:15:33,960 --> 00:15:36,920
-feedback and what else you'd like us to cover thank you very much
+feedback and what else you'd like us to cover thank you very much.
 
 240
 00:15:39,240 --> 00:15:41,300
-you
+
 
