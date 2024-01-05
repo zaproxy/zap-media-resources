@@ -16,7 +16,7 @@ So hopefully today we're going to get on to ActiveScan, but before we do that, w
 
 5
 00:00:30,720 --> 00:00:36,040
-Now, one of them I already mentioned, which was the PassiveScan weight.
+Now, one of them I already mentioned, which was the PassiveScan wait.
 
 6
 00:00:37,080 --> 00:00:42,200
