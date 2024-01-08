@@ -8,7 +8,7 @@ Hello! Spidering is the topic of the day today, right Simon?
 
 3
 00:00:16,000 --> 00:00:25,000
-That's right. I think in the last one I said we were going to do API imports, but we've had a chat and we think spides are probably better.
+That's right. I think in the last one I said we were going to do API imports, but we've had a chat and we think spiders are probably better.
 
 4
 00:00:25,000 --> 00:00:31,000

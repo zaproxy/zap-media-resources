@@ -516,7 +516,7 @@ And we've got the data there.
 
 130
 00:08:49,640 --> 00:08:52,020
-Well, one header that has been added is the content left.
+Well, one header that has been added is the content lenght.
 
 131
 00:08:52,040 --> 00:08:54,320
