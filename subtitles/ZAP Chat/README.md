@@ -1,7 +1,7 @@
 # Generate subtitles for ZAP Chat using whisper
 
 Here is a short guide on how the subtitles were created using OpenAI's Whisper.
-A <b>Nvidia graphics card with Cuda cores is required</b>. The more VRAM the better, as larger models can then be used if necessary.
+**A Nvidia graphics card with Cuda cores is required**. The more VRAM the better, as larger models can then be used if necessary.
 In addition to Whsiper, you also need an audio file, e.g. in .mp3 format, which you want to transcribe.
 
 
@@ -20,7 +20,7 @@ To be able to use Whisper, you need the audio part of the video. First you have 
 
 ## Generate .srt file from the audio file
 
-For Whisper to work at all, there must be <b>no spaces</b> in the file name of the audio file.
+For Whisper to work at all, there must be **no spaces** in the file name of the audio file.
 
 Here is an example - the language is important if you know which language is used in the audio file - otherwise omit this entry and it will be 
 recognized automatically. For the model, please note that you should use the one that does not exceed the VRAM of the graphics card. Always use the largest possible model for you. For everything else, please refer to Whisper's instructions.
