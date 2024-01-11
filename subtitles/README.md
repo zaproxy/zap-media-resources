@@ -1,4 +1,4 @@
-# Generate subtitles for ZAP Chat using whisper
+# Generate subtitles for ZAP Videos using whisper
 
 Here is a short guide on how the subtitles were created using OpenAI's Whisper.
 **A Nvidia graphics card with Cuda cores is required**. The more VRAM the better, as larger models can then be used if necessary.
