@@ -2,7 +2,7 @@
 
 Here is a short guide on how the subtitles were created using OpenAI's Whisper.
 **A Nvidia graphics card with Cuda cores is required**. The more VRAM the better, as larger models can then be used if necessary.
-In addition to Whsiper, you also need an audio file, e.g. in .mp3 format, which you want to transcribe.
+In addition to Whisper, you also need an audio file, e.g. in .mp3 format, which you want to transcribe.
 
 
 
