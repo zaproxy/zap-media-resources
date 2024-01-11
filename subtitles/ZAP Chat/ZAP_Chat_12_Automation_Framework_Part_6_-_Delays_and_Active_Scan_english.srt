@@ -1,0 +1,1608 @@
+1
+00:00:00,000 --> 00:00:11,760
+Hello, and welcome to another episode of ZAP Chat with myself, Simon, and Yiannis.
+
+2
+00:00:12,400 --> 00:00:12,800
+Hello!
+
+3
+00:00:14,640 --> 00:00:23,220
+Great, so last week we covered spiders, both the traditional spider and the AJAX spider.
+
+4
+00:00:24,200 --> 00:00:29,980
+So hopefully today we're going to get on to ActiveScan, but before we do that, we've got a couple of little jobs.
+
+5
+00:00:30,720 --> 00:00:36,040
+Now, one of them I already mentioned, which was the PassiveScan wait.
+
+6
+00:00:37,080 --> 00:00:42,200
+But I'm going to demo it this time just so you can see why you really want to use it.
+
+7
+00:00:43,040 --> 00:00:46,540
+So let's share my screen.
+
+8
+00:00:47,600 --> 00:00:59,740
+While you do that, Simon, just to say that a delay job is one of the easiest jobs to implement in often distinguishing between tasks that each job runs.
+
+9
+00:00:59,740 --> 00:01:07,280
+Not only does it give you the opportunity to let a previous job finish and complete and so on and so forth,
+
+10
+00:01:07,360 --> 00:01:14,460
+but also it just gives you that sanity check that everything up until that point has run according to plan,
+
+11
+00:01:15,200 --> 00:01:18,300
+because it is a set of jobs that are part of a plan.
+
+12
+00:01:18,780 --> 00:01:24,280
+So very important to incorporate delays in your overall strategy when it comes to automation.
+
+13
+00:01:25,120 --> 00:01:25,580
+Exactly.
+
+14
+00:01:26,060 --> 00:01:29,580
+So what I'm going to do is I am going to...
+
+15
+00:01:29,740 --> 00:01:39,960
+I'm going to switch to the automation tab because we're still on the automation framework and I'm going to create a new plan.
+
+16
+00:01:39,960 --> 00:01:45,700
+And what we're going to do is we're going to run the spider and I'm going to run the report.
+
+17
+00:01:46,000 --> 00:01:50,660
+So we're not going to go into the report in detail, but I want to show you something.
+
+18
+00:01:51,140 --> 00:01:54,960
+So to start with, we have to actually put a URL in.
+
+19
+00:01:56,960 --> 00:01:58,300
+What are we scanning this week?
+
+20
+00:01:58,700 --> 00:01:59,720
+I'm going to go back to BodgeIt.
+
+21
+00:01:59,740 --> 00:02:01,440
+It's just nice and easy.
+
+22
+00:02:02,440 --> 00:02:03,240
+Good call.
+
+23
+00:02:04,300 --> 00:02:05,820
+So local host BodgeIt.
+
+24
+00:02:07,100 --> 00:02:08,840
+And we're just going to spider it.
+
+25
+00:02:08,980 --> 00:02:10,100
+And then we're going to run the report.
+
+26
+00:02:10,640 --> 00:02:15,280
+And the report I'm going to use is the traditional PDF report.
+
+27
+00:02:15,800 --> 00:02:19,100
+And for demoing purposes, I'm going to display the report.
+
+28
+00:02:19,420 --> 00:02:21,240
+This may come up on my other screen.
+
+29
+00:02:21,340 --> 00:02:22,320
+I'll just move it across.
+
+30
+00:02:22,740 --> 00:02:26,140
+But let's run that and see what happens.
+
+31
+00:02:26,140 --> 00:02:29,280
+So the spider should be pretty quick.
+
+32
+00:02:29,740 --> 00:02:30,740
+And there's the report.
+
+33
+00:02:30,740 --> 00:02:36,740
+And actually, this one did come up with some alerts, which is not what I expected.
+
+34
+00:02:36,740 --> 00:02:39,740
+There may be low risk and information.
+
+35
+00:02:39,740 --> 00:02:40,740
+Oh, no.
+
+36
+00:02:40,740 --> 00:02:41,740
+There's three mediums as well.
+
+37
+00:02:41,740 --> 00:02:42,740
+Yeah.
+
+38
+00:02:42,740 --> 00:02:43,740
+So I tried this just now.
+
+39
+00:02:43,740 --> 00:02:52,740
+Let me try that again to see if we get anything different or whether it's going to just kind of mess it up.
+
+40
+00:02:52,740 --> 00:02:53,740
+That's better.
+
+41
+00:02:53,740 --> 00:02:54,740
+That's what I was expecting.
+
+42
+00:02:54,740 --> 00:02:55,740
+So this is a timing thing.
+
+43
+00:02:55,740 --> 00:02:58,740
+So basically, ran the spider and generated a report.
+
+44
+00:02:58,740 --> 00:03:01,740
+The first time, as you saw, we did actually get some alerts.
+
+45
+00:03:01,740 --> 00:03:03,740
+This time, we've got none at all.
+
+46
+00:03:03,740 --> 00:03:05,740
+So why did that happen?
+
+47
+00:03:05,740 --> 00:03:09,740
+What happens is we're getting alerts from passive scanning.
+
+48
+00:03:09,740 --> 00:03:12,740
+So passive scanning happens in the background.
+
+49
+00:03:12,740 --> 00:03:15,740
+And we have a set of background threads.
+
+50
+00:03:15,740 --> 00:03:18,740
+And so the spider is completely abandoned.
+
+51
+00:03:18,740 --> 00:03:24,740
+The spider goes ahead, does its job, explores BodgeIt, finishes.
+
+52
+00:03:24,740 --> 00:03:25,740
+We run the report job.
+
+53
+00:03:25,740 --> 00:03:27,740
+And then it's kind of a timing thing.
+
+54
+00:03:27,740 --> 00:03:30,740
+How far has the passive scanner got?
+
+55
+00:03:30,740 --> 00:03:34,740
+First time, it found a few things before we ran the report.
+
+56
+00:03:34,740 --> 00:03:37,740
+The second time, it hadn't had a chance to get started.
+
+57
+00:03:37,740 --> 00:03:41,740
+So this is why you need a delay job.
+
+58
+00:03:41,740 --> 00:03:44,740
+Now, we could have got a generic delay job.
+
+59
+00:03:44,740 --> 00:03:50,740
+But we also have a very specific one, which we have talked about before and demoed before.
+
+60
+00:03:50,740 --> 00:03:53,740
+And so that is the passiveScan-wait.
+
+61
+00:03:53,740 --> 00:03:55,740
+So I'll add that.
+
+62
+00:03:55,740 --> 00:03:57,740
+And you see we've got..
+
+63
+00:03:57,740 --> 00:04:00,740
+It's just got one parameter, which is a max duration.
+
+64
+00:04:00,740 --> 00:04:05,740
+If you leave it at zero, it will wait until the passive scan is finished.
+
+65
+00:04:05,740 --> 00:04:13,740
+But if you've got a particularly large site and you want to make sure it finishes in a certain period of time, you might want to set that.
+
+66
+00:04:13,740 --> 00:04:14,740
+So this is in minutes.
+
+67
+00:04:14,740 --> 00:04:17,740
+You might say, OK, we just want to wait for a minute, five minutes, whatever you want.
+
+68
+00:04:17,740 --> 00:04:25,740
+But if you finish the passiveScan-wait before the passive scan is finished, you might miss out on some alerts, as happened.
+
+69
+00:04:25,740 --> 00:04:30,740
+Now.. Why are we adding a passive?
+
+70
+00:04:30,740 --> 00:04:38,740
+So what's the advantage of adding the passiveScan-wait versus a traditional delay job?
+
+71
+00:04:38,740 --> 00:04:43,740
+So in this case, we know when the passive scan will finish.
+
+72
+00:04:43,740 --> 00:04:49,740
+So if we actually, if we, so say we say we want a max duration of one minute.
+
+73
+00:04:49,740 --> 00:04:54,740
+Well, if the passive scanner finished before then and we used a traditional delay job,
+
+74
+00:04:54,740 --> 00:04:56,740
+then we'd still wait for that minute.
+
+75
+00:04:56,740 --> 00:04:59,740
+Whereas in this case, it'll take a few seconds.
+
+76
+00:04:59,740 --> 00:05:00,740
+So let's run this.
+
+77
+00:05:00,740 --> 00:05:03,740
+I will just clear the session again.
+
+78
+00:05:03,740 --> 00:05:05,740
+So we're starting from scratch.
+
+79
+00:05:05,740 --> 00:05:07,740
+We've got no alerts down here.
+
+80
+00:05:07,740 --> 00:05:08,740
+Run that.
+
+81
+00:05:08,740 --> 00:05:13,740
+For our new listeners and viewers, you know, you don't have to clear the session every time.
+
+82
+00:05:13,740 --> 00:05:17,740
+We're doing that so that you see a clean log and sequence of events. Exactly!
+
+83
+00:05:17,740 --> 00:05:18,740
+So here's the report.
+
+84
+00:05:18,740 --> 00:05:19,740
+Yep.
+
+85
+00:05:19,740 --> 00:05:24,740
+So we found the medium, low, informational and average.
+
+86
+00:05:24,740 --> 00:05:28,740
+If we have a look down here, the passiveScan-wait took two seconds.
+
+87
+00:05:28,740 --> 00:05:30,740
+So we'd put a delay in for a minute.
+
+88
+00:05:30,740 --> 00:05:32,740
+We'd be waiting for a minute with no reason.
+
+89
+00:05:32,740 --> 00:05:35,740
+So that's the advantage for our listeners, right?
+
+90
+00:05:35,740 --> 00:05:41,740
+So the passiveScan-wait waits for the passive scan to complete while otherwise with a delay job,
+
+91
+00:05:41,740 --> 00:05:45,740
+you would be guessing seconds or minutes or whatever the time period might be.
+
+92
+00:05:45,740 --> 00:05:46,740
+Exactly.
+
+93
+00:05:46,740 --> 00:05:51,740
+Now, there are two reasons that I can think of why you want the passiveScan-wait.
+
+94
+00:05:51,740 --> 00:05:53,740
+The traditional one is before you run the report.
+
+95
+00:05:53,740 --> 00:06:00,740
+So that we know that the passive scanner is finished and picked up all of the alerts, passive scan alerts.
+
+96
+00:06:00,740 --> 00:06:08,740
+The other one we did cover in the last session with the spiders because we've got a special alert for detecting modern web apps.
+
+97
+00:06:08,740 --> 00:06:14,740
+And so if you actually want to use a traditional spider and then only use the AJAX spider,
+
+98
+00:06:14,740 --> 00:06:22,740
+if the traditional spider spots is a modern web app, then you'll also need the passiveScan-wait in between those two spiders.
+
+99
+00:06:23,740 --> 00:06:27,740
+Why do you need the passiveScan-wait between those two spiders?
+
+100
+00:06:27,740 --> 00:06:33,740
+Because it's a passive scan which detects whether something is a modern web app or not.
+
+101
+00:06:33,740 --> 00:06:40,740
+So again, if you run the traditional spider, we still might have not gone through all of the passive scan might have finished.
+
+102
+00:06:40,740 --> 00:06:42,740
+It might have detected it's a modern web app.
+
+103
+00:06:42,740 --> 00:06:43,740
+We'll go, it's not modern.
+
+104
+00:06:43,740 --> 00:06:45,740
+We'll carry on when in fact it is.
+
+105
+00:06:45,740 --> 00:06:47,740
+We just need to wait for that passive scan to finish.
+
+106
+00:06:47,740 --> 00:06:52,740
+You need to let the passive scan complete in order for the report to be generated correctly.
+
+107
+00:06:53,740 --> 00:06:57,740
+For the finding that a modern web app has been spotted here.
+
+108
+00:06:57,740 --> 00:07:02,740
+And if you don't do that, you risk having the same way that here we've got the passiveScan-wait.
+
+109
+00:07:02,740 --> 00:07:05,740
+You risk having this spider complete.
+
+110
+00:07:05,740 --> 00:07:11,740
+But then you haven't completed running all the passive scan rules against that rule set.
+
+111
+00:07:11,740 --> 00:07:19,740
+So that's why you need the passiveScan-wait for in between spidering and also in between spidering and reporting in this case.
+
+112
+00:07:19,740 --> 00:07:20,740
+Exactly.
+
+113
+00:07:20,740 --> 00:07:22,740
+So that's the passiveScan-wait.
+
+114
+00:07:22,740 --> 00:07:26,740
+But we do have another option.
+
+115
+00:07:26,740 --> 00:07:34,740
+So let me just get rid of some of these because we don't want to show we don't need any of these.
+
+116
+00:07:34,740 --> 00:07:37,740
+And we don't even need the spider.
+
+117
+00:07:37,740 --> 00:07:41,740
+Because what we're going to show is the delay job.
+
+118
+00:07:41,740 --> 00:07:43,740
+So that's down here.
+
+119
+00:07:43,740 --> 00:07:47,740
+Now, I'll start off just by running it showing.
+
+120
+00:07:47,740 --> 00:07:48,740
+So you've got an option.
+
+121
+00:07:48,740 --> 00:07:50,740
+You've got either time or file name.
+
+122
+00:07:50,740 --> 00:07:52,740
+I'm going to just leave it blank.
+
+123
+00:07:52,740 --> 00:07:53,740
+And run it.
+
+124
+00:07:53,740 --> 00:07:54,740
+And we'll see.
+
+125
+00:07:54,740 --> 00:07:56,740
+It does nothing.
+
+126
+00:07:56,740 --> 00:07:59,740
+What's the difference between time and file name?
+
+127
+00:07:59,740 --> 00:08:00,740
+Let's have a look.
+
+128
+00:08:00,740 --> 00:08:05,740
+So let's put a delay or we'll put time of five.
+
+129
+00:08:05,740 --> 00:08:09,740
+Now, this is it's not a spinner.
+
+130
+00:08:09,740 --> 00:08:11,740
+You can put anything you like in here.
+
+131
+00:08:11,740 --> 00:08:17,740
+But the format expected is actually hours, minutes, seconds.
+
+132
+00:08:17,740 --> 00:08:20,740
+So you can put that in or you can put that in.
+
+133
+00:08:20,740 --> 00:08:21,740
+
+
+134
+00:08:21,740 --> 00:08:23,740
+So five second delay.
+
+135
+00:08:23,740 --> 00:08:25,740
+And let's run that.
+
+136
+00:08:25,740 --> 00:08:30,740
+And we'll see it's running two, three, four, five.
+
+137
+00:08:30,740 --> 00:08:31,740
+There we are.
+
+138
+00:08:31,740 --> 00:08:32,740
+Okay.
+
+139
+00:08:32,740 --> 00:08:35,740
+Now, then let's have a look at the file.
+
+140
+00:08:35,740 --> 00:08:40,740
+So I'm going to clear that.
+
+141
+00:08:40,740 --> 00:08:49,740
+And what I'll do is a file I'm going to put in is this one.
+
+142
+00:08:49,740 --> 00:08:50,740
+So actually just switch to
+
+143
+00:08:50,740 --> 00:08:57,740
+the terminal and
+
+144
+00:08:57,740 --> 00:08:58,740
+File not found.
+
+145
+00:08:58,740 --> 00:08:59,740
+Great.
+
+146
+00:08:59,740 --> 00:09:01,740
+So I'm going to
+
+147
+00:09:01,740 --> 00:09:02,740
+save that and run
+
+148
+00:09:02,740 --> 00:09:04,740
+
+
+149
+00:09:04,740 --> 00:09:05,740
+and
+
+150
+00:09:05,740 --> 00:09:12,740
+That shouldn't have happened.
+
+151
+00:09:12,740 --> 00:09:16,740
+I think that the main point that you were trying to display here was that if
+
+152
+00:09:16,740 --> 00:09:19,740
+you point to a file that does not exist.
+
+153
+00:09:19,740 --> 00:09:20,740
+Then by default
+
+154
+00:09:20,740 --> 00:09:22,740
+of course, the delay is going to be invalid.
+
+155
+00:09:22,740 --> 00:09:23,740
+Right?
+
+156
+00:09:23,740 --> 00:09:24,740
+That's not going to be.
+
+157
+00:09:24,740 --> 00:09:26,740
+Functioning correctly.
+
+158
+00:09:26,740 --> 00:09:27,740
+Yeah.
+
+159
+00:09:27,740 --> 00:09:28,740
+The delay.
+
+160
+00:09:28,740 --> 00:09:29,740
+Thank you for pointing out.
+
+161
+00:09:29,740 --> 00:09:30,740
+Basically,
+
+162
+00:09:30,740 --> 00:09:31,740
+we need a time in there.
+
+163
+00:09:31,740 --> 00:09:34,740
+So it's whichever of these happens first.
+
+164
+00:09:34,740 --> 00:09:35,740
+So.
+
+165
+00:09:35,740 --> 00:09:38,740
+If I just put in the five seconds there.
+
+166
+00:09:38,740 --> 00:09:41,740
+And it's kind of chooses either.
+
+167
+00:09:41,740 --> 00:09:44,740
+So we'll wait for five seconds.
+
+168
+00:09:44,740 --> 00:09:45,740
+And then..
+
+169
+00:09:45,740 --> 00:09:46,740
+that will finish.
+
+170
+00:09:46,740 --> 00:09:47,740
+So what I wanted to do.
+
+171
+00:09:47,740 --> 00:09:49,740
+Well, I should have meant to do
+
+172
+00:09:49,740 --> 00:09:50,740
+was put in 5 hours.
+
+173
+00:09:50,740 --> 00:09:51,740
+
+
+174
+00:09:51,740 --> 00:09:52,740
+
+
+175
+00:09:52,740 --> 00:09:53,740
+
+
+176
+00:09:53,740 --> 00:09:54,740
+
+
+177
+00:09:54,740 --> 00:09:55,740
+
+
+178
+00:09:55,740 --> 00:09:56,740
+I've already done that.
+
+179
+00:09:56,740 --> 00:09:57,740
+
+
+180
+00:09:57,740 --> 00:09:58,740
+So that will
+
+181
+00:09:58,740 --> 00:09:59,740
+then we doesn't ..that matters..
+
+182
+00:09:59,740 --> 00:10:00,740
+If we run that..
+
+183
+00:10:00,740 --> 00:10:01,740
+Then that's just going to sit there.
+
+184
+00:10:01,740 --> 00:10:02,740
+
+
+185
+00:10:02,740 --> 00:10:03,740
+
+
+186
+00:10:03,740 --> 00:10:04,740
+So.
+
+187
+00:10:04,740 --> 00:10:05,740
+This is going to be a long video.
+
+188
+00:10:05,740 --> 00:10:06,740
+
+
+189
+00:10:06,740 --> 00:10:07,740
+I think we're going to run out of time on zoom.
+
+190
+00:10:07,740 --> 00:10:09,740
+So what I can do is we go back to the terminal.
+
+191
+00:10:09,740 --> 00:10:10,740
+
+
+192
+00:10:10,740 --> 00:10:11,740
+
+
+193
+00:10:11,740 --> 00:10:12,740
+So we saw that the file.
+
+194
+00:10:12,740 --> 00:10:13,740
+Oh, oh.
+
+195
+00:10:13,740 --> 00:10:14,740
+ls
+
+196
+00:10:14,740 --> 00:10:15,740
+Would have helped.
+
+197
+00:10:15,740 --> 00:10:16,740
+
+
+198
+00:10:16,740 --> 00:10:17,740
+
+
+199
+00:10:17,740 --> 00:10:18,740
+That file doesn't exist.
+
+200
+00:10:18,740 --> 00:10:27,260
+What I'm going to do now is I am just going to touch it and for those who don't know
+
+201
+00:10:27,260 --> 00:10:31,400
+Linux commands this will just create an empty file and you keep
+
+202
+00:10:31,400 --> 00:10:38,060
+an eye on the running task and then you'll see it finishes. So what this
+
+203
+00:10:38,060 --> 00:10:45,560
+means is we can run the task this delay job until that file exists now why would
+
+204
+00:10:45,560 --> 00:10:49,820
+you want to do this? Well this the standard use case we're thinking of is
+
+205
+00:10:49,820 --> 00:10:56,480
+where you have a set of unit tests that explore your application thoroughly all
+
+206
+00:10:56,480 --> 00:11:02,080
+fairly well and they actually use a browser or the network tests. So
+
+207
+00:11:02,080 --> 00:11:06,300
+integration tests typically and what you can do is you can proxy these through
+
+208
+00:11:06,300 --> 00:11:10,580
+ZAP and this is a really great way of helping ZAP explore your application
+
+209
+00:11:10,580 --> 00:11:14,480
+effectively because often, you know. If you've got a good set of integration
+
+210
+00:11:14,480 --> 00:11:15,540
+tests then you'll have
+
+211
+00:11:15,540 --> 00:11:21,120
+good data in there ..the more you.. the better data ZAP has the better ZAP can
+
+212
+00:11:21,120 --> 00:11:24,420
+explore the application and the better ZAP can test it, but if you're running
+
+213
+00:11:24,420 --> 00:11:29,580
+that integration test those will be run completely outside of ZAP. So ZAP
+
+214
+00:11:29,580 --> 00:11:32,880
+doesn't know how long they're running for and this is what the delayers job
+
+215
+00:11:32,880 --> 00:11:38,360
+is for so you can say okay. It's gonna take 20 minutes to run the tests we'll
+
+216
+00:11:38,360 --> 00:11:42,300
+put a delay in for 20 minutes or 25 minutes just to be safe, but sometimes
+
+217
+00:11:42,300 --> 00:11:45,540
+you know you don't know exactly how long. So you could say okay
+
+218
+00:11:45,540 --> 00:11:53,040
+we will then create a file after the test run. You don't have to worry about delaying for a certain time and go okay run the
+
+219
+00:11:53,040 --> 00:11:57,260
+tests create a file something that's that can at the ZAP can access and then
+
+220
+00:11:57,260 --> 00:12:03,120
+it will be fine. However we've got some other options as well. So what I do is
+
+221
+00:12:03,120 --> 00:12:10,180
+switch back to switch to the zaproxy.org and we go to documentation and we then
+
+222
+00:12:10,180 --> 00:12:14,660
+have automate and the automation framework and if we
+
+223
+00:12:15,540 --> 00:12:20,360
+scroll down you can see all of the jobs here and we're building up that set of videos that we're
+
+224
+00:12:20,360 --> 00:12:25,760
+recording now and then we've got the delay job and you'll see it's got those parameters so it
+
+225
+00:12:25,760 --> 00:12:33,540
+explains about the time, but it also says there's a couple of other options. So we can either call
+
+226
+00:12:33,540 --> 00:12:40,360
+a static method or we can call the API endpoint. Well actually while I'm here I will just run this
+
+227
+00:12:40,360 --> 00:12:47,140
+again and we'll see it finishes really quickly and that's because the file still exists. So I'm
+
+228
+00:12:47,140 --> 00:12:54,520
+just going to take that file off and we will then run it and it's not going to finish for five hours
+
+229
+00:12:54,520 --> 00:13:02,260
+which.. Yeah... well so let's have a look at these options. One of them is a static method. Now that
+
+230
+00:13:02,260 --> 00:13:10,340
+is something that we can call within ZAP. So if we go into scripts and we will cover scripts in more
+
+231
+00:13:10,340 --> 00:13:23,220
+detail another time. So I can create a new script and delay and we will use scroll I'm not going
+
+232
+00:13:23,220 --> 00:13:30,840
+to use a template it's a standalone script and what I need to do is call this method.
+
+233
+00:13:30,840 --> 00:13:38,920
+Copy and paste and once again so have a look down here we can see the delay job is still running
+
+234
+00:13:41,340 --> 00:13:47,100
+and there you go it's finished. So we can call that directly, but that you've got to actually be
+
+235
+00:13:47,100 --> 00:13:55,140
+within ZAP to be able to do that so let's switch back and we can see we can call an API endpoint as
+
+236
+00:13:55,140 --> 00:14:07,860
+well. So let's kick this off again and paused and we now go to the browser and we point the browser
+
+237
+00:14:07,860 --> 00:14:08,720
+at ZAP
+
+238
+00:14:13,840 --> 00:14:19,700
+then this is the default page you'll get if you point at the host and port that ZAP is listening
+
+239
+00:14:19,700 --> 00:14:26,280
+on got a local API and so this is a UI which allows us to just navigate around automation
+
+240
+00:14:26,280 --> 00:14:34,980
+and we've got this endDelayJob. Now I've turned off the API key to make it easy and I'm in a safer
+
+241
+00:14:34,980 --> 00:14:39,440
+environment if you're not in a safer environment then you want to set an API key and you want to
+
+242
+00:14:39,440 --> 00:14:40,320
+provide it. So you have to set an API key
+
+243
+00:14:40,320 --> 00:14:48,640
+right? Absolutely.. But we have a look here so that job is running and we run the end API job and you'll
+
+244
+00:14:48,640 --> 00:14:56,440
+see it's finished. So that means we've got an option for pausing the ZAP plan while you're
+
+245
+00:14:56,440 --> 00:15:02,440
+doing other things typically proxying stuff through your application to help ZAP explore it,
+
+246
+00:15:02,440 --> 00:15:09,300
+you know, more thoroughly and then you can finish the job and carry on with a plan and you've
+
+247
+00:15:09,300 --> 00:15:10,300
+got the option of just using the ZAP plan to do that and then you've got the option of just
+
+248
+00:15:10,300 --> 00:15:11,580
+using a pure timer based thing,
+
+249
+00:15:11,580 --> 00:15:19,480
+you can use a file name, you can use a ZAP API call internal call or a ZAP API call. And you can
+
+250
+00:15:19,480 --> 00:15:23,860
+think of anything else that we should support and we don't let us know you know we can add these
+
+251
+00:15:23,860 --> 00:15:29,100
+things. It's a really good set of options and what I like about this is that it demonstrates how
+
+252
+00:15:29,100 --> 00:15:36,220
+dynamic automation actually is, right? Because you're relying on another file to be created
+
+253
+00:15:36,220 --> 00:15:40,220
+or you're relying on an API call to terminate something that's going to take five hours to
+
+254
+00:15:40,220 --> 00:15:45,460
+run. So it's really good to see all those options come together on the excuse of just you know a
+
+255
+00:15:45,460 --> 00:15:53,840
+passiveScan-wait and how to best evolve that in the context of automation. Exactly, cool. So now
+
+256
+00:15:53,840 --> 00:15:59,940
+the what we're going to cover is the activeScan job so this is where we're actually going to
+
+257
+00:15:59,940 --> 00:16:05,600
+attack things. So I'm going to carry on using BodgeIt and what I'm going to do I've got rid of
+
+258
+00:16:05,600 --> 00:16:10,200
+the delay jobs because we're not interested in those and I'm just going to
+
+259
+00:16:10,220 --> 00:16:17,900
+add the activeScan job which is right towards the end and you'll see it's got quite a few
+
+260
+00:16:17,900 --> 00:16:26,840
+options, but I'm just gonna use it like that and we will start a new session. So we've got no alerts
+
+261
+00:16:26,840 --> 00:16:36,300
+down here and I will run that and it finishes really quickly and it finds nothing. Now this is
+
+262
+00:16:36,300 --> 00:16:40,100
+because we have a kind of separation of duties the activeScan job
+
+263
+00:16:40,220 --> 00:16:44,360
+and the active scanner only attacks things it doesn't
+
+264
+00:16:44,360 --> 00:16:49,280
+do exploring at all. We've already covered all the different exploring options we've got in previous
+
+265
+00:16:49,280 --> 00:16:58,160
+videos so we've got we can import APIs, we can run the spiders, we've talked about proxying tests
+
+266
+00:16:58,160 --> 00:17:04,640
+through ZAP that is how you explore the applicant your application, but lots of options and you have
+
+267
+00:17:04,640 --> 00:17:10,160
+to explore it before you can actually attack it. So running the activeScan job on its own
+
+268
+00:17:10,220 --> 00:17:17,480
+will do nothing. So in order to demo it we will actually have to explore and because we're just
+
+269
+00:17:17,480 --> 00:17:24,080
+using BodgeIt we can use the traditional spider. Now you'll see that we automatically put that
+
+270
+00:17:24,080 --> 00:17:27,740
+when you add jobs we have to automatically put them where we think they're going to be useful.
+
+271
+00:17:28,700 --> 00:17:35,120
+In this case it's right, but say you're adding a the passiveScan-wait job and you wanted
+
+272
+00:17:35,120 --> 00:17:39,680
+it between the two spiders you have to move it yourself. Now I'm not going to run it like this
+
+273
+00:17:39,680 --> 00:17:49,520
+because it'll take a while and we don't you don't really need to to watch to see it sitting
+
+274
+00:17:49,520 --> 00:17:54,140
+there spinning. So what I'm going to do is talk about the options that we've got with the active
+
+275
+00:17:54,140 --> 00:18:01,760
+scan job. Now we only have one context at the moment and we don't have any authenticated users
+
+276
+00:18:01,760 --> 00:18:09,380
+as I've mentioned we're going to cover those in a future video. The policy we can actually have scan
+
+277
+00:18:09,680 --> 00:18:15,500
+policies - you can define policies which cover different sets of rules and I wasn't going to demo
+
+278
+00:18:15,500 --> 00:18:20,240
+those now, but I will show how you can actually change the default policy - you can within ZAP
+
+279
+00:18:20,240 --> 00:18:24,920
+you can define your own policies which say only look for cross-site scripting or something like
+
+280
+00:18:24,920 --> 00:18:31,640
+that. Only look for SQL injection, only look.. Exactly!.. right? That's where the default policy
+
+281
+00:18:31,640 --> 00:18:37,400
+needs to be overridden for only a set of rules to be included as part of your custom policy. And you
+
+282
+00:18:37,400 --> 00:18:39,620
+know so if you're doing a
+
+283
+00:18:39,680 --> 00:18:46,340
+scheduled scan once a week or overnight you might want to have most of the rules enabled, but if
+
+284
+00:18:46,340 --> 00:18:52,460
+you're doing a scan as part of CI/CD you might say okay I only want process scripting or something
+
+285
+00:18:52,460 --> 00:18:56,420
+like that enabled you might want to tie it down very tightly so that it runs much more quickly.
+
+286
+00:18:58,580 --> 00:19:07,940
+So we have a an option here for the maximum time any one particular rule will run in minutes and
+
+287
+00:19:07,940 --> 00:19:09,620
+then we have the maximum time
+
+288
+00:19:09,680 --> 00:19:15,380
+that the whole scan will take. So these are separate things and these are all options that
+
+289
+00:19:15,380 --> 00:19:20,600
+are standard within ZAP if you're using it as a desktop tool and we've got the maximum number of
+
+290
+00:19:20,600 --> 00:19:28,580
+alerts per rule now this is quite useful if you're actually scanning a large application and say
+
+291
+00:19:28,580 --> 00:19:36,080
+you've got - you know say you're missing a particular header. If you're missing a header security header
+
+292
+00:19:36,080 --> 00:19:39,380
+on all of the pages you could get tens hundreds
+
+293
+00:19:39,680 --> 00:19:45,380
+thousands of alerts potentially so what you can do is you can actually say I only want 10 alerts.
+
+294
+00:19:45,380 --> 00:19:50,300
+You know - if you know that well you're going to get a certain number of alerts and after that it makes
+
+295
+00:19:50,300 --> 00:19:54,500
+no difference you know if you know that they're missing on most of your web pages that the security
+
+296
+00:19:54,500 --> 00:19:59,720
+headers. You don't need to you don't need to look for every single one and what the maximum alerts
+
+297
+00:19:59,720 --> 00:20:06,080
+per rule means is that after say we set that to 10 then after we found 10 alerts for a particular
+
+298
+00:20:06,080 --> 00:20:09,440
+rule we will stop that rule running. So this will speed up your scan,
+
+299
+00:20:09,680 --> 00:20:21,740
+but I'm also gonna we also have default thresholds and strengths. So the threshold is the level at
+
+300
+00:20:21,740 --> 00:20:26,420
+which the scan rules report potential vulnerabilities. If you've got a low
+
+301
+00:20:26,420 --> 00:20:32,900
+threshold this means the alerts are the rules are more likely to report vulnerabilities you've got
+
+302
+00:20:32,900 --> 00:20:39,620
+a high threshold it means they're less likely to report them. So putting it low means you probably
+
+303
+00:20:39,680 --> 00:20:45,200
+get more more alerts and putting it high means you probably get less alerts. Now normally we think
+
+304
+00:20:45,200 --> 00:20:51,740
+we we would assume most people would keep the default threshold on medium except unless you
+
+305
+00:20:51,740 --> 00:20:56,060
+want to actually turn all these rules off by default and that's how you can do it by the
+
+306
+00:20:56,060 --> 00:21:03,980
+threshold. So this is a kind of a you can change the threshold say okay we want more type of alerts
+
+307
+00:21:03,980 --> 00:21:08,600
+or less you may maybe you want to have the high threshold because it's automation you want to make
+
+308
+00:21:08,600 --> 00:21:09,660
+sure that it's
+
+309
+00:21:09,680 --> 00:21:14,540
+your developers just see things which are much more likely to happen, but the other option is
+
+310
+00:21:14,540 --> 00:21:21,200
+turning everything off then you can turn specific rules on. So when it comes to threshold I often
+
+311
+00:21:21,200 --> 00:21:28,880
+parallelize threshold with you know the indicative first initial risk that a rule has, right? So for
+
+312
+00:21:28,880 --> 00:21:36,020
+example SQL injection where you enter a tick character and you get a SQL error back that
+
+313
+00:21:36,020 --> 00:21:39,620
+would typically fall in the default threshold of high,
+
+314
+00:21:39,680 --> 00:21:46,100
+right? Because it's very likely that indeed you have some sort of SQL breaking at the backend it
+
+315
+00:21:46,100 --> 00:21:50,660
+might not be completely injectable it might be blind etc, but there's something going on which
+
+316
+00:21:50,660 --> 00:21:57,380
+is a high risk regarding the web app or you know API endpoint.. Exactly.. you're attacking. Now with
+
+317
+00:21:57,380 --> 00:22:04,520
+that in mind what strength how do we how do we define strength in the context of the default
+
+318
+00:22:04,520 --> 00:22:09,560
+policy? So strength so both thresholds and strength are actually per rule.
+
+319
+00:22:09,680 --> 00:22:15,320
+So and these are then the default policy applies to all of the rules you're running and by default
+
+320
+00:22:15,320 --> 00:22:21,380
+ZAP will run the active scanner will run all of the rules you've got installed. So and the strength
+
+321
+00:22:21,380 --> 00:22:28,100
+is very much it kind of comes down to how many requests app sends or how many requests the rule
+
+322
+00:22:28,100 --> 00:22:36,800
+sends. So the the kind of finger in the air we have is with a low strength we will aim to send at most
+
+323
+00:22:36,800 --> 00:22:38,540
+about half a dozen requests per
+
+324
+00:22:39,680 --> 00:22:46,640
+parameter per page. So that it doesn't sound like very many, but that builds up pretty quickly over
+
+325
+00:22:46,640 --> 00:22:54,980
+a larger web app right. Exactly. So medium is around a dozen so around 12 10 to 12 and not all rules
+
+326
+00:22:54,980 --> 00:23:01,700
+will do this so for something like cross-site scripting what we do is we send a safe value
+
+327
+00:23:01,700 --> 00:23:06,140
+first and we see whether it's reflected anywhere in the page and if it's not we try something else,
+
+328
+00:23:06,140 --> 00:23:09,620
+but generally cross-site scripting will only send
+
+329
+00:23:09,680 --> 00:23:15,200
+a few initial payloads and without will then carry on even if you put it on really high strength
+
+330
+00:23:15,200 --> 00:23:20,840
+it'll only do a couple of payloads and if it doesn't find anything reflected it will carry on,
+
+331
+00:23:21,320 --> 00:23:27,860
+but it's all it's very much specific to each individual rule. So your medium is around 10 to 12.
+
+332
+00:23:27,860 --> 00:23:34,820
+I 20 to 24 and then we've got an insane level and the insane level basically says the rule can send
+
+333
+00:23:34,820 --> 00:23:38,900
+as many requests it like it could be hundreds and in a couple of cases I think it is hundreds.
+
+334
+00:23:38,900 --> 00:23:39,620
+
+
+335
+00:23:39,680 --> 00:23:46,220
+So, we don't expect people to use insane strength for all rules on a large application it'll just take
+
+336
+00:23:46,220 --> 00:23:53,360
+too long. Yeah. So it's much it's much more this is for you know manual pentesting you found one
+
+337
+00:23:53,360 --> 00:23:57,800
+particular page and you're really suspicious about it you haven't been able to tie down
+
+338
+00:23:57,800 --> 00:24:02,720
+exactly put it on insane strength on one particular rule hammer it and see you know have a really good
+
+339
+00:24:02,720 --> 00:24:09,260
+go. But in this case leave it on minimum medium and this means
+
+340
+00:24:09,680 --> 00:24:14,420
+again the active scan job will do nothing at all, because I've turned the default rules off.
+
+341
+00:24:15,020 --> 00:24:20,420
+So we've got policy rules and this is where we can have exceptions for default policy
+
+342
+00:24:21,380 --> 00:24:27,200
+and so what I'm going to do is we can add any rule we like and I'll go for cross-site scripting
+
+343
+00:24:27,200 --> 00:24:33,680
+reflective and you can see the threshold by default is off which won't help unless of course
+
+344
+00:24:33,680 --> 00:24:39,200
+the default threshold is on in which case you will want to turn particular rules off potentially. So I'm
+
+345
+00:24:39,680 --> 00:24:46,700
+going to change that to medium and that means we have one rule set on medium all everything
+
+346
+00:24:46,700 --> 00:24:51,860
+else is off and I'm not specified well I've got 10 maximum of 10 alerts, but that shouldn't matter
+
+347
+00:24:52,580 --> 00:24:59,360
+and we'll now run that and you see the spider finishes pretty quickly and there we go the
+
+348
+00:24:59,360 --> 00:25:06,860
+active scanner has finished and we do actually have a ..fine text.. Yeah.. scripting and that looks
+
+349
+00:25:07,700 --> 00:25:08,900
+pretty convincing to me.
+
+350
+00:25:09,680 --> 00:25:21,800
+Yeah so that is an additional exercise on the search page right? Yeah. So that is the activeScan job. Now basically if you have you can choose to
+
+351
+00:25:21,800 --> 00:25:27,080
+whichever policy you like but we've also got some Advanced Options as well judges go through
+
+352
+00:25:27,080 --> 00:25:33,380
+very quickly. We have a delay in milliseconds, now usually we have this complaint that
+
+353
+00:25:34,280 --> 00:25:37,220
+tools like ZAP take too long when doing active scanning.
+
+354
+00:25:37,700 --> 00:25:39,020
+Well sometimes
+
+355
+00:25:39,020 --> 00:25:39,620
+
+
+356
+00:25:39,620 --> 00:25:45,020
+too quick and it actually hammers web applications we've had lots of cases where either web
+
+357
+00:25:45,020 --> 00:25:51,800
+applications fall over or if you've got some sort of firewall in there detecting things coming in
+
+358
+00:25:51,800 --> 00:25:59,820
+too quickly and then blocking the scanner. So yeah so we can actually put a delay in
+
+359
+00:25:59,820 --> 00:26:06,340
+milliseconds for every in between every request that ZAP sends so this will slow ZAP down and
+
+360
+00:26:06,340 --> 00:26:11,800
+might mean your your application actually stays up or that you know the firewall doesn't kick in.
+
+361
+00:26:11,800 --> 00:26:18,220
+We also have the number of threads per host. Now this defaults to the number of cores. So I've got
+
+362
+00:26:18,220 --> 00:26:24,780
+16 this will speed things up, but it will also put more strain on your system you can shift up to 32
+
+363
+00:26:24,780 --> 00:26:32,620
+will be quicker but you know whether you're the host or the the box running ZAP might struggle
+
+364
+00:26:32,620 --> 00:26:36,320
+then or we can drop the number of threads down, but then that will take longer.
+
+365
+00:26:36,320 --> 00:26:45,980
+So we have a few... A safe option on on threads is to go up in not powers of two, right? Because you
+
+366
+00:26:45,980 --> 00:26:54,560
+know 16 32 64 128 that's a large thread pool you tend to go up in increments of two instead of the
+
+367
+00:26:54,560 --> 00:27:04,340
+power of two and of course always test 16 threads per host per rule is a lot right by default as
+
+368
+00:27:04,340 --> 00:27:06,300
+well. So 32
+
+369
+00:27:06,320 --> 00:27:11,940
+is twice that maybe you need a value somewhere in between and it's best to test these things out
+
+370
+00:27:11,940 --> 00:27:18,460
+instead of just guessing and you know multiplying the value exponentially. Exactly. Now we have the
+
+371
+00:27:18,460 --> 00:27:25,340
+active scanner's lots of options we've just exposed a few of them by the automation framework
+
+372
+00:27:25,340 --> 00:27:31,740
+job the ones we think are most useful. There's an option to add a query parameter handles anti-csf
+
+373
+00:27:32,380 --> 00:27:36,180
+tokens which I think we do by default, inject a
+
+374
+00:27:36,320 --> 00:27:42,860
+plug-in id so this actually injects a header saying which rule is running so you can actually
+
+375
+00:27:42,860 --> 00:27:48,100
+use this as a way of detecting what caused problems on the back end or something like that you'd tie
+
+376
+00:27:48,100 --> 00:27:53,180
+in with the logs or something like that and we've got an option to scan all headers by default we
+
+377
+00:27:53,180 --> 00:27:59,860
+just attack a small set of headers. You may want to actually you know if you really want to do a
+
+378
+00:27:59,860 --> 00:28:05,260
+thorough test scan all headers but this will take longer. There's always a balance of what do you
+
+379
+00:28:05,260 --> 00:28:06,300
+actually attack versus 
+
+380
+00:28:06,320 --> 00:28:10,660
+how long things take. The more you attack the longer it'll take, the more chance of actually
+
+381
+00:28:10,660 --> 00:28:18,140
+finding potential vulnerabilities. Just one last comment on injecting plug plug-in ids from me..
+
+382
+00:28:18,140 --> 00:28:23,380
+..very useful if you know that you're up against the WAF and you want to make sure that you are
+
+383
+00:28:23,380 --> 00:28:28,840
+actually bypassing that. So when you've got the opportunity you can enter the plug-in id regex
+
+384
+00:28:28,840 --> 00:28:34,240
+and we've got those in the documentation pages and what does that mean it means that you're not
+
+385
+00:28:36,320 --> 00:28:41,020
+testing on the WAF is actually you know doing its job but you're testing the application this can stand up to
+
+386
+00:28:41,020 --> 00:28:47,080
+scrutiny and you're allowing those plug-in headers to go through, because they're white listed on the
+
+387
+00:28:47,080 --> 00:28:52,820
+web application file. Exactly, or if you say you want a particular key to get through the firewall
+
+388
+00:28:52,820 --> 00:28:58,300
+and maybe that's how it's configured then in that case we'd use the replacer job to actually
+
+389
+00:28:58,300 --> 00:29:05,500
+add a one specific header to all requests. So we've got a range of options and so we can do replace that job
+
+390
+00:29:06,320 --> 00:29:09,580
+or if you need to do something that's more sophisticated then you could actually
+
+391
+00:29:09,580 --> 00:29:16,460
+add a script which is also supported by the automation framework and that will cover in a future episode.
+
+392
+00:29:16,460 --> 00:29:21,580
+There you go yes indeed we've got the replacer job that's good inspiration for the next video.
+
+393
+00:29:21,580 --> 00:29:28,400
+We've done the replacer job already so.. For a bigger script, right? Not just the here's the...
+
+394
+00:29:28,400 --> 00:29:33,040
+Scripts are definitely up there have to work out we haven't done the reports job yet.
+
+395
+00:29:33,040 --> 00:29:35,260
+We've done most of the standard ones.
+
+396
+00:29:35,260 --> 00:29:35,820
+
+
+397
+00:29:35,820 --> 00:29:36,320
+
+
+398
+00:29:36,320 --> 00:29:42,420
+We'll have to go through, but there's still yeah scripting and authentication. So those 
+
+399
+00:29:42,420 --> 00:29:47,320
+are a couple of big ones which whether we'll do them all in those in one session i don't know but
+
+400
+00:29:47,320 --> 00:29:55,900
+we'll see how we get on. So that's everything for this episode if you like these videos then
+
+401
+00:29:55,900 --> 00:30:03,860
+please will like them on youtube and subscribe and add comments saying what else you'd like us
+
+402
+00:30:03,860 --> 00:30:09,180
+to cover. Thank you very much and until next time. Bye now.
+

@@ -1,0 +1,1212 @@
+1
+00:00:00,000 --> 00:00:11,840
+Hello, and welcome to another episode of ZAP Chat with me, Simon Bennetts, and Yiannis.
+
+2
+00:00:11,840 --> 00:00:13,360
+Hello.
+
+3
+00:00:13,360 --> 00:00:19,800
+So this week we are carrying on with the automation framework. I think we've got quite a few more
+
+4
+00:00:19,800 --> 00:00:25,240
+episodes on the automation framework. It's a big thing, lots going on, and it seems to
+
+5
+00:00:25,240 --> 00:00:30,760
+be quite useful to go into each of the jobs in some detail.
+
+6
+00:00:30,760 --> 00:00:32,880
+Which one are we looking at this week, Simon?
+
+7
+00:00:32,880 --> 00:00:39,480
+So last week we did the environment, the passiveScan-config job, and the alertFilter job.
+
+8
+00:00:39,480 --> 00:00:43,720
+And I'm kind of trying to go through them in kind of logical order, the order you would
+
+9
+00:00:43,720 --> 00:00:51,920
+actually set them up. So what I'll do is I will share my screen again, and I'll start
+
+10
+00:00:51,920 --> 00:00:55,220
+off with the ZAP documentation
+
+11
+00:00:55,220 --> 00:00:59,860
+zaproxy.org, because this is, you know, if you want to check it,
+
+12
+00:00:59,860 --> 00:01:03,760
+you know, have a look at anything, see the details, there's loads of information here.
+
+13
+00:01:03,760 --> 00:01:12,340
+So for the automation framework, go to documentation, then automate, and automation framework.
+
+14
+00:01:12,340 --> 00:01:17,800
+And you can see now we've actually got all of the jobs here, the environment, and the
+
+15
+00:01:17,800 --> 00:01:20,380
+jobs there in alphabetical order.
+
+16
+00:01:20,380 --> 00:01:25,200
+But what I'll do now is switch to ZAP.
+
+17
+00:01:25,200 --> 00:01:33,420
+And I will, what I'll do is I'm just going to move certain windows out of the way so
+
+18
+00:01:33,420 --> 00:01:35,220
+I can see what I'm doing.
+
+19
+00:01:35,220 --> 00:01:41,020
+I'm just going to launch a browser to sort of bring up BodgeIt, nice, simple application.
+
+20
+00:01:41,020 --> 00:01:49,000
+And that just allows me to add that to the context, which just speeds things up a touch.
+
+21
+00:01:49,000 --> 00:01:54,920
+Including context, I'll have a new context, which we will automatically call BodgeIt.
+
+22
+00:01:55,200 --> 00:02:03,280
+So what I'll do is we're going to have a look, so I'm going to create a new plan.
+
+23
+00:02:03,280 --> 00:02:08,220
+And so we've talked about the, so I'm going to use the BodgeIt context, that's what we
+
+24
+00:02:08,220 --> 00:02:11,620
+talked about, the alertFilter, the passiveScan-config.
+
+25
+00:02:11,620 --> 00:02:18,320
+So the next logical ones are the requestor script, replacer script and requestor jobs.
+
+26
+00:02:18,320 --> 00:02:21,720
+Now I'm not going to cover the script job yet.
+
+27
+00:02:21,720 --> 00:02:24,420
+That's one for a future episode, because it's probably going to be an episode all on its
+
+28
+00:02:24,420 --> 00:02:25,200
+own.
+
+29
+00:02:25,200 --> 00:02:29,320
+There's a lot going on there, even without going into all the details of scripts.
+
+30
+00:02:29,320 --> 00:02:34,020
+So let's just talk about the replacer and requestor jobs.
+
+31
+00:02:34,020 --> 00:02:39,700
+Now I'm actually going to start off with the requestor job because the replacer job doesn't
+
+32
+00:02:39,700 --> 00:02:42,920
+do anything unless something else is working.
+
+33
+00:02:42,920 --> 00:02:49,820
+So let's just start with the requestor job.
+
+34
+00:02:49,820 --> 00:02:54,420
+So.. When we look at the requestor, all that it is as a job.
+
+35
+00:02:54,420 --> 00:02:59,300
+It's basically a job that sends a request and receives a response, right?
+
+36
+00:02:59,300 --> 00:03:00,300
+Just to demystify.
+
+37
+00:03:00,300 --> 00:03:01,300
+Exactly.
+
+38
+00:03:01,300 --> 00:03:02,300
+Very simple.
+
+39
+00:03:02,300 --> 00:03:08,300
+And actually, I mean, if I run it like that, it will actually do nothing because the requestor
+
+40
+00:03:08,300 --> 00:03:14,820
+job actually allows you, that's the environment, the requestor job allows you to define a set
+
+41
+00:03:14,820 --> 00:03:15,820
+of requests.
+
+42
+00:03:15,820 --> 00:03:20,380
+And by default, there are none because we don't know what you want to request. Right.
+
+43
+00:03:20,380 --> 00:03:24,300
+So the first tab, you can change the job name, which is kind of useful.
+
+44
+00:03:24,300 --> 00:03:28,440
+If you've got lots of requestor jobs, you want to make sure you want to see which one's
+
+45
+00:03:28,440 --> 00:03:29,860
+doing what.
+
+46
+00:03:29,860 --> 00:03:32,260
+And we have an option for an authenticated user.
+
+47
+00:03:32,260 --> 00:03:35,980
+It's not available to us because we haven't defined an authenticated user and that's something
+
+48
+00:03:35,980 --> 00:03:38,740
+we'll cover in a future episode.
+
+49
+00:03:38,740 --> 00:03:39,920
+So the requests.
+
+50
+00:03:39,920 --> 00:03:47,080
+We'll add a request and we can actually choose from the sites tree if we don't have to.
+
+51
+00:03:47,080 --> 00:03:49,500
+So let's just select that one.
+
+52
+00:03:49,500 --> 00:03:53,180
+And you see we can define the method.
+
+53
+00:03:53,180 --> 00:03:54,180
+Define the 
+
+54
+00:03:54,180 --> 00:03:56,140
+HTTP version.
+
+55
+00:03:56,140 --> 00:03:58,800
+And we've got a result code here option.
+
+56
+00:03:58,800 --> 00:04:02,720
+So say we are expecting a 200.
+
+57
+00:04:02,720 --> 00:04:04,300
+And that's kind of, I mean, you don't have to specify that.
+
+58
+00:04:04,300 --> 00:04:07,280
+If you don't specify it, then we won't do any checks at all.
+
+59
+00:04:07,280 --> 00:04:09,740
+So actually, let's just not put that in.
+
+60
+00:04:09,740 --> 00:04:14,940
+Let's just save that and run that.
+
+61
+00:04:14,940 --> 00:04:18,420
+And nothing seems to happen, but we go to the history tab.
+
+62
+00:04:18,420 --> 00:04:23,740
+We will see, well, first of all, we have these requests from the, when I launched a browser,
+
+63
+00:04:23,740 --> 00:04:30,780
+but then we've got this request here and we'll see it actually doesn't do much because
+
+64
+00:04:30,780 --> 00:04:31,780
+it's returning a 302.
+
+65
+00:04:31,780 --> 00:04:32,780
+So we're getting a redirect.
+
+66
+00:04:32,780 --> 00:04:43,120
+And that's one of the reasons why we have this option to actually say what response
+
+67
+00:04:43,120 --> 00:04:45,140
+code we expect.
+
+68
+00:04:45,140 --> 00:04:50,700
+So if you're saying, okay, we are expecting a 200, save that, run the plan, then you'll
+
+69
+00:04:50,700 --> 00:04:51,740
+see, we actually get a warning.
+
+70
+00:04:51,740 --> 00:04:52,740
+And you have a look at the output tab
+
+71
+00:04:52,740 --> 00:04:53,740
+
+
+72
+00:04:53,740 --> 00:04:58,960
+different in response code values
+
+73
+00:04:58,960 --> 00:04:59,960
+for message.
+
+74
+00:04:59,960 --> 00:05:06,500
+That looks like something we ought to translate in something more useful maybe, but we can
+
+75
+00:05:06,500 --> 00:05:09,160
+see we expected 200 and received a 302.
+
+76
+00:05:09,160 --> 00:05:10,160
+Yeah, exactly.
+
+77
+00:05:10,160 --> 00:05:11,160
+Exactly.
+
+78
+00:05:11,160 --> 00:05:13,800
+We're expecting the page back and we're getting a redirect, right?
+
+79
+00:05:13,800 --> 00:05:14,800
+Exactly.
+
+80
+00:05:14,800 --> 00:05:15,800
+So we can now change that.
+
+81
+00:05:15,800 --> 00:05:16,460
+We can go, okay, so we're requesting the wrong URL.
+
+82
+00:05:16,460 --> 00:05:17,460
+
+
+83
+00:05:17,460 --> 00:05:18,460
+
+
+84
+00:05:18,460 --> 00:05:19,460
+
+
+85
+00:05:19,460 --> 00:05:20,460
+
+
+86
+00:05:20,460 --> 00:05:21,460
+
+
+87
+00:05:21,460 --> 00:05:22,460
+
+
+88
+00:05:22,460 --> 00:05:23,460
+And we go in and 
+
+89
+00:05:23,740 --> 00:05:34,780
+modified that. So put a slash on there, save, save and rerun. And then we'll now see we actually
+
+90
+00:05:34,780 --> 00:05:42,680
+got something sensible back. So we got the kind of data we're expecting. Yeah. So that's nice and
+
+91
+00:05:42,680 --> 00:05:49,640
+easy. There are some extra options we have. I'm obviously, let's have a look.
+
+92
+00:05:49,640 --> 00:05:58,260
+Well, we've got another tab here with headers. So we can actually add specific headers. So, sorry.
+
+93
+00:06:03,260 --> 00:06:09,460
+What I like about this is as one example, you could specify a couple of different browser
+
+94
+00:06:09,460 --> 00:06:16,240
+headers, right? Your browser could be both Safari and Chrome. Yeah. And then you see what actually
+
+95
+00:06:16,240 --> 00:06:19,080
+is the response to the website and how it's configured. Yeah.
+
+96
+00:06:19,640 --> 00:06:24,580
+So, and we've run this, have a look at the history and look at it. We will then see the
+
+97
+00:06:24,580 --> 00:06:31,160
+request. We've now got the test header and test value. Now I think this job is, I mean, this is
+
+98
+00:06:31,160 --> 00:06:38,080
+probably not a job you would be using for finding vulnerabilities. This is very much if you need to
+
+99
+00:06:38,080 --> 00:06:46,280
+make a request to do something specific. I mean, one example is with something like Juice Shop.
+
+100
+00:06:46,280 --> 00:06:49,360
+If you're testing at one, I mean, this is what we've done before.
+
+101
+00:06:49,640 --> 00:06:55,500
+Is say you want to do authenticated tests against an application and you actually have to create
+
+102
+00:06:55,500 --> 00:07:00,220
+the user. So if something on Juice Shop, I would actually make a set of requests to one or more
+
+103
+00:07:00,220 --> 00:07:05,520
+requests to register a user so that when I bring the application up by default, make these requests
+
+104
+00:07:05,520 --> 00:07:10,240
+to add the user. And then we've got the user there to make the request to actually do things.
+
+105
+00:07:10,800 --> 00:07:16,980
+Or say, if you know that the spider or something doesn't find a particular URL that you do need
+
+106
+00:07:16,980 --> 00:07:18,880
+to hit, then you could put this job in.
+
+107
+00:07:19,640 --> 00:07:23,080
+And then it would actually hit the URLs you need.
+
+108
+00:07:24,820 --> 00:07:30,100
+One use case that comes to mind is real quickly checking what kind of cookies I get back.
+
+109
+00:07:30,520 --> 00:07:30,680
+Yeah.
+
+110
+00:07:31,540 --> 00:07:35,060
+And whether or not I get those cookies when I vary the headers.
+
+111
+00:07:35,720 --> 00:07:35,940
+Yeah.
+
+112
+00:07:36,960 --> 00:07:44,480
+And that's really important in the context of have any other cookies which are not part of the current session.
+
+113
+00:07:44,480 --> 00:07:46,660
+Are they being issued without us knowing?
+
+114
+00:07:47,800 --> 00:07:48,080
+Yeah.
+
+115
+00:07:48,420 --> 00:07:49,480
+And of course, we've...
+
+116
+00:07:49,640 --> 00:07:55,320
+We do have job tests, so we can actually put tests in to see, to double check the results and that's
+
+117
+00:07:55,320 --> 00:07:58,320
+something we'll cover in another episode as well.
+
+118
+00:07:58,960 --> 00:08:04,200
+So we can actually say, okay, let's add another request and we'll...
+
+119
+00:08:06,040 --> 00:08:06,880
+Let's go...
+
+120
+00:08:10,180 --> 00:08:14,220
+This time I'll make a post request and...
+
+121
+00:08:18,220 --> 00:08:19,520
+A little bit of data.
+
+122
+00:08:19,640 --> 00:08:20,000
+Yeah.
+
+123
+00:08:20,000 --> 00:08:23,400
+So this, and we won't bother adding any headers this time.
+
+124
+00:08:23,400 --> 00:08:28,760
+So now I'll just clear the session so we can see the requests more easily.
+
+125
+00:08:29,080 --> 00:08:35,200
+And remember that doesn't clear the automation framework plan so that we can do this kind of testing.
+
+126
+00:08:36,040 --> 00:08:37,760
+And we'll see in the...
+
+127
+00:08:37,960 --> 00:08:39,560
+Now we've made this request.
+
+128
+00:08:39,560 --> 00:08:46,440
+So we've got the test header there and in the post, we don't have the test header because we didn't add it.
+
+129
+00:08:46,960 --> 00:08:48,560
+And we've got the data there.
+
+130
+00:08:49,640 --> 00:08:52,020
+Well, one header that has been added is the content lenght.
+
+131
+00:08:52,040 --> 00:08:54,320
+Otherwise it wouldn't be a valid post request, right?
+
+132
+00:08:54,320 --> 00:08:54,800
+Exactly.
+
+133
+00:08:54,980 --> 00:08:57,020
+So that will do these things for you.
+
+134
+00:08:57,680 --> 00:08:57,920
+Yeah.
+
+135
+00:08:59,360 --> 00:09:02,180
+So that's the requestor.
+
+136
+00:09:02,200 --> 00:09:03,300
+Nice and simple.
+
+137
+00:09:03,980 --> 00:09:10,700
+But the reason I did that one first before the replacer is we've now got something we can actually use the replacer on.
+
+138
+00:09:12,200 --> 00:09:15,520
+So let's add the replacer job.
+
+139
+00:09:15,520 --> 00:09:24,140
+And what we'll see is, again, this is one which has a set of rules.
+
+140
+00:09:24,480 --> 00:09:26,980
+Now the replacer is a tool within ZAP.
+
+141
+00:09:26,980 --> 00:09:31,540
+So this is one of the standard ZAP tools, and it allows you to replace things.
+
+142
+00:09:32,140 --> 00:09:33,820
+And it's not a kind of fuzzer.
+
+143
+00:09:33,980 --> 00:09:36,160
+It doesn't do anything on its own.
+
+144
+00:09:36,340 --> 00:09:38,860
+So it doesn't matter how many replacer jobs you add.
+
+145
+00:09:39,100 --> 00:09:42,200
+It's only, they only take effect when they apply to something.
+
+146
+00:09:44,320 --> 00:09:45,440
+So let's have a look.
+
+147
+00:09:45,520 --> 00:09:53,440
+What we've got here is we can add a replacement rule and we can put in, so put in the URL.
+
+148
+00:09:53,480 --> 00:09:54,460
+Now this is optional.
+
+149
+00:09:54,780 --> 00:09:59,120
+Actually, if you see here, we have help for this dialogue.
+
+150
+00:09:59,260 --> 00:10:03,340
+So, and I think this is actually the standard help for the replacer.
+
+151
+00:10:03,480 --> 00:10:12,160
+It applies to the standard replacer job and the standard replacer tool, not just the, the automation framework job.
+
+152
+00:10:13,140 --> 00:10:15,180
+So it gives you lots of help there.
+
+153
+00:10:15,520 --> 00:10:24,100
+And you will see things like the URL is actually a regex and applies to all messages if it's empty.
+
+154
+00:10:24,220 --> 00:10:26,140
+So we don't have to apply, apply that.
+
+155
+00:10:27,980 --> 00:10:31,180
+So what we've got is we have match type.
+
+156
+00:10:31,300 --> 00:10:35,960
+So we've got a set of options here, so we can replace the request header.
+
+157
+00:10:36,500 --> 00:10:38,920
+And in this case, it will add the header.
+
+158
+00:10:39,080 --> 00:10:45,160
+If it doesn't exist, then we can replace a string in the request, the body, and then the same for the responses
+
+159
+00:10:45,520 --> 00:10:52,120
+so we can put a header in and replace individual strings in the header and body as well.
+
+160
+00:10:54,160 --> 00:10:56,860
+So let's go for the request header.
+
+161
+00:10:57,340 --> 00:11:10,060
+And what I'll do is to, and we'll put in another writing, right.
+
+162
+00:11:10,060 --> 00:11:10,300
+Yeah.
+
+163
+00:11:10,420 --> 00:11:11,920
+And we will save that.
+
+164
+00:11:12,780 --> 00:11:14,860
+Oh, I've got to provide a description.
+
+165
+00:11:14,980 --> 00:11:15,460
+
+
+166
+00:11:15,520 --> 00:11:25,840
+So... I think it's important for our listener Simon to always, before you set up such a match type to know what you're expecting, right.
+
+167
+00:11:25,840 --> 00:11:26,380
+As a result.
+
+168
+00:11:26,380 --> 00:11:27,100
+Absolutely.
+
+169
+00:11:27,400 --> 00:11:27,900
+Definitely.
+
+170
+00:11:28,540 --> 00:11:35,200
+Now you'll see, we automatically added the replace a job higher up before the requestor.
+
+171
+00:11:35,380 --> 00:11:37,280
+Now this might not be what you want.
+
+172
+00:11:37,280 --> 00:11:42,160
+If you've got several jobs, say you want to actually do something, then change the replace the rules.
+
+173
+00:11:42,260 --> 00:11:43,840
+So you might have to move this around.
+
+174
+00:11:44,140 --> 00:11:45,340
+And you can have as many
+
+175
+00:11:45,520 --> 00:11:48,020
+replace from requested jobs as you want.
+
+176
+00:11:48,020 --> 00:11:49,180
+You don't just have to have one.
+
+177
+00:11:50,760 --> 00:11:56,240
+So let's clear the session again and run that.
+
+178
+00:11:57,620 --> 00:12:01,520
+And hopefully we'll see that we've got the first request.
+
+179
+00:12:01,520 --> 00:12:07,080
+We've got the test header that we put in on that particular request, and now we've got the test header too.
+
+180
+00:12:07,580 --> 00:12:12,480
+And with the second request, we've got the test just to the test header too.
+
+181
+00:12:12,960 --> 00:12:15,040
+So if you want to actually
+
+182
+00:12:15,040 --> 00:12:20,040
+just put in one particular header on one request, then you might as well do it on that request.
+
+183
+00:12:20,420 --> 00:12:29,820
+But the place of job is a great way to actually apply to all of these things, all of the requests.
+
+184
+00:12:30,280 --> 00:12:31,720
+Now you don't have to do that.
+
+185
+00:12:31,760 --> 00:12:38,680
+So say the, we actually, oh, no, I meant to give them to the replacer.
+
+186
+00:12:39,140 --> 00:12:40,880
+Say we don't with this.
+
+187
+00:12:40,880 --> 00:12:45,000
+We don't want to apply it to the to all
+
+188
+00:12:45,000 --> 00:12:46,060
+of the jobs.
+
+189
+00:12:46,060 --> 00:12:48,760
+We actually just want to apply it to the post one.
+
+190
+00:12:49,180 --> 00:12:59,100
+So let's say something like make it easy for myself by copying this..Copy pasting the post URL.
+
+191
+00:12:59,640 --> 00:13:00,000
+Yep.
+
+192
+00:13:02,740 --> 00:13:09,380
+So effectively what this will do is it will only apply the replacer job when the specific URL is being hit.
+
+193
+00:13:09,960 --> 00:13:10,440
+Yeah.
+
+194
+00:13:10,480 --> 00:13:12,300
+Well, that's what you'd think, wouldn't you?
+
+195
+00:13:12,680 --> 00:13:14,940
+So I'm going to run this.
+
+196
+00:13:15,360 --> 00:13:17,580
+And we may see something unexpected.
+
+197
+00:13:18,900 --> 00:13:24,000
+We will actually see that we're still getting the test header, both test header in the get request. Uh interesting!
+
+198
+00:13:25,560 --> 00:13:26,060
+Yeah.
+
+199
+00:13:26,160 --> 00:13:29,520
+I tried this and it was like, oh, what's what's going on.
+
+200
+00:13:29,760 --> 00:13:30,420
+Then I remembered.
+
+201
+00:13:30,600 --> 00:13:32,820
+So that's why I, it was a deliberate mistake.
+
+202
+00:13:32,920 --> 00:13:35,460
+I may make some undelivered mistakes soon.
+
+203
+00:13:35,920 --> 00:13:44,880
+But if you actually have a look at the replacer, you'll see delete existing rules. Ahhhh.
+
+204
+00:13:45,160 --> 00:13:46,320
+Now this is very deliberate.
+
+205
+00:13:46,380 --> 00:13:51,420
+So what's happened is it, this is a standard, we have a standard replacer option.
+
+206
+00:13:51,900 --> 00:14:00,220
+And what you'll see is we now have a set of replacer rules, including the original one that I added.
+
+207
+00:14:00,960 --> 00:14:02,400
+And this applies to everything.
+
+208
+00:14:02,860 --> 00:14:05,640
+So what we're doing is we're adding replacer rules to ZAP.
+
+209
+00:14:06,500 --> 00:14:14,940
+And so what I want to do is I actually want to delete the existing rules, but we don't have that as by default, because if you're
+
+210
+00:14:14,940 --> 00:14:20,460
+doing manual testing, you might have set up a whole set of replacer rules and you don't want to actually get rid of them.
+
+211
+00:14:21,260 --> 00:14:27,060
+So, you know, if you have this, this is a kind of hint to go, okay, maybe you want to use a separate configurations list.
+
+212
+00:14:27,660 --> 00:14:33,780
+And if you're actually doing automation, chances are you're launching a new instance of ZAP with new configuration.
+
+213
+00:14:33,780 --> 00:14:35,640
+So you don't need to delete the existing rules.
+
+214
+00:14:35,880 --> 00:14:39,180
+So that's why we don't have this as on by default.
+
+215
+00:14:41,700 --> 00:14:42,900
+So let's enable that.
+
+216
+00:14:42,900 --> 00:14:44,520
+A key message here for our listeners.
+
+217
+00:14:44,520 --> 00:14:51,660
+Always check all the replacer rules that you have in the context of ZAP as part of your, your context, right?
+
+218
+00:14:51,660 --> 00:14:51,900
+Yeah.
+
+219
+00:14:52,020 --> 00:15:01,260
+And always double check what you, what's what you've, how you've configured the automation plans, that they're doing what you expect because you might say, okay, this makes sense.
+
+220
+00:15:01,680 --> 00:15:06,660
+But it still doesn't work the way you want because of other reasons, which we think are sensible.
+
+221
+00:15:06,960 --> 00:15:14,460
+But you might not have thought of, so let's have a look here and yes, we now don't have the,
+
+222
+00:15:14,520 --> 00:15:18,300
+we only have the test header on the post request and not on the get request.
+
+223
+00:15:18,780 --> 00:15:19,680
+Right, right.
+
+224
+00:15:21,000 --> 00:15:26,460
+So Simon, what other options are available within the requester in terms of matching strings?
+
+225
+00:15:26,560 --> 00:15:27,420
+Yeah, sure.
+
+226
+00:15:27,480 --> 00:15:35,520
+So, we've got some, lots of fun ones here, so let's have a look at this.
+
+227
+00:15:35,520 --> 00:15:38,500
+Well, let's add another rule actually, to make it clear.
+
+228
+00:15:39,700 --> 00:15:44,460
+So we have whole set of different match types.
+
+229
+00:15:45,060 --> 00:15:47,520
+And we can match.
+
+230
+00:15:47,560 --> 00:15:50,400
+So one of the things is nice and obvious.
+
+231
+00:15:50,400 --> 00:15:53,640
+We can see, we can change things in the response body.
+
+232
+00:15:55,080 --> 00:15:58,800
+So let's match a string.
+
+233
+00:15:58,800 --> 00:16:06,960
+So Bodg.*t, um, and that is a regex.
+
+234
+00:16:07,320 --> 00:16:14,100
+So, so in this case we're saying, we need description when we.
+
+235
+00:16:14,520 --> 00:16:19,800
+So this is a BodgeIt store
+
+236
+00:16:19,860 --> 00:16:26,460
+so what I'm aiming to do is trying to replace every instance of BodgeIt, with "HackedIt".
+
+237
+00:16:27,300 --> 00:16:37,200
+And this is in the response body and let's save that and we will clear our session.
+
+238
+00:16:37,980 --> 00:16:40,020
+And this is where we'll see whether I've made any typos.
+
+239
+00:16:41,160 --> 00:16:44,400
+So we have a look at the response.
+
+240
+00:16:44,520 --> 00:16:56,160
+And then the packed it, and you'll actually see that it's probably it's replaced too much because we've got, we've actually replaced some of the title there.
+
+241
+00:16:56,940 --> 00:17:00,240
+So.. Closing bracket gone, right?
+
+242
+00:17:00,480 --> 00:17:01,020
+Exactly.
+
+243
+00:17:01,180 --> 00:17:02,820
+So yeah, try these things out
+
+244
+00:17:03,120 --> 00:17:08,880
+and you will see way.. Which is absolutely valid that was the regex that you specified.
+
+245
+00:17:09,060 --> 00:17:09,640
+Exactly.
+
+246
+00:17:09,840 --> 00:17:11,680
+And this might have been what I wanted to do.
+
+247
+00:17:11,740 --> 00:17:14,100
+It wasn't, but, that's
+
+248
+00:17:14,520 --> 00:17:15,420
+how it works out.
+
+249
+00:17:15,420 --> 00:17:25,860
+So let's put in, save that and run it again and look at this one and the, yeah.
+
+250
+00:17:25,920 --> 00:17:31,860
+So now we've got the "HackedIt" store and we haven't messed up the title so we can do regex expressions.
+
+251
+00:17:32,300 --> 00:17:38,340
+And one fun thing you can do, have a look at this.
+
+252
+00:17:40,140 --> 00:17:43,840
+So one thing you'll see this token processing, what does that mean?
+
+253
+00:17:43,840 --> 00:17:55,180
+Well, we actually have a set of built-in tokens, which allow you to replace things so we can actually, we've got UUID, ticks, min, max.
+
+254
+00:17:55,420 --> 00:18:00,520
+So let's put in a UUID and we can copy and paste these things.
+
+255
+00:18:00,820 --> 00:18:06,700
+So replacement, we will actually put the UUID in and we would just get that string in there.
+
+256
+00:18:06,700 --> 00:18:11,920
+Let's put token replacement in, save that and run this again.
+
+257
+00:18:12,520 --> 00:18:13,720
+And this time.
+
+258
+00:18:13,720 --> 00:18:13,840
+
+
+259
+00:18:13,840 --> 00:18:20,600
+We should see, we should have a UUID in there so we can do all sorts of fun things.
+
+260
+00:18:20,960 --> 00:18:30,340
+Now, one of the thing I haven't mentioned yet is have a look at this.
+
+261
+00:18:30,400 --> 00:18:34,700
+So we don't, I haven't actually mentioned the initiators.
+
+262
+00:18:35,260 --> 00:18:42,940
+So the initiators means this allows us to change which initiators, where the requests come from.
+
+263
+00:18:43,580 --> 00:18:43,820
+
+
+264
+00:18:43,840 --> 00:18:53,340
+So which, which of those, which of the tools within ZAP, this rule applies to, in this by default applies to all HTTPS messages.
+
+265
+00:18:53,680 --> 00:18:55,680
+We can say, actually, we don't want that.
+
+266
+00:18:55,720 --> 00:18:59,020
+We will just get it to say, apply to the spider.
+
+267
+00:18:59,460 --> 00:19:10,960
+So we will apply it to the spider and just to double check, this is now working as we expect with the manual request.
+
+268
+00:19:11,140 --> 00:19:13,840
+We will try that out and have a look.
+
+269
+00:19:14,600 --> 00:19:16,640
+And yeah, it's still the BodgeIt store.
+
+270
+00:19:17,400 --> 00:19:29,660
+And so I'll need to do now is add another job and we'll talk about the spider job in more detail later, but this is just to demonstrate it and I won't give any other information there.
+
+271
+00:19:29,720 --> 00:19:33,800
+So I will run the plan, see the spiders finished.
+
+272
+00:19:34,180 --> 00:19:42,880
+Now we don't put the spider job, the spider requests in history because that kind of floods it really, particularly doing manual testing.
+
+273
+00:19:43,420 --> 00:19:43,720
+
+
+274
+00:19:43,720 --> 00:19:51,760
+But if we have a look at the spider tab, that's all integrated and here we can just see, we can, by default, you'll see the URLs.
+
+275
+00:19:51,760 --> 00:19:58,600
+We can go to the URL to the messages and hopefully, yeah, we can see we've got the spider job.
+
+276
+00:19:59,220 --> 00:20:03,160
+We're now getting the UUID in the response replacement.
+
+277
+00:20:03,200 --> 00:20:03,440
+Yeah.
+
+278
+00:20:03,520 --> 00:20:04,520
+Within the spider job.
+
+279
+00:20:05,220 --> 00:20:09,940
+I think just going back on, on regex is really important.
+
+280
+00:20:10,000 --> 00:20:13,000
+A rule that I learned a long, long time ago back then.
+
+281
+00:20:13,040 --> 00:20:13,480
+Pearl.
+
+282
+00:20:13,480 --> 00:20:19,780
+Was being used instead of Python showing my age on, try out your regex on command line.
+
+283
+00:20:19,900 --> 00:20:20,200
+Right.
+
+284
+00:20:20,200 --> 00:20:26,100
+We're probably showing our, our years now, but please try out your regexes on command line.
+
+285
+00:20:26,140 --> 00:20:26,360
+Right.
+
+286
+00:20:26,360 --> 00:20:30,820
+And don't try them out on a language that is complex with passing command line regexes.
+
+287
+00:20:30,940 --> 00:20:34,600
+For example, don't try them out on Java because you've got to escape everything.
+
+288
+00:20:34,740 --> 00:20:35,080
+Right.
+
+289
+00:20:36,340 --> 00:20:39,040
+Out the regex in Python, make sure it works.
+
+290
+00:20:39,460 --> 00:20:43,220
+And when you're sure that it works, then go and specify it within
+
+291
+00:20:43,220 --> 00:20:52,040
+ZAP or specify in ZAP and try it out, you know, always, you know, this, and I think some people are a bit frightened of regexes.
+
+292
+00:20:52,480 --> 00:20:56,460
+They are absolutely an absolutely essential skill.
+
+293
+00:20:56,660 --> 00:20:59,960
+If you work in security, so many tools use regexes.
+
+294
+00:21:00,260 --> 00:21:03,980
+You don't necessarily have to be a regex expert.
+
+295
+00:21:04,040 --> 00:21:12,780
+There are, you know, I will go on, you know, there are online tools where you can check your reg, you know, complex regex expressions against different
+
+296
+00:21:13,220 --> 00:21:19,220
+payloads and things because it's, I'm not a regex expert, but I use regexes a lot.
+
+297
+00:21:19,540 --> 00:21:27,140
+And there's lots of places in ZAP where we use regexes just because they are so flexible, um, and so powerful.
+
+298
+00:21:27,280 --> 00:21:39,280
+So yeah, the other message apart from, you know, how you actually use, use these jobs in the automation framework is get a hat, get a good grip of regexes, play around with them and understand them properly.
+
+299
+00:21:40,800 --> 00:21:43,120
+And on that note, it's probably enough for this.
+
+300
+00:21:43,220 --> 00:21:59,960
+This session and next time I think we'll be, we'll be carrying on with the automation framework and we'll, I think it's time we've got onto the other exploring type jobs with the APIs and whether we get onto the spiders or not, I don't know, but we will keep pressing ahead.
+
+301
+00:22:00,260 --> 00:22:11,000
+So if you are enjoying these sessions, then please like them, subscribe and subscribe to the channel and add comments to let us know what you think and what else you'd like us to cover.
+
+302
+00:22:11,980 --> 00:22:12,760
+Thank you very much.
+
+303
+00:22:13,220 --> 00:22:14,180
+Thank you.
+

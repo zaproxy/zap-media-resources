@@ -1,0 +1,1584 @@
+1
+00:00:00,000 --> 00:00:12,120
+Hello, and welcome to the first ZAP Chat of 2024. Happy New Year to everyone.
+
+2
+00:00:12,120 --> 00:00:15,440
+Hello, Happy New Year.
+
+3
+00:00:15,440 --> 00:00:23,600
+Here's Yiannis and myself chatting about ZAP stuff. Now, I had a quick chat and we decided that it
+
+4
+00:00:23,600 --> 00:00:28,480
+would be good to have a little review of 2023. So probably going to do a blog post about this as
+
+5
+00:00:28,480 --> 00:00:33,120
+well. So you might actually be watching this in the blog post. So you'll be able to see all the
+
+6
+00:00:33,120 --> 00:00:37,840
+best links. But I was just going to go through the year and we'll chat about the stuff that we got
+
+7
+00:00:37,840 --> 00:00:42,640
+done. What a year it has been. Very exciting year, right?
+
+8
+00:00:42,640 --> 00:00:45,600
+It's been a very exciting year and a very busy one. So lots got done.
+
+9
+00:00:47,760 --> 00:00:53,120
+January started off, we were very much focusing on authentication. So actually released the
+
+10
+00:00:53,120 --> 00:00:57,840
+authentication helper. It didn't have all the functionality it does now, but it allowed you to
+
+11
+00:00:58,480 --> 00:01:06,480
+automatically identify authentication requests and then automatically configure ZAP to handle
+
+12
+00:01:06,480 --> 00:01:10,800
+them. And this is something which was new for us because previously it was just like you had to
+
+13
+00:01:10,800 --> 00:01:16,560
+configure everything. ZAP could handle pretty much anything as long as you told ZAP how to handle it.
+
+14
+00:01:16,560 --> 00:01:21,760
+And in some cases you didn't know how to do that, which is kind of fair enough. So this was the
+
+15
+00:01:21,760 --> 00:01:28,480
+start of really getting ZAP to help you configure things more easily, particularly around authentication.
+
+16
+00:01:28,480 --> 00:01:34,160
+And that's something we intend to carry on through the year and hope to carry on even further.
+
+17
+00:01:36,880 --> 00:01:45,520
+In February, I went to OWASP AppSec Israel, where myself, Ricardo and Rick were all given
+
+18
+00:01:45,520 --> 00:01:52,720
+OWASP's Lifetime Achievement Awards, which is a little bit ironic given the events later on,
+
+19
+00:01:52,720 --> 00:01:57,200
+but those weren't taken off us. So we still got those, which is very nice to have those
+
+20
+00:01:58,480 --> 00:02:04,960
+recognition. But then, yeah, carry on in March and basically we're carrying on a lot more about
+
+21
+00:02:04,960 --> 00:02:11,200
+the authentication. So supported browser-based authentication, which I think is absolutely key
+
+22
+00:02:11,200 --> 00:02:18,640
+for modern web applications. We tried various things and as the Yiannis has told you, it's really
+
+23
+00:02:18,640 --> 00:02:24,240
+hard to authenticate to modern apps if you don't use the browser. There are some cases I've managed
+
+24
+00:02:24,240 --> 00:02:28,400
+to inject user sessions into a browser. You launch a browser, you inject the session and it works.
+
+25
+00:02:29,280 --> 00:02:34,400
+But it's very application specific and quite a few applications, I've not found a way to do it.
+
+26
+00:02:35,920 --> 00:02:40,080
+It is. It's even considered a security feature by some. I mean, it's not really a security feature
+
+27
+00:02:40,080 --> 00:02:45,840
+because of course the asynchronous JavaScript is a client-side control. So therefore, theoretically,
+
+28
+00:02:45,840 --> 00:02:52,880
+it cannot be trusted. Having said that, it does add a layer of obfuscation,
+
+29
+00:02:52,880 --> 00:02:58,480
+for the lack of a better word, when it comes to getting that valid set of jsessionid,
+
+30
+00:02:58,480 --> 00:03:04,560
+or .NET cookies or whatever the technology might be behind that. So it is going to be,
+
+31
+00:03:04,560 --> 00:03:12,480
+I think, an ever-evolving game of cat and mouse between authentication that continues to evolve.
+
+32
+00:03:13,840 --> 00:03:18,320
+If you look at the next versions of OAuth and so on, we've got that coming down the pipeline.
+
+33
+00:03:18,320 --> 00:03:23,680
+And then the security tools and ZAP at the forefront of web application and API security
+
+34
+00:03:23,680 --> 00:03:27,280
+tools trying to catch up with the latest authentication trends.
+
+35
+00:03:28,480 --> 00:03:35,840
+Yeah. And we know that authentication and automation oppose each other in some
+
+36
+00:03:35,840 --> 00:03:42,400
+ways because a lot of people who are doing bad things will use automation. So a lot of security
+
+37
+00:03:42,400 --> 00:03:47,840
+controls are there to prevent things that you need to do with ZAP if you want to automate your
+
+38
+00:03:47,840 --> 00:03:54,160
+security testing. So it's kind of tricky. And this is something we've always struggled with,
+
+39
+00:03:54,160 --> 00:03:58,080
+and it will continue to get more interesting. But we're getting there.
+
+40
+00:03:58,480 --> 00:04:02,640
+And the authenticating with the browser has proved very effective,
+
+41
+00:04:03,520 --> 00:04:08,000
+unless you use Gmail, in which case Chrome blocks you from doing that. So hey,
+
+42
+00:04:08,000 --> 00:04:08,720
+that's the way it goes.
+
+43
+00:04:08,720 --> 00:04:14,000
+I think one of the key takeaways for our listeners and learners is,
+
+44
+00:04:15,440 --> 00:04:20,320
+long gone are the days of you would send a get request or a post request,
+
+45
+00:04:20,320 --> 00:04:24,560
+and it would be a bunch of parameters. And all you have to do is to get the content length
+
+46
+00:04:24,560 --> 00:04:27,760
+right, and then you'd be able to, I don't know, brute force the interface.
+
+47
+00:04:28,720 --> 00:04:33,840
+And of course, this is not something that we're going to shy away from in the new protocols,
+
+48
+00:04:33,840 --> 00:04:39,760
+because overall, we have the same problem with CSRF tokens. And then it was just about generating
+
+49
+00:04:39,760 --> 00:04:45,760
+the sequence request. So I think it's just a case of evolving the tool set to catch up with the
+
+50
+00:04:45,760 --> 00:04:52,240
+client side features, for the lack of better words. I can't think of them as security control. Sorry,
+
+51
+00:04:52,240 --> 00:04:58,400
+I'm a bit old school there. Exactly. And I think it's important to think about, if you're developing
+
+52
+00:04:58,400 --> 00:05:06,240
+applications, how easy do you want to be able to test them? If you put a whole load of controls in
+
+53
+00:05:06,240 --> 00:05:12,240
+that make it hard to test your applications, who are you hurting? Are you really preventing
+
+54
+00:05:12,240 --> 00:05:16,320
+the bad people from attacking your application, or are you making their own lives harder?
+
+55
+00:05:16,320 --> 00:05:19,520
+So it's a balance, and that's a decision you have to make.
+
+56
+00:05:21,360 --> 00:05:26,000
+Yeah. And we see that a lot, actually, just to digress for a second. So in the same way that you
+
+57
+00:05:26,000 --> 00:05:26,400
+have
+
+58
+00:05:28,400 --> 00:05:35,920
+you know, the mobile space, you can check for a jailbreak on iOS, right? And there are libraries for it and
+
+59
+00:05:35,920 --> 00:05:41,440
+known techniques. And then typically during the retest, a jailbreak risk has either been accepted
+
+60
+00:05:41,440 --> 00:05:45,680
+or that feature has been included. But then during the scoping, you're like, well, I'm not going to
+
+61
+00:05:45,680 --> 00:05:50,880
+spend five days bypassing the jailbreak control that I told you to implement. Same with logging.
+
+62
+00:05:50,880 --> 00:05:57,040
+I'm not going to spend five days focusing on the logging features that I told you to implement.
+
+63
+00:05:58,400 --> 00:06:03,680
+In essence you end up with a set of techniques that are there in a blue team style where both sides are working
+
+64
+00:06:03,680 --> 00:06:09,200
+collaboratively. And surprise, surprise, you might get given a set of tokens in order to be able to
+
+65
+00:06:09,200 --> 00:06:15,840
+assist and get more value add out of the engagement for the company that you're actively trying to
+
+66
+00:06:15,840 --> 00:06:21,920
+assist their controls. Definitely. And in things like web application firewalls,
+
+67
+00:06:22,720 --> 00:06:27,840
+I would recommend they're turned off for a security audit, unless you want to actually test the
+
+68
+00:06:28,400 --> 00:06:32,000
+web application firewall, which is very valid. But if you want to test the application,
+
+69
+00:06:32,000 --> 00:06:36,800
+turn off the firewall so that you get as much value as possible out of those tests.
+
+70
+00:06:37,520 --> 00:06:39,920
+Yeah, yeah. Same with CDNs. Yeah, absolutely.
+
+71
+00:06:39,920 --> 00:06:44,320
+All of those things. So that was in March, we also carried on with
+
+72
+00:06:45,040 --> 00:06:49,840
+been doing a lot of work on the automation framework and we actually sported inline scripts,
+
+73
+00:06:49,840 --> 00:06:53,360
+which we haven't covered in, even though we've done quite a bit of...
+
+74
+00:06:53,360 --> 00:06:55,120
+Not yet, not yet.
+
+75
+00:06:55,120 --> 00:06:58,320
+But we will get to those definitely. And another question I asked,
+
+76
+00:06:58,400 --> 00:07:03,040
+on a blog post was how should we fund ZAP? And we didn't get many responses to that,
+
+77
+00:07:03,040 --> 00:07:07,360
+which is a shame and something that we'll come back to a little bit later in this podcast,
+
+78
+00:07:08,480 --> 00:07:17,520
+ZAP Chat, whatever it is. So in April, we carried on and we had authentication auto detection.
+
+79
+00:07:17,520 --> 00:07:22,480
+So this is where we've got a lot more implemented in the authentication helper.
+
+80
+00:07:22,480 --> 00:07:28,400
+So you could actually detect and configure ZAP automatically for many more cases.
+
+81
+00:07:28,960 --> 00:07:34,160
+And that carried on in May where we actually released the authentication automation,
+
+82
+00:07:34,960 --> 00:07:42,400
+the authentication tester. So very simple screen. Give us a URL, give us the credentials,
+
+83
+00:07:42,400 --> 00:07:46,960
+and ZAP will try and work out everything else from there. And that has proved that
+
+84
+00:07:46,960 --> 00:07:50,800
+there's quite a few applications which ZAP can handle all of these things for you.
+
+85
+00:07:50,800 --> 00:07:56,480
+Not everything, but it also collects a set of anonymized diagnostic data. So if ZAP can't
+
+86
+00:07:56,480 --> 00:07:57,240
+
+
+87
+00:07:57,240 --> 00:07:58,380
+
+
+88
+00:07:58,400 --> 00:08:05,280
+detect any part of the authentication into interaction then you can report that to us and
+
+89
+00:08:05,280 --> 00:08:10,620
+we can have a look at it without you having to tell us all a load of internal details you might
+
+90
+00:08:10,620 --> 00:08:16,540
+not want to. Yeah part of the cat and mouse game that we were just referencing for q1 continued
+
+91
+00:08:16,540 --> 00:08:23,200
+in q2 that was exciting. Definitely and it will carry on no doubt and in then in
+
+92
+00:08:23,200 --> 00:08:29,340
+actually so yeah that was april. Now may that was when we released the tester, but we also
+
+93
+00:08:29,340 --> 00:08:34,500
+there were some GraphQL changes some significant ones much better spidering and fingerprinting as
+
+94
+00:08:34,500 --> 00:08:41,240
+well. So you can actually fingerprint the different GraphQL endpoints which was very useful and we
+
+95
+00:08:41,240 --> 00:08:47,380
+had a change to the AJAX spider where you could exclude specific elements and that was
+
+96
+00:08:47,380 --> 00:08:50,540
+notable because of the sponsor development something we definitely want to see more of
+
+97
+00:08:50,540 --> 00:08:52,200
+so thank you to night vision for that
+
+98
+00:08:52,200 --> 00:08:56,320
+and we would love to do more sponsored developments where companies
+
+99
+00:08:56,320 --> 00:09:00,460
+pay us to implement really useful features for everyone.
+
+100
+00:09:00,460 --> 00:09:08,340
+Then in june more authentication so this time browser-based authentication in the AJAX spider
+
+101
+00:09:08,340 --> 00:09:15,500
+and this was absolutely key because as we mentioned before it's so hard to inject a session
+
+102
+00:09:15,500 --> 00:09:20,720
+into a browser and in many cases it's not possible. So this meant that you could launch
+
+103
+00:09:20,720 --> 00:09:22,180
+the AJAX spider which is
+
+104
+00:09:22,180 --> 00:09:26,280
+one of our key ways of at the moment it's the only way to explore modern web applications in
+
+105
+00:09:26,280 --> 00:09:32,200
+automation and this allowed you to handle it in authentication which you know we had some blog
+
+106
+00:09:32,200 --> 00:09:36,700
+posts about things like juice shop. Juice shop was one of the few applications i was able to
+
+107
+00:09:36,700 --> 00:09:42,900
+inject the session so we're basically running selenium scripts in when we launch the browser
+
+108
+00:09:42,900 --> 00:09:48,620
+and go okay we've got this session token and we'll put it in the is it local storage or
+
+109
+00:09:48,620 --> 00:09:52,160
+session storage one of those and then refresh the page and it then gets logged in 
+
+110
+00:09:52,180 --> 00:09:57,300
+so you can then explore the application effectively through the browser, but that's unusual.
+
+111
+00:09:57,300 --> 00:10:03,700
+So browser-based authentication with the AJAX spider is particularly effective and talking of
+
+112
+00:10:03,700 --> 00:10:09,700
+selenium we actually supported selenium 4 which was very good so we we updated to handle that.
+
+113
+00:10:10,500 --> 00:10:15,540
+It's always interesting with significant frameworks when they have new releases and you go
+
+114
+00:10:15,540 --> 00:10:22,020
+"okay it's so much better but there's lots of changes we've got to". All the previous api selenium
+
+115
+00:10:22,180 --> 00:10:26,740
+i have a habit of doing that i remember it's going to show my age, but like selenium one right and it's
+
+116
+00:10:26,740 --> 00:10:34,980
+like what happened to all the 0.9 api calls? It's like no not there okay cool yeah and you've
+
+117
+00:10:34,980 --> 00:10:39,620
+got to like rewrite all those things but it's part of the the trade and supporting right and..
+
+118
+00:10:39,620 --> 00:10:45,540
+Exactly, yeah! ..you've got to do it. Yeah have to do these things and you know we had a lot of problems
+
+119
+00:10:45,540 --> 00:10:51,620
+with networking layer before that got rewritten to use a more modern library. So we we these are just
+
+120
+00:10:52,180 --> 00:10:57,220
+of the cost. We also started releasing the docker images on the
+
+121
+00:10:57,220 --> 00:11:03,380
+github container registry. Which is particularly useful as docker hub started charging quite
+
+122
+00:11:03,380 --> 00:11:09,220
+significant non-trivial amounts of money if you're pulling lots of images and we had we were able to
+
+123
+00:11:09,220 --> 00:11:15,780
+announce two google summer of code projects one on importing postman definitions and the other one
+
+124
+00:11:15,780 --> 00:11:21,540
+the browser recorder. Which was really great and those completed later on in the year.
+
+125
+00:11:22,420 --> 00:11:28,980
+July, not much happened on the out on the outside but there's a lot going on behind the scenes
+
+126
+00:11:28,980 --> 00:11:35,860
+a lot which we announced in august which was the move from OWASP to the software security project.
+
+127
+00:11:37,220 --> 00:11:43,700
+So this was a really big significant change for us and this comes back to funding.
+
+128
+00:11:45,140 --> 00:11:52,020
+We have found that we need to have people working full-time on ZAP it's such a significant project 
+
+129
+00:11:52,180 --> 00:11:56,180
+there is so much going on and we've got a lot of volunteers which is great
+
+130
+00:11:56,180 --> 00:12:00,900
+and volunteers do really useful things but we need people working full-time
+
+131
+00:12:01,540 --> 00:12:08,260
+and i've been able to work full-time on ZAP thanks to a couple of startups, but
+
+132
+00:12:08,260 --> 00:12:14,820
+those relationships have not been have not proved to be easy to maintain. So it's quite a cost for a
+
+133
+00:12:14,820 --> 00:12:21,540
+startup and we found we can't rely on them. So what we've done we've joined the software security project
+
+134
+00:12:22,180 --> 00:12:29,700
+and we were able to get temporary funding for myself and ricardo to work full-time
+
+135
+00:12:29,700 --> 00:12:34,580
+on ZAP and that is that's the reason we moved. You know we are actually some of us are still both
+
+136
+00:12:34,580 --> 00:12:40,100
+myself and rick are still OWASP project leaders so we still take part in OWASP we sort of contribute
+
+137
+00:12:40,100 --> 00:12:45,540
+to OWASP but the ZAP project is now part of ssp which is part of the linux foundation.
+
+138
+00:12:47,060 --> 00:12:51,700
+It's really important to just reflect on that for a second and there's no diss to OWASP right and the great work
+
+139
+00:12:51,700 --> 00:12:56,900
+that is happening at the open web application security project and has been happening for a number of years. The the i remember
+
+140
+00:12:56,900 --> 00:13:04,340
+having this debate when log4j hit right a few years back that december and just listening to
+
+141
+00:13:04,340 --> 00:13:09,940
+you simon right now just go through the roadmap right there are a number of non-startups like
+
+142
+00:13:09,940 --> 00:13:14,820
+significant companies with massive revenues you know vested share options all that kind of stuff.
+
+143
+00:13:14,820 --> 00:13:22,020
+That have a less impressive roadmap of delivery for 2023 than ZAP has yet there is the expectation
+
+144
+00:13:22,020 --> 00:13:27,540
+because the project is you know open source and part of the open web application security
+
+145
+00:13:27,540 --> 00:13:33,860
+project and so on that it will have such a you know progressive roadmap. That has these
+
+146
+00:13:33,860 --> 00:13:38,340
+aggressive elements authentication and some of the other things that we talked about yet no one
+
+147
+00:13:38,340 --> 00:13:44,660
+is willing to do the checks on the funding and when people back in that december where
+
+148
+00:13:44,820 --> 00:13:50,900
+dissing you know the apache software foundation with regards to the maintenance of log4j given the
+
+149
+00:13:50,900 --> 00:13:58,900
+black hat talk in 2016 on log4j. It was like hold on like how much money do you think the apache
+
+150
+00:13:58,900 --> 00:14:05,700
+software foundation like accumulated throughout the course of these five years and if you do the
+
+151
+00:14:05,700 --> 00:14:13,620
+math it's trivial compared to the amount of you know big companies financial organizations. So on
+
+152
+00:14:13,620 --> 00:14:14,660
+that use these
+
+153
+00:14:14,820 --> 00:14:20,980
+libraries and take them for granted right. So at some stage i think this whole world of
+
+154
+00:14:21,620 --> 00:14:30,500
+open source software that is worthy you know to be up there with roadmaps as impressive as those of ZAP
+
+155
+00:14:30,500 --> 00:14:36,900
+need to have that relevant backing. So i think it's only logical that you guys moved and
+
+156
+00:14:37,460 --> 00:14:42,500
+that is the next step of the evolution of ZAP and perhaps there's another one after that, right?
+
+157
+00:14:43,620 --> 00:14:44,740
+I completely agree
+
+158
+00:14:44,820 --> 00:14:48,420
+and it's not just a ZAP problem as you said it's a problem
+
+159
+00:14:48,420 --> 00:14:53,140
+across a lot of open source projects and ZAP started off as a
+
+160
+00:14:53,700 --> 00:15:00,660
+a little project for me to try and help teach myself about web security and it just also felt
+
+161
+00:15:00,660 --> 00:15:05,780
+wrong there wasn't that open source project out there and you know we're competing whether we like
+
+162
+00:15:05,780 --> 00:15:10,580
+it or not against commercial companies who have hundreds of employees doing the same thing that
+
+163
+00:15:10,580 --> 00:15:13,620
+we're doing with two employees at the moment and a lot of volunteers. 
+
+164
+00:15:13,620 --> 00:15:14,700
+
+
+165
+00:15:14,700 --> 00:15:19,200
+So it's challenging, and I'm not expecting to have 100 people working for me.
+
+166
+00:15:19,240 --> 00:15:22,300
+It would be great, but that's not going to happen.
+
+167
+00:15:22,680 --> 00:15:26,760
+But just having two of us working full-time on ZAP has made a huge difference,
+
+168
+00:15:27,320 --> 00:15:31,520
+and I'd love to grow that, but somehow we've got to work out the funding,
+
+169
+00:15:31,520 --> 00:15:33,280
+and we haven't done that yet.
+
+170
+00:15:33,920 --> 00:15:36,340
+We've got temporary funding, but, yeah.
+
+171
+00:15:37,340 --> 00:15:39,040
+I think it's coming down the road, right?
+
+172
+00:15:39,440 --> 00:15:40,380
+We're working on it.
+
+173
+00:15:40,380 --> 00:15:46,180
+If you're having 100 employees, so, you know, there's stuff in the works,
+
+174
+00:15:46,400 --> 00:15:49,740
+so not to be, you know, depressing our audiences in January.
+
+175
+00:15:52,300 --> 00:15:53,660
+Yeah, completely agree.
+
+176
+00:15:54,060 --> 00:15:59,780
+And the other thing we did in August was we released a new developer focus questionnaire.
+
+177
+00:15:59,780 --> 00:16:01,320
+What do you want us to focus on?
+
+178
+00:16:02,160 --> 00:16:07,180
+Because, you know, we want to make sure that we're focusing on the things
+
+179
+00:16:07,180 --> 00:16:08,780
+that make a difference to you.
+
+180
+00:16:09,400 --> 00:16:10,320
+And thank you
+
+181
+00:16:10,380 --> 00:16:11,560
+to everyone, who filled that in
+
+182
+00:16:11,620 --> 00:16:12,440
+it was really useful.
+
+183
+00:16:13,680 --> 00:16:19,160
+In August, we also added support for file transfers in the API.
+
+184
+00:16:19,920 --> 00:16:21,880
+That's something a lot of people have been asking for,
+
+185
+00:16:22,180 --> 00:16:25,620
+and that was only available in the core, so it was only available in the weeklies.
+
+186
+00:16:26,540 --> 00:16:30,160
+But that was, you know, one of the – we were able to do some developments,
+
+187
+00:16:30,160 --> 00:16:32,200
+even though there was a lot of stuff going on in the background.
+
+188
+00:16:33,080 --> 00:16:37,620
+And then in September, we carried on working, really working towards 2.14,
+
+189
+00:16:37,720 --> 00:16:38,460
+the next big release.
+
+190
+00:16:39,400 --> 00:16:40,160
+And we –
+
+191
+00:16:40,380 --> 00:16:42,840
+the Google Summer Code students finished,
+
+192
+00:16:43,020 --> 00:16:46,760
+so both of them completed their project successfully and wrote blog posts on them,
+
+193
+00:16:46,760 --> 00:16:49,460
+and both of them carried on contributing, which is really great.
+
+194
+00:16:50,200 --> 00:16:53,600
+And very importantly, we started the ZAP Chat series.
+
+195
+00:16:54,600 --> 00:16:58,380
+So September is when we started that, and this is actually the 13th episode.
+
+196
+00:16:59,400 --> 00:17:00,640
+Not unlucky for some, hopefully.
+
+197
+00:17:01,360 --> 00:17:04,140
+So, yeah, 13 episodes now.
+
+198
+00:17:04,600 --> 00:17:05,760
+So we've kept going.
+
+199
+00:17:06,020 --> 00:17:08,500
+And thank you, Yiannis, for keeping on prompting me and saying,
+
+200
+00:17:08,600 --> 00:17:09,820
+what are we going to do next week?
+
+201
+00:17:09,960 --> 00:17:10,360
+What are we going to do next week?
+
+202
+00:17:10,360 --> 00:17:12,320
+And again, okay.
+
+203
+00:17:12,320 --> 00:17:13,800
+Thank you for your pictures as well.
+
+204
+00:17:16,080 --> 00:17:17,060
+No, it's been fun.
+
+205
+00:17:17,240 --> 00:17:17,640
+It's been fun.
+
+206
+00:17:17,740 --> 00:17:21,540
+It's been great to see – you know, I remember the one OWASP project, right,
+
+207
+00:17:21,660 --> 00:17:26,340
+where tools – the offensive tool set was so much more basic and rudimentary.
+
+208
+00:17:26,520 --> 00:17:29,640
+And just seeing the great work that you guys are doing with ZAP
+
+209
+00:17:29,640 --> 00:17:33,600
+to be able to help showcase some of that, you know, it's been a pleasure.
+
+210
+00:17:33,740 --> 00:17:34,440
+Absolute delight.
+
+211
+00:17:35,700 --> 00:17:39,140
+And actually, I mean, the reason you got involved was the suggestion of zapIt,
+
+212
+00:17:39,240 --> 00:17:40,340
+this new reconnaissance scan.
+
+213
+00:17:40,360 --> 00:17:40,420
+
+
+214
+00:17:40,600 --> 00:17:45,440
+Which we released in October, along with 2.14.
+
+215
+00:17:45,880 --> 00:17:48,340
+So 2.14, very big release for us.
+
+216
+00:17:49,140 --> 00:17:52,800
+We're trying to – we're kind of managing two releases a year,
+
+217
+00:17:53,360 --> 00:17:55,260
+which means I forgot to mention 2.13.
+
+218
+00:17:55,420 --> 00:17:57,120
+We must have done that earlier in the year.
+
+219
+00:17:57,440 --> 00:17:58,460
+Oh, well, that's one of those things.
+
+220
+00:17:58,860 --> 00:18:01,460
+So we did 2.13, so we did two releases this year.
+
+221
+00:18:01,760 --> 00:18:03,360
+One of the two releases in 2023.
+
+222
+00:18:04,220 --> 00:18:04,760
+Yeah, absolutely.
+
+223
+00:18:05,360 --> 00:18:05,520
+Yeah.
+
+224
+00:18:05,700 --> 00:18:06,700
+So that was October.
+
+225
+00:18:07,320 --> 00:18:10,140
+And in November, quite a lot of – you know,
+
+226
+00:18:10,140 --> 00:18:15,900
+of focus on documentation videos so a lot more on how to handle modern web applications
+
+227
+00:18:15,900 --> 00:18:21,980
+authentication with documentation videos around that and we started doing a lot of videos around
+
+228
+00:18:21,980 --> 00:18:27,420
+the automation framework as well. Which we will carry on we've got many more of those to do.
+
+229
+00:18:28,060 --> 00:18:35,740
+Many jobs are waiting in the pipeline thanks Ricardo. Yep definitely and then in december
+
+230
+00:18:35,740 --> 00:18:42,060
+obviously december's often a bit of a quiet month um but still a lot going on and you know we are
+
+231
+00:18:43,020 --> 00:18:49,020
+really we published the results of the development focus questionnaire. So the top things were
+
+232
+00:18:49,020 --> 00:18:55,340
+handling modern web apps which is one of our key focuses authentication automation those two are
+
+233
+00:18:55,340 --> 00:19:01,180
+right up there. Then the next ones were ease of use and manual testing and those five were there
+
+234
+00:19:01,180 --> 00:19:05,660
+wasn't a huge difference between them it wasn't so you know those are the the big five really.
+
+235
+00:19:05,740 --> 00:19:12,540
+And the ease of use one is interesting because it's something we haven't really been able to
+
+236
+00:19:12,540 --> 00:19:19,660
+focus on and we know that the ZAP desktop gui has kind of drifted a bit and hasn't had much love
+
+237
+00:19:19,660 --> 00:19:27,260
+so one of the things that Yiannis put together was the user persona questionnaire. Well, with the
+
+238
+00:19:27,260 --> 00:19:32,820
+help of the team right i've been doing by myself and it's more about asking the question of like
+
+239
+00:19:32,820 --> 00:19:33,940
+"Who are the users of ZAP
+
+240
+00:19:33,940 --> 00:19:34,260
+
+
+241
+00:19:34,260 --> 00:19:34,420
+
+
+242
+00:19:34,420 --> 00:19:34,860
+
+
+243
+00:19:34,860 --> 00:19:35,080
+
+
+244
+00:19:35,080 --> 00:19:37,220
+in the context of the future releases?"
+
+245
+00:19:37,220 --> 00:19:41,040
+So that we can start decluttering the user interface
+
+246
+00:19:41,040 --> 00:19:43,680
+and potentially get into a flow state
+
+247
+00:19:43,680 --> 00:19:46,860
+where you go from left to right or cycles
+
+248
+00:19:46,860 --> 00:19:48,380
+or clockwise, anticlockwise,
+
+249
+00:19:48,400 --> 00:19:50,460
+whatever the theme might be in the wireframes.
+
+250
+00:19:52,240 --> 00:19:55,640
+And I think what triggered this for me is
+
+251
+00:19:55,640 --> 00:19:58,100
+there's a number of features, for example,
+
+252
+00:19:58,100 --> 00:19:59,540
+when you do automation, right?
+
+253
+00:19:59,540 --> 00:20:02,020
+Where you click a tiny button, the plus sign,
+
+254
+00:20:02,260 --> 00:20:03,660
+to add a plan, right?
+
+255
+00:20:03,660 --> 00:20:06,880
+And all of a sudden, a whole world appears.
+
+256
+00:20:07,000 --> 00:20:09,260
+It's as if you've opened a door to a new dimension.
+
+257
+00:20:09,520 --> 00:20:11,240
+It's like, oh, right, this is cool.
+
+258
+00:20:12,120 --> 00:20:14,560
+Had I not clicked on this tiny little button, right,
+
+259
+00:20:14,680 --> 00:20:17,100
+would I know that all this is there?
+
+260
+00:20:17,880 --> 00:20:19,960
+Yeah, we got to the stage
+
+261
+00:20:19,960 --> 00:20:21,880
+where ZAP was getting more and more cluttered.
+
+262
+00:20:21,940 --> 00:20:23,720
+So we then tried to hide things.
+
+263
+00:20:24,620 --> 00:20:27,720
+And that means you might, it looks a bit complicated,
+
+264
+00:20:28,160 --> 00:20:29,740
+but you might think that's it, and it's not.
+
+265
+00:20:29,820 --> 00:20:30,800
+There's loads more.
+
+266
+00:20:32,000 --> 00:20:33,440
+We were talking about
+
+267
+00:20:33,440 --> 00:20:35,100
+how we thought, well, what about this user?
+
+268
+00:20:35,140 --> 00:20:36,120
+And what about this user?
+
+269
+00:20:36,440 --> 00:20:37,360
+And we were kind of thinking, well,
+
+270
+00:20:37,620 --> 00:20:40,520
+do we really know who's using ZAP
+
+271
+00:20:40,520 --> 00:20:41,580
+and how they're using it?
+
+272
+00:20:41,800 --> 00:20:42,380
+And the answer was no.
+
+273
+00:20:42,960 --> 00:20:44,740
+So many people just download ZAP
+
+274
+00:20:44,740 --> 00:20:46,520
+and don't get in touch with us, which is fine.
+
+275
+00:20:46,820 --> 00:20:49,520
+But then it's very difficult for us to go,
+
+276
+00:20:49,960 --> 00:20:51,660
+right, these are the types of users,
+
+277
+00:20:51,840 --> 00:20:53,220
+you know, we've got these types of users
+
+278
+00:20:53,220 --> 00:20:54,660
+and they use ZAP in this way,
+
+279
+00:20:54,740 --> 00:20:56,040
+so we need to make it better for them.
+
+280
+00:20:56,660 --> 00:21:00,260
+So this questionnaire is really important to us
+
+281
+00:21:00,260 --> 00:21:02,400
+because this is the start of us going,
+
+282
+00:21:02,400 --> 00:21:05,900
+who is using ZAP and what do you want out of it?
+
+283
+00:21:06,160 --> 00:21:07,760
+And then how can we make it better for you?
+
+284
+00:21:08,300 --> 00:21:09,780
+And that will be, you know,
+
+285
+00:21:09,800 --> 00:21:12,480
+that's definitely the desktop GUI,
+
+286
+00:21:12,560 --> 00:21:13,880
+but there might be other things as well
+
+287
+00:21:13,880 --> 00:21:15,460
+and might be new features.
+
+288
+00:21:16,460 --> 00:21:19,660
+There's a whole range of things that will come out of this.
+
+289
+00:21:20,120 --> 00:21:22,420
+And I'm expecting many more questionnaires as well
+
+290
+00:21:22,420 --> 00:21:27,160
+as we kind of delve into who's using it?
+
+291
+00:21:27,220 --> 00:21:28,000
+What are you using it for?
+
+292
+00:21:28,000 --> 00:21:30,680
+You know, we need to know that in order to make it better.
+
+293
+00:21:30,980 --> 00:21:31,840
+Because we keep saying, you know,
+
+294
+00:21:31,840 --> 00:21:32,380
+we've had feedback.
+
+295
+00:21:32,400 --> 00:21:34,260
+We've had feedback saying the GUI looks outdated
+
+296
+00:21:34,260 --> 00:21:35,080
+or it's not very good.
+
+297
+00:21:35,220 --> 00:21:37,680
+It's like, yeah, we kind of know that,
+
+298
+00:21:37,860 --> 00:21:39,260
+but what do we do about it?
+
+299
+00:21:39,620 --> 00:21:41,220
+We need very specific things.
+
+300
+00:21:41,600 --> 00:21:45,060
+And it could be just things about this button is too small
+
+301
+00:21:45,060 --> 00:21:49,780
+or it could be complete rework of the flow of the application.
+
+302
+00:21:50,620 --> 00:21:53,040
+So there's, yeah, just telling us it's no good
+
+303
+00:21:53,040 --> 00:21:56,860
+is helpful, but only so far.
+
+304
+00:21:57,040 --> 00:21:58,360
+We need to know a lot more
+
+305
+00:21:58,360 --> 00:22:00,240
+and that's what we're doing with these questionnaires.
+
+306
+00:22:01,300 --> 00:22:01,740
+Absolutely.
+
+307
+00:22:01,740 --> 00:22:01,960
+
+
+308
+00:22:02,080 --> 00:22:02,340
+And just,
+
+309
+00:22:02,400 --> 00:22:04,160
+you know, just to give a perspective, right?
+
+310
+00:22:04,160 --> 00:22:07,560
+It's very different what a good GUI will look like
+
+311
+00:22:07,560 --> 00:22:09,720
+to a pentester or a red teamer.
+
+312
+00:22:10,200 --> 00:22:10,380
+Yeah.
+
+313
+00:22:10,380 --> 00:22:14,340
+This is a bugbounty hunter versus somebody running it
+
+314
+00:22:14,580 --> 00:22:19,620
+as part of automation in CI/CD versus somebody in operations, right?
+
+315
+00:22:19,620 --> 00:22:25,620
+It's just a different, completely different style of flow based on,
+
+316
+00:22:25,860 --> 00:22:29,640
+you know, who we are in cybersecurity related fields.
+
+317
+00:22:29,640 --> 00:22:32,080
+So if you give a really good GUI
+
+318
+00:22:32,080 --> 00:22:37,540
+to the pentest community, you risk alienating the ops people,
+
+319
+00:22:37,540 --> 00:22:41,840
+CI/CD, and those who are in the trenches with development teams.
+
+320
+00:22:41,840 --> 00:22:45,640
+If you do the opposite, right, and you give a really good GUI
+
+321
+00:22:45,640 --> 00:22:49,080
+to bugbounty hunters, you're probably going to alienate,
+
+322
+00:22:49,080 --> 00:22:52,220
+you know, some of the pentest folk out there
+
+323
+00:22:52,220 --> 00:22:55,840
+because they're not after hunting, you know, the tick SQL injection.
+
+324
+00:22:55,840 --> 00:22:59,380
+They're after hunting very specific bespoke things as part of,
+
+325
+00:22:59,380 --> 00:23:01,420
+you know, penetration testing.
+
+326
+00:23:01,420 --> 00:23:01,920
+So,
+
+327
+00:23:01,920 --> 00:23:06,160
+that is where the whole concept of decluttering the GUI
+
+328
+00:23:06,860 --> 00:23:10,160
+goes back to as an origin, and that's where we need your assistance.
+
+329
+00:23:10,160 --> 00:23:13,320
+And if I'm not mistaken, Simon, the questionnaire is still open, right?
+
+330
+00:23:13,520 --> 00:23:14,460
+It is.
+
+331
+00:23:14,460 --> 00:23:15,620
+Yeah, we still want more.
+
+332
+00:23:15,620 --> 00:23:17,480
+We've had a lot of responses.
+
+333
+00:23:17,480 --> 00:23:18,860
+Thank you all who have responded.
+
+334
+00:23:18,860 --> 00:23:21,080
+But if you haven't, please let us know.
+
+335
+00:23:21,080 --> 00:23:23,180
+And some people have said they actually like the GUI.
+
+336
+00:23:23,180 --> 00:23:27,160
+So if we then went and changed everything to work in a completely different way,
+
+337
+00:23:27,160 --> 00:23:28,620
+we'd piss off those people.
+
+338
+00:23:28,620 --> 00:23:30,920
+So, you know, it's hard.
+
+339
+00:23:31,260 --> 00:23:31,660
+It's okay.
+
+340
+00:23:31,660 --> 00:23:35,500
+We do hard things, but we need to make sure we change things in a way
+
+341
+00:23:35,500 --> 00:23:37,800
+that makes it better for as many people as possible.
+
+342
+00:23:37,800 --> 00:23:41,120
+So if you want, if you want your views to be counted,
+
+343
+00:23:41,120 --> 00:23:44,200
+please fill in that questionnaire and it's on the front of zaproxy.org.
+
+344
+00:23:44,200 --> 00:23:49,500
+And we're nearly out of time.
+
+345
+00:23:49,500 --> 00:23:54,520
+But one thing I wanted to talk about was 2024 and what's coming next.
+
+346
+00:23:54,520 --> 00:23:57,260
+And we kind of mentioned that, you know,
+
+347
+00:23:57,260 --> 00:23:59,300
+you've told us what the development focuses should be,
+
+348
+00:23:59,300 --> 00:24:01,500
+and those are the things we're focusing on. To be fair,
+
+349
+00:24:01,500 --> 00:24:05,340
+there were things we thought were important anyway, and we're focusing on.
+
+350
+00:24:05,340 --> 00:24:10,660
+So, but definitely those are where our main focus will be.
+
+351
+00:24:10,660 --> 00:24:13,800
+But the other one which I've kind of mentioned before is funding.
+
+352
+00:24:13,800 --> 00:24:17,500
+And I kind of think this is going to be the make or break year for ZAP,
+
+353
+00:24:17,500 --> 00:24:21,740
+because we need to work out a way of funding,
+
+354
+00:24:21,740 --> 00:24:27,260
+which means we're not relying on a couple of companies or individuals.
+
+355
+00:24:27,260 --> 00:24:30,840
+And we've talked about various things. We've got various options.
+
+356
+00:24:30,840 --> 00:24:33,840
+But, you know, we haven't solved it yet.
+
+357
+00:24:33,840 --> 00:24:37,740
+We haven't got the money coming in and, but we still want,
+
+358
+00:24:37,740 --> 00:24:45,040
+we believe in open source and we want to make sure that ZAP is available to as many people as possible.
+
+359
+00:24:45,040 --> 00:24:51,180
+And that's, you know, our aim is to make the Internet that little bit more secure for everybody.
+
+360
+00:24:51,180 --> 00:24:57,780
+And we believe there should be an open source project like ZAP providing these capabilities.
+
+361
+00:24:57,780 --> 00:25:00,840
+And if it means we're not as well funded as some
+
+362
+00:25:00,840 --> 00:25:03,840
+companies with a load of VC funding, that's the way it goes.
+
+363
+00:25:03,840 --> 00:25:09,140
+You know, we know that. But we think ZAP is providing a huge amount of benefit to the industry.
+
+364
+00:25:09,140 --> 00:25:13,340
+So how does the industry fund projects like ZAP?
+
+365
+00:25:13,340 --> 00:25:16,240
+And that's a key question.
+
+366
+00:25:16,240 --> 00:25:17,740
+And the two are not orthogonal, right?
+
+367
+00:25:17,740 --> 00:25:20,040
+This is not a, just to be very clear to our audience,
+
+368
+00:25:20,040 --> 00:25:27,240
+this is not an attempt to say, you know, we're going to close the source or we're going to like start licensing everything to death or anything like that.
+
+369
+00:25:27,240 --> 00:25:27,840
+That's not the objective. The objective is to be able to do
+
+370
+00:25:27,840 --> 00:25:28,840
+
+
+371
+00:25:28,840 --> 00:25:29,840
+
+
+372
+00:25:29,840 --> 00:25:30,840
+
+
+373
+00:25:30,840 --> 00:25:37,940
+what other open source projects have done very successfully in the benefit of, you know, the community
+
+374
+00:25:37,940 --> 00:25:45,040
+in essence. The fact that we have to developers who are partially funded,
+
+375
+00:25:45,040 --> 00:25:48,340
+full time, though. But partially funded through a mechanism.
+
+376
+00:25:48,340 --> 00:25:52,140
+That is not sustainable. Egers the question,
+
+377
+00:25:52,140 --> 00:25:56,640
+how do we make this sustainable and grow that development team more?
+
+378
+00:25:56,640 --> 00:26:00,240
+So this is not an attempt to, by any means,
+
+379
+00:26:00,240 --> 00:26:00,640
+completely
+
+380
+00:26:00,640 --> 00:26:06,000
+monetize ZAP and you know take over the world by introducing license fees only
+
+381
+00:26:06,000 --> 00:26:13,880
+close source everything. No, what we are trying to do is find that balance in 2024 whereby you ask
+
+382
+00:26:13,880 --> 00:26:20,260
+for a feature it gets delivered but the people that deliver it are actually compensated for their
+
+383
+00:26:20,260 --> 00:26:25,580
+work right that's the the objective as a bunch of other open source projects have managed to do.
+
+384
+00:26:25,580 --> 00:26:31,000
+Yeah so if you have any ideas about that or if you'd like to donate large sums of money to us
+
+385
+00:26:31,000 --> 00:26:36,500
+or any sums of money to us. Please get in touch as a our focus is definitely going to be on
+
+386
+00:26:36,500 --> 00:26:43,780
+new features and modern web applications, authentication, automation ease of use and
+
+387
+00:26:43,780 --> 00:26:49,220
+manual testing as well you know those are you know those are and but we do need to
+
+388
+00:26:49,220 --> 00:26:55,200
+know you know who is using ZAP and how you're using it so that user persona questionnaire is
+
+389
+00:26:55,200 --> 00:26:55,560
+
+
+390
+00:26:55,560 --> 00:26:55,580
+
+
+391
+00:26:55,580 --> 00:27:03,480
+really key. So please fill that in and other than that have a great 2024 and we will carry on with these
+
+392
+00:27:03,480 --> 00:27:07,300
+and probably get back to the automation framework we'll have to have a chat about what we're going
+
+393
+00:27:07,300 --> 00:27:13,820
+to talk about next but stay tuned. Absolutely and happy new year everyone. May all your shells
+
+394
+00:27:13,820 --> 00:27:18,700
+return root as we used to say and that doesn't only mean the cyber world but in life too.
+
+395
+00:27:18,700 --> 00:27:22,020
+Happy new year folks! Thanks for watching bye.
+
+396
+00:27:25,580 --> 00:27:26,200
+
+
