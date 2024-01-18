@@ -1095,7 +1095,7 @@ TypeScript is definitely preferred, but this actually shows you how to make thos
 
 275
 00:19:13,120 --> 00:19:18,320
-because we have, it's really simple. We've got the site tree here. And if you click on these
+because we have, it's really simple. We've got the sites tree here. And if you click on these
 
 276
 00:19:18,320 --> 00:19:21,760
