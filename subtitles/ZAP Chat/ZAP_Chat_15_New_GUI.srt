@@ -768,7 +768,7 @@ Now we've actually had quite a few, I want to call them students, but some of th
 
 193
 00:12:21,380 --> 00:12:25,800
-And actually one re, another reason for using web-based technologies is,
+And actually one reason, another reason for using web-based technologies is,
 
 194
 00:12:26,000 --> 00:12:26,240
@@ -835,7 +835,7 @@ we want to carry on building on top of this GUI and we know
 
 210
 00:13:09,540 --> 00:13:10,040
-its not going 
+it's not going 
 
 211
 00:13:10,100 --> 00:13:13,820
@@ -859,7 +859,7 @@ that they don't know Java.
 
 216
 00:13:25,260 --> 00:13:25,920
-You've got to have the.
+
 
 217
 00:13:25,920 --> 00:13:33,160
@@ -1095,7 +1095,7 @@ TypeScript is definitely preferred, but this actually shows you how to make thos
 
 275
 00:19:13,120 --> 00:19:18,320
-because we have, it's really simple. We've got the site street here. And if you click on these
+because we have, it's really simple. We've got the site tree here. And if you click on these
 
 276
 00:19:18,320 --> 00:19:21,760
@@ -1307,7 +1307,7 @@ vi
 
 328
 00:23:50,180 --> 00:24:06,640
-and i'm just gonna use five for this.. No you basically you can use whatever editor or
+for this.. No you basically you can use whatever editor or
 
 329
 00:24:06,640 --> 00:24:12,520
@@ -1367,7 +1367,7 @@ is my copy of ZAP extensions where the PR has been submitted to web UI PoC and i
 
 343
 00:25:56,100 --> 00:26:07,300
-see if i can remember.. So, yeah, ZAP home files so source/main/zapHomeFiles/webuipoc/example.
+see if i can remember.. So, yeah, ZAP home files so src/main/zapHomeFiles/webuipoc/example.
 
 344
 00:26:07,300 --> 00:26:14,700
