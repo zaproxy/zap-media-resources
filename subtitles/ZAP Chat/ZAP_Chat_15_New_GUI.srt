@@ -1303,11 +1303,11 @@ you want to serve something from the route anyway. So, I'm just going to use
 
 327
 00:23:49,280 --> 00:23:49,820
-vi
+vi..
 
 328
 00:23:50,180 --> 00:24:06,640
-for this.. No you basically you can use whatever editor or
+You don't have to use vi for this.. No you basically you can use whatever editor or
 
 329
 00:24:06,640 --> 00:24:12,520
