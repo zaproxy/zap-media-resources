@@ -1,5 +1,5 @@
 1
-00:00:00,000 --> 00:00:10,380
+00:00:05,000 --> 00:00:10,380
 Hello, and welcome to another episode of ZAP Chat.
 
 2

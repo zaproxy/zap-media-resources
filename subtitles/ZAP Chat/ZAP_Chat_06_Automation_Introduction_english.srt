@@ -1,5 +1,5 @@
 1
-00:00:00,000 --> 00:00:12,480
+00:00:05,000 --> 00:00:12,480
 Hello and welcome to another ZAP Chat video. Once again, I am joined with by Yiannis.
 
 2
@@ -536,7 +536,7 @@ there's actually a lot of we have a lot of options here and you can actually see
 
 135
 00:13:18,700 --> 00:13:28,860
-go just put baseline minus h then that should give the same list um so one thing you can do
+go just put baseline minus h then that should give the same list so one thing you can do
 
 136
 00:13:28,860 --> 00:13:36,340
@@ -620,7 +620,7 @@ got is we actually have limits on how you know how long to spied for example bec
 
 156
 00:15:23,360 --> 00:15:29,840
-actually um so when i was working at mozilla we configured the baseline scan to run on every
+actually so when i was working at mozilla we configured the baseline scan to run on every
 
 157
 00:15:29,840 --> 00:15:35,440

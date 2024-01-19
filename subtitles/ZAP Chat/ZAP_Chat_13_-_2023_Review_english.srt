@@ -1,5 +1,5 @@
 1
-00:00:00,000 --> 00:00:12,120
+00:00:05,000 --> 00:00:12,120
 Hello, and welcome to the first ZAP Chat of 2024. Happy New Year to everyone.
 
 2
@@ -916,7 +916,7 @@ Many jobs are waiting in the pipeline thanks Ricardo. Yep definitely and then in
 
 230
 00:18:35,740 --> 00:18:42,060
-obviously december's often a bit of a quiet month um but still a lot going on and you know we are
+obviously december's often a bit of a quiet month, but still a lot going on and you know we are
 
 231
 00:18:43,020 --> 00:18:49,020
