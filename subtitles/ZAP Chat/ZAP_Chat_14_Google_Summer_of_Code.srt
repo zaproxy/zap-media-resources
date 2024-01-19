@@ -1,5 +1,5 @@
 1
-00:00:00,960 --> 00:00:10,880
+00:00:05,000 --> 00:00:10,880
 Hello and welcome to another episode of ZAP Chat with myself and Yiannis.
 
 2
@@ -112,7 +112,7 @@ GSoC back in 2007 when OWASP was flirting with it and it was, you know, it was a
 
 29
 00:02:29,840 --> 00:02:34,460
-question which projects are going to be part of the google summer of code as you say a little bit
+question which projects are going to be part of the Google Summer of Code as you say a little bit
 
 30
 00:02:34,460 --> 00:02:41,780
@@ -120,7 +120,7 @@ of a bum fight like you know who gets the the resources and what what kind of fe
 
 31
 00:02:41,780 --> 00:02:49,220
-has the google summer of code delivered for ZAP? So some of the absolute key ones what i'll do
+has the Google Summer of Code delivered for ZAP? So some of the absolute key ones what i'll do
 
 32
 00:02:49,220 --> 00:02:55,820
@@ -128,7 +128,7 @@ just just while we're mentioning you know here's my t-shirt so so what's happene
 
 33
 00:02:55,820 --> 00:03:02,320
-taken part in google summer of code for quite a few years as part of the OWASP organization.
+taken part in Google Summer of Code for quite a few years as part of the OWASP organization.
 
 34
 00:03:02,320 --> 00:03:08,060
@@ -136,7 +136,7 @@ Obviously, ZAP is no longer part of OWASP we're part of the software security pr
 
 35
 00:03:08,060 --> 00:03:13,900
-part of the linux foundation so we've talked to the linux foundation google summer of code admins
+part of the linux foundation so we've talked to the linux foundation Google Summer of Code admins
 
 36
 00:03:13,900 --> 00:03:18,140
@@ -156,7 +156,7 @@ this happens one way or another. There's a set of companies who are using ZAP
 
 40
 00:03:31,080 --> 00:03:35,780
-and have said they'll sponsor things like this so we want to take part in google summer of code
+and have said they'll sponsor things like this so we want to take part in Google Summer of Code
 
 41
 00:03:35,780 --> 00:03:41,020
@@ -184,7 +184,7 @@ problems and get involved you'll see you've got the contributing guide which is 
 
 47
 00:04:17,860 --> 00:04:23,380
-and lower down here there's a new set of pages we only added recently for google summer of code.
+and lower down here there's a new set of pages we only added recently for Google Summer of Code.
 
 48
 00:04:23,380 --> 00:04:25,780
@@ -216,7 +216,7 @@ three projects which wasn't i i think the first time you take part a project you
 
 55
 00:05:02,020 --> 00:05:07,900
-google summer of code projects, but we ended up with three which is a bit bizarre, but that
+Google Summer of Code projects, but we ended up with three which is a bit bizarre, but that
 
 56
 00:05:07,900 --> 00:05:17,160
@@ -240,11 +240,11 @@ project which wasn't OWASP project so in the end it got transferred to ZAP, beca
 
 61
 00:05:38,140 --> 00:05:43,740
-the Ajax spider and it was a wrapper around crawljax. So the Ajax spider came out of google summer
+the Ajax spider and it was a wrapper around crawljax. So the Ajax spider came out of Google Summer
 
 62
 00:05:43,740 --> 00:05:49,380
-of code and as did a lot of changes to the traditional spider and web socket testing
+of Code and as did a lot of changes to the traditional spider and web socket testing
 
 63
 00:05:49,380 --> 00:05:55,620
@@ -256,11 +256,11 @@ this was it was it was always designed to intended to be ZAP project anyway it w
 
 65
 00:06:01,320 --> 00:06:07,240
-sponsored by mozilla. So we end up mentoring them as well. So very first year google summer
+sponsored by mozilla. So we end up mentoring them as well. So very first year Google Summer of
 
 66
 00:06:07,240 --> 00:06:14,140
-code we mentored three projects which was challenging, but really good. Then 2013
+Code we mentored three projects which was challenging, but really good. Then 2013
 
 67
 00:06:14,140 --> 00:06:20,600
@@ -296,11 +296,11 @@ add-on.. yeah.. very useful and then 2023 the Browser Recorder and Postman Suppo
 
 75
 00:07:15,660 --> 00:07:22,440
-some really significant key developments have been implemented by students working on google
+some really significant key developments have been implemented by students working on Google
 
 76
 00:07:22,440 --> 00:07:25,720
-summer of code. Students and beyond, yeah absolutely
+Summer of Code. Students and beyond, yeah absolutely
 
 77
 00:07:25,800 --> 00:07:34,280

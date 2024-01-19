@@ -1,5 +1,5 @@
 1
-00:00:00,000 --> 00:00:13,920
+00:00:05,000 --> 00:00:13,920
 Hello and welcome to the first of the ZAP Chat videos and this one is about the authentication
 
 2

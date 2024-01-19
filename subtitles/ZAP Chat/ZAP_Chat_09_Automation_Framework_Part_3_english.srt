@@ -1,5 +1,5 @@
 1
-00:00:00,000 --> 00:00:11,840
+00:00:05,000 --> 00:00:11,840
 Hello, and welcome to another episode of ZAP Chat with me, Simon Bennetts, and Yiannis.
 
 2
@@ -928,7 +928,7 @@ So let's match a string.
 
 233
 00:15:58,800 --> 00:16:06,960
-So Bodg.*t, um, and that is a regex.
+So Bodg.*t and that is a regex.
 
 234
 00:16:07,320 --> 00:16:14,100
@@ -1184,7 +1184,7 @@ payloads and things because it's, I'm not a regex expert, but I use regexes a lo
 
 297
 00:21:19,540 --> 00:21:27,140
-And there's lots of places in ZAP where we use regexes just because they are so flexible, um, and so powerful.
+And there's lots of places in ZAP where we use regexes just because they are so flexible and so powerful.
 
 298
 00:21:27,280 --> 00:21:39,280
