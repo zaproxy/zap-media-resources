@@ -1,0 +1,1330 @@
+1
+00:00:05,000 --> 00:00:11,280
+Hello and welcome to another episode of ZAP Chat with myself and Yiannis.
+
+2
+00:00:11,280 --> 00:00:17,520
+Hello. Quite an exciting day today. We have authentication in the works. Simon,
+
+3
+00:00:17,520 --> 00:00:20,880
+what are we discussing today? Well, we're going back to the
+
+4
+00:00:20,880 --> 00:00:27,600
+automation framework. We've done several videos already on the automation framework. Authentication
+
+5
+00:00:27,600 --> 00:00:32,720
+and automation, you get those mixed up easily. Well, I do anyway. So, automation framework,
+
+6
+00:00:32,720 --> 00:00:37,680
+but authentication in the automation framework. And this is something that quite a few people
+
+7
+00:00:37,680 --> 00:00:43,440
+asked about. And so, yeah, that's what we're going to cover this time. We may well have other
+
+8
+00:00:43,440 --> 00:00:47,840
+episodes on authentication. We're not going to cover everything, but we're going to try and cover
+
+9
+00:00:47,840 --> 00:00:56,240
+the easier case to start with. So, that's what we're going to do. I'm going to also propose a
+
+10
+00:00:56,240 --> 00:00:57,440
+future video that talks
+
+11
+00:00:57,440 --> 00:00:57,520
+
+
+12
+00:00:57,520 --> 00:01:03,600
+about authorization to just make sure that you've got the three A's to grapple with in future
+
+13
+00:01:03,600 --> 00:01:08,560
+videos. So, we've got Juice Shop as a test site, I believe. Is that right?
+
+14
+00:01:08,560 --> 00:01:13,600
+Yep. OWASP Juice Shop, a deliberately vulnerable modern web app, which is a very
+
+15
+00:01:13,600 --> 00:01:22,080
+useful one to play around with. So, one thing I want to talk about first is with authentication.
+
+16
+00:01:22,080 --> 00:01:27,360
+So, what we're talking about here is very much around the automation side, because if
+
+17
+00:01:27,360 --> 00:01:31,280
+you're doing a manual pentest, you can authenticate. If you've got credentials,
+
+18
+00:01:31,280 --> 00:01:36,320
+you can authenticate yourself, you can manage the sessions. You don't have to worry about
+
+19
+00:01:36,320 --> 00:01:43,360
+ZAP handling the application sessions for you. If you're doing automation, it becomes much more
+
+20
+00:01:43,360 --> 00:01:49,120
+difficult because you're not there to log in. So, what we need to do is get ZAP to handle. Well,
+
+21
+00:01:49,120 --> 00:01:54,720
+you can handle authentication or ZAP can handle it, but we're really talking about ZAP handling
+
+22
+00:01:54,720 --> 00:01:57,200
+authentication. Now, ZAP can
+
+23
+00:01:57,200 --> 00:02:03,840
+handle pretty much anything, but it might be painful. We've got lots of options, and in many
+
+24
+00:02:03,840 --> 00:02:08,880
+cases, you have to really understand how everything works in order to configure ZAP.
+
+25
+00:02:08,880 --> 00:02:16,240
+And we've had cases where I know of at least one very large bank in the U.S. that tried to get
+
+26
+00:02:16,880 --> 00:02:21,360
+authentication working with one of their apps, and they couldn't do it with any of the commercial
+
+27
+00:02:21,360 --> 00:02:26,000
+scanners. They could only do it with ZAP because ZAP is so configurable, but they knew what they
+
+28
+00:02:26,000 --> 00:02:27,120
+were doing and they knew
+
+29
+00:02:27,120 --> 00:02:32,800
+exactly how things worked. So what we now recommend, even though ZAP supports loads of
+
+30
+00:02:32,800 --> 00:02:39,440
+different types of authentication, we really recommend you only use one, which is browser-based
+
+31
+00:02:39,440 --> 00:02:45,900
+authentication for web UIs. If you've got an API with no UI, then it's no good because you need a
+
+32
+00:02:45,900 --> 00:02:52,400
+browser. But we recommend the browser-based because you don't have to understand as much
+
+33
+00:02:52,400 --> 00:02:59,500
+in most cases. And if it's a modern web app, you need to use the AJAX Spider to explore it.
+
+34
+00:02:59,940 --> 00:03:06,980
+And it is a real pain actually injecting user sessions into a browser. It's very much
+
+35
+00:03:06,980 --> 00:03:11,180
+application-specific. I've managed it in some apps, and some apps have just failed completely.
+
+36
+00:03:12,100 --> 00:03:17,360
+So if you use browser-based authentication, then we can use that in the AJAX Spider.
+
+37
+00:03:17,360 --> 00:03:22,120
+We can launch the AJAX Spider, we'll launch browsers, we use browser-based authentication,
+
+38
+00:03:22,400 --> 00:03:30,040
+log itself in, and then carry on exploring the app. And you need that session state in the
+
+39
+00:03:30,040 --> 00:03:36,500
+browser for the AJAX Spider to work properly. So browser-based is the way to go for everything
+
+40
+00:03:36,500 --> 00:03:45,900
+apart from APIs with no UI. It makes sense, Simon, because if you look at big websites,
+
+41
+00:03:45,900 --> 00:03:51,280
+one of the basic layers of obfuscation, because it's not really a security control,
+
+42
+00:03:52,400 --> 00:03:59,940
+they have is that aspect of requiring browser interaction to stop the basic script kiddie
+
+43
+00:03:59,940 --> 00:04:05,540
+brute force attacks and the form field of username, password, every second factor, whatever else
+
+44
+00:04:05,540 --> 00:04:13,880
+is there. And we used to solve this problem by introducing CSRF tokens, whereby you had a
+
+45
+00:04:13,880 --> 00:04:19,280
+request and a response, and therefore you had to potentially use Selenium or something else to go
+
+46
+00:04:19,280 --> 00:04:21,660
+get the tokens, submit it back, and all that lovely stuff.
+
+47
+00:04:22,400 --> 00:04:26,960
+So what you're seeing is modifications of that in modern applications. Why? Because they're not
+
+48
+00:04:26,960 --> 00:04:31,220
+necessarily trying to make the lives of their pentest teams more difficult, but what they are
+
+49
+00:04:31,220 --> 00:04:36,860
+trying to do is stop the requests and responses on the basic script kiddie attacks of somebody
+
+50
+00:04:36,860 --> 00:04:42,800
+wanting to find an account of admin admin on the website, which of course doesn't exist.
+
+51
+00:04:42,800 --> 00:04:47,960
+So I think browser-based is going to be the way forward for a number of things because more and
+
+52
+00:04:47,960 --> 00:04:51,860
+more people are relying on the verification of the human element,
+
+53
+00:04:52,400 --> 00:04:54,140
+through that browser-based interaction.
+
+54
+00:04:54,980 --> 00:04:59,660
+That's right. And in some cases, it's just a side effect of modern web apps.
+
+55
+00:05:00,320 --> 00:05:08,480
+You know, we can, modern web apps have so much going on in the browser, and that state of the
+
+56
+00:05:08,480 --> 00:05:14,180
+user being logged in has to be there in the browser. So if the browser doesn't understand,
+
+57
+00:05:14,180 --> 00:05:20,060
+doesn't have the data to know that it's logged in, then it can't add the relevant headers via
+
+58
+00:05:20,060 --> 00:05:20,720
+JavaScript.
+
+59
+00:05:20,720 --> 00:05:21,680
+You know, it doesn't,
+
+60
+00:05:21,680 --> 00:05:22,380
+
+
+61
+00:05:22,400 --> 00:05:26,540
+it doesn't get the right responses back from the server, so it can't access all the data it needs
+
+62
+00:05:26,540 --> 00:05:32,240
+to. It doesn't matter if ZAP is injecting things after the browser sees it, the browser doesn't
+
+63
+00:05:32,240 --> 00:05:36,740
+know to actually make the relevant requests so it can get the data back that it needs.
+
+64
+00:05:37,700 --> 00:05:41,840
+Yeah, absolutely. And we're going to see more and more of that. So talking about automation
+
+65
+00:05:41,840 --> 00:05:46,400
+in authentication, right, is going to be exciting. Let's have a look.
+
+66
+00:05:46,400 --> 00:05:50,840
+Okay. So let me share my screen.
+
+67
+00:05:52,400 --> 00:06:02,240
+And we have ZAP. So what I'm going to do is just start with, let's have a look at Juice Shop.
+
+68
+00:06:03,140 --> 00:06:08,540
+So, so I've got it running. I'm running it in a Docker container because that makes it nice and
+
+69
+00:06:08,540 --> 00:06:15,260
+easy. And I've not, you know, so it's, I've not made any changes to Juice Shop. It's just out of
+
+70
+00:06:15,260 --> 00:06:20,480
+the box. So to speak, and I am now going to launch my browser Firefox, of course.
+
+71
+00:06:22,400 --> 00:06:23,900
+And we will.
+
+72
+00:06:27,020 --> 00:06:31,460
+So is the browser configurable if I didn't want to use Firefox and I wanted to use
+
+73
+00:06:31,940 --> 00:06:34,460
+chromium or Chrome or Edge.
+
+74
+00:06:34,460 --> 00:06:40,040
+So if we have a look, you'll see, we have pull downs. So we've got Chrome, Firefox,
+
+75
+00:06:40,040 --> 00:06:47,240
+and Safari. I'll have to see whether Safari is a pain. I mean, it is Chrome. Chrome and Firefox
+
+76
+00:06:47,240 --> 00:06:51,560
+are the, the, the two browsers. We are the primary ones we support.
+
+77
+00:06:52,400 --> 00:06:57,980
+So, you know, we support it comes down to what selenium supports
+
+78
+00:06:57,980 --> 00:07:02,060
+as well. So because we're using selenium is it selenium or selinium? I never know.
+
+79
+00:07:03,260 --> 00:07:07,760
+Not sure let's go with the, the, the double E selenium. Right? Sounds more,
+
+80
+00:07:07,760 --> 00:07:13,140
+more Greek to the word selenium is the ancient word for the moon that we have.
+
+81
+00:07:13,140 --> 00:07:19,820
+Oh very good. We learn a new thing every day. So this is Juice Shop and we will see, go to the
+
+82
+00:07:19,820 --> 00:07:22,220
+account and we can log in.
+
+83
+00:07:22,220 --> 00:07:26,460
+Now, I've only just started Juice Shop, so I don't have an account.
+
+84
+00:07:26,840 --> 00:07:37,460
+But we can, as not used to customer, so I'll do my usual ones of test@test.com and test123.
+
+85
+00:07:37,860 --> 00:07:41,080
+I have to repeat the password, test123.
+
+86
+00:07:41,080 --> 00:07:51,900
+We need to look up who owns test.com, the domain, because the numbers are just going to be smashed with requests.
+
+87
+00:07:52,220 --> 00:07:55,280
+It should be example.com, really, it shouldn't have been in mine.
+
+88
+00:07:55,860 --> 00:07:58,960
+Elvis' sibling's middle name is not surprisingly test.
+
+89
+00:07:59,340 --> 00:08:07,980
+So I will register that, and we now have the login page, and you'll see that is 3000/#/login.
+
+90
+00:08:08,380 --> 00:08:19,000
+I'll copy that just in case, and we will then go test@test.com and test123, and we will log in.
+
+91
+00:08:19,400 --> 00:08:20,440
+And we've logged in.
+
+92
+00:08:20,440 --> 00:08:20,780
+Great.
+
+93
+00:08:20,780 --> 00:08:26,280
+So we'll see the account there, test@test.com, everything's wonderful.
+
+94
+00:08:27,020 --> 00:08:29,100
+So that was nice and easy.
+
+95
+00:08:29,260 --> 00:08:34,540
+We have registered an account, and if we actually have a look at the alerts, let's see.
+
+96
+00:08:35,220 --> 00:08:42,100
+I think we should see, if we scroll down, we'll see that it's a modern web app.
+
+97
+00:08:42,260 --> 00:08:49,000
+We've recognized an authentication request, and we've recognized session management response.
+
+98
+00:08:49,000 --> 00:08:51,640
+So we found the authentication token.
+
+99
+00:08:52,300 --> 00:08:58,120
+So this gives you an idea that ZAP has some understanding about what's going on.
+
+100
+00:08:59,360 --> 00:09:07,420
+Now, like I said, there's lots of options for authentication, but what I really recommend,
+
+101
+00:09:08,300 --> 00:09:13,060
+and it's much easier to use a desktop rather than doing everything in automation,
+
+102
+00:09:13,400 --> 00:09:14,820
+because you can see what's going on.
+
+103
+00:09:15,100 --> 00:09:18,820
+And one of the tools we have in the desktop, which I think we've covered before,
+
+104
+00:09:19,000 --> 00:09:20,640
+is the authentication tester.
+
+105
+00:09:21,940 --> 00:09:24,180
+And you can see I was testing.
+
+106
+00:09:24,340 --> 00:09:26,660
+So we've got the Juice Shop login there.
+
+107
+00:09:26,760 --> 00:09:27,580
+Remember, it's the last one
+
+108
+00:09:28,140 --> 00:09:33,940
+test@test.com, test123, and I'm going to use Firefox.
+
+109
+00:09:34,580 --> 00:09:35,720
+Wait five seconds.
+
+110
+00:09:37,120 --> 00:09:40,120
+And we will just check to see whether this works.
+
+111
+00:09:41,080 --> 00:09:42,240
+And you'll see when this launches.
+
+112
+00:09:42,920 --> 00:09:42,940
+Sorry.
+
+113
+00:09:44,740 --> 00:09:45,140
+Yeah.
+
+114
+00:09:45,320 --> 00:09:47,500
+So we'll see, actually, we were not logged in there.
+
+115
+00:09:47,500 --> 00:09:48,620
+It's gone to the login page.
+
+116
+00:09:49,000 --> 00:09:54,680
+And the five-second thing is because we found that quite a few modern web apps
+
+117
+00:09:54,680 --> 00:09:57,080
+actually take quite a long time to initialize.
+
+118
+00:09:57,600 --> 00:10:01,240
+So I've seen 20 seconds, which is horrific.
+
+119
+00:10:02,460 --> 00:10:04,980
+And, you know, not a good user experience,
+
+120
+00:10:05,440 --> 00:10:10,260
+but we have to deal with things as we find, not as we'd like them to be.
+
+121
+00:10:11,400 --> 00:10:13,480
+So, you know, and what happens,
+
+122
+00:10:13,480 --> 00:10:17,640
+we actually get a page-loaded event from the browser really early on.
+
+123
+00:10:18,280 --> 00:10:18,640
+And then
+
+124
+00:10:19,000 --> 00:10:24,400
+it sits there for two, three, five, 10, 20 seconds while it's loading
+
+125
+00:10:24,400 --> 00:10:25,240
+everything in the background.
+
+126
+00:10:25,780 --> 00:10:29,660
+And we want to make sure that the page is actually fully loaded.
+
+127
+00:10:29,860 --> 00:10:32,260
+So it starts making requests to the server.
+
+128
+00:10:32,260 --> 00:10:33,220
+So ZAP sees them.
+
+129
+00:10:33,400 --> 00:10:36,340
+So ZAP can identify a good verification URL.
+
+130
+00:10:37,120 --> 00:10:37,540
+Right.
+
+131
+00:10:37,660 --> 00:10:39,400
+So it might even be longer than five.
+
+132
+00:10:39,400 --> 00:10:40,600
+It could go up to 20.
+
+133
+00:10:41,200 --> 00:10:41,440
+Yeah.
+
+134
+00:10:41,500 --> 00:10:45,040
+And that's why we, we kind of, that's why we default to browser to
+
+135
+00:10:45,060 --> 00:10:47,140
+Firefox rather than Firefox headless.
+
+136
+00:10:47,680 --> 00:10:48,960
+And that means you can see.
+
+137
+00:10:48,960 --> 00:10:49,560
+What's going on.
+
+138
+00:10:49,560 --> 00:10:52,020
+You can go, nothing's happened yet.
+
+139
+00:10:52,080 --> 00:10:53,340
+I'd better increase the timeout.
+
+140
+00:10:54,200 --> 00:10:54,500
+Right.
+
+141
+00:10:54,900 --> 00:10:55,140
+Right.
+
+142
+00:10:55,680 --> 00:10:57,660
+So what's the demo mode option?
+
+143
+00:10:59,400 --> 00:11:00,720
+Demo mode is for me.
+
+144
+00:11:02,140 --> 00:11:07,720
+So this is actually for when I'm on stage at a conference, because this
+
+145
+00:11:07,720 --> 00:11:11,200
+goes through too quickly, it will launch the browser, fill things in, and
+
+146
+00:11:11,200 --> 00:11:12,060
+you can't see what's going on.
+
+147
+00:11:12,240 --> 00:11:16,040
+So I think it's like a two second delay between typing something in the
+
+148
+00:11:16,040 --> 00:11:18,740
+password field, typing or the user field typing something in the
+
+149
+00:11:18,740 --> 00:11:18,840
+
+
+150
+00:11:18,840 --> 00:11:23,760
+password field, clicking on things, and this will actually cope with username
+
+151
+00:11:23,760 --> 00:11:26,220
+and password on different pages, so to speak.
+
+152
+00:11:26,560 --> 00:11:32,400
+So it kind of helps, it allows me to, to talk through things on stage or in videos.
+
+153
+00:11:33,620 --> 00:11:37,080
+So you don't need to use demo mode, but the key thing here is everything's
+
+154
+00:11:37,080 --> 00:11:38,280
+passed, which is good.
+
+155
+00:11:38,280 --> 00:11:39,060
+This is what we want.
+
+156
+00:11:39,540 --> 00:11:42,680
+And this makes our life easier.
+
+157
+00:11:42,960 --> 00:11:48,600
+Now, if it does, if things don't pass, then it's not the end of the world and
+
+158
+00:11:48,600 --> 00:11:51,900
+that's something we'll probably cover in a future episode.
+
+159
+00:11:53,400 --> 00:11:58,140
+Debugging authentication prior to any automation, which you need to do because
+
+160
+00:11:58,140 --> 00:11:59,640
+otherwise the plan's just going to fail.
+
+161
+00:11:59,640 --> 00:11:59,840
+Right?
+
+162
+00:12:00,780 --> 00:12:01,160
+Correct.
+
+163
+00:12:01,380 --> 00:12:06,720
+So what happened is we created, or the tester created this authentication
+
+164
+00:12:06,720 --> 00:12:12,660
+test context, and what you'll see is under authentication, and I'll make
+
+165
+00:12:12,660 --> 00:12:16,800
+this a little bit bigger so we can see it, it's chosen browser-based now we do
+
+166
+00:12:16,800 --> 00:12:18,380
+have the option for auto detection.
+
+167
+00:12:18,380 --> 00:12:22,580
+That's not, it, having everything down as auto detect doesn't really work.
+
+168
+00:12:23,000 --> 00:12:28,700
+The best option is to choose browser-based and then you'll see we've, it actually
+
+169
+00:12:28,700 --> 00:12:35,000
+has, what ZAP will have done, it would have actually set this to auto detect.
+
+170
+00:12:35,300 --> 00:12:40,760
+And then when it, it, the auto detect worked and it then went, okay, we found
+
+171
+00:12:40,760 --> 00:12:47,180
+this URL, which is who am I, so that's the URL that we can actually hold to see
+
+172
+00:12:47,180 --> 00:12:47,840
+
+173
+00:12:47,840 --> 00:12:48,080
+
+174
+00:12:48,080 --> 00:12:50,300
+whether we're logged in.. Right!..
+
+175
+00:12:50,360 --> 00:12:54,560
+..and then, and what we're doing is we're checking for a regex pattern,
+
+176
+00:12:54,560 --> 00:12:56,640
+which includes the, the username.
+
+177
+00:12:57,440 --> 00:12:58,040
+The username.
+
+178
+00:12:58,100 --> 00:12:58,480
+Right.
+
+179
+00:12:59,540 --> 00:13:04,100
+And the pull through verification is a page that you normally would get a 404,
+
+180
+00:13:04,100 --> 00:13:08,000
+unless you had the authentication tokens or, you know, a 302 or, you know, whatever.
+
+181
+00:13:08,000 --> 00:13:13,160
+Something now in this case, I don't think, I think it comes back as a 200 anyway,
+
+182
+00:13:13,160 --> 00:13:17,540
+which is a pain, but we've identified a pattern, which is unique and ZAP will have
+
+183
+00:13:17,540 --> 00:13:20,720
+tried this both with the, the session tokens without them.
+
+184
+00:13:21,020 --> 00:13:22,160
+So we're pretty confident.
+
+185
+00:13:22,160 --> 00:13:24,380
+This is a good page and we can tell the difference.
+
+186
+00:13:25,580 --> 00:13:25,880
+Yeah.
+
+187
+00:13:26,960 --> 00:13:32,000
+ZAP has also created a test user and it is also, if we look in session
+
+188
+00:13:32,000 --> 00:13:36,740
+management, it's created header based session management, it's added the headers
+
+189
+00:13:36,800 --> 00:13:42,300
+twice, that doesn't matter, minor bug, fix that at some point, but everything is good.
+
+190
+00:13:43,400 --> 00:13:47,480
+So what we can do now is we can use this.
+
+191
+00:13:47,780 --> 00:13:52,160
+We can actually use this context in an automation plan.
+
+192
+00:13:53,280 --> 00:13:57,800
+Now, what I'll do first is actually, I will create an automation plan and I will
+
+193
+00:13:57,800 --> 00:14:04,160
+use the default context just to be a contrary and we'll, you have to select a job.
+
+194
+00:14:04,160 --> 00:14:05,640
+I'm going to select the request to job.
+
+195
+00:14:06,740 --> 00:14:13,400
+And what I'll do then is go into this context and we can set parameters variables,
+
+196
+00:14:13,400 --> 00:14:15,380
+but then we edit the context.
+
+197
+00:14:15,380 --> 00:14:15,980
+You'll see.
+
+198
+00:14:16,700 --> 00:14:17,300
+We could got the
+
+199
+00:14:17,540 --> 00:14:22,940
+include regex, the exclude regex and the technology, but we can't edit the authentication.
+
+200
+00:14:23,960 --> 00:14:24,680
+Sorry about this.
+
+201
+00:14:25,760 --> 00:14:26,900
+We plan to add this.
+
+202
+00:14:26,900 --> 00:14:28,700
+We will add this, but these things take time.
+
+203
+00:14:28,700 --> 00:14:29,660
+We've got a lot going on.
+
+204
+00:14:29,840 --> 00:14:32,000
+So you can't edit the authentication.
+
+205
+00:14:32,480 --> 00:14:37,340
+This means I cannot add authentication to this context.
+
+206
+00:14:38,120 --> 00:14:43,100
+Does this mean the authentication plan, the authentication framework doesn't support authentication?
+
+207
+00:14:43,260 --> 00:14:46,460
+No, the automation framework does support authentication.
+
+208
+00:14:46,460 --> 00:14:47,480
+We just don't allow you to edit.
+
+209
+00:14:47,780 --> 00:14:49,580
+So what can you do?
+
+210
+00:14:49,580 --> 00:14:56,840
+Well, what we need to do is we need to actually scrap that plan and use the authentication test because
+
+211
+00:14:56,840 --> 00:15:01,900
+this is the one we have set up authentication on and I'll go for the requester again.
+
+212
+00:15:02,800 --> 00:15:08,400
+And the reason I'm doing this is, what I want to do is actually make a request and we'll
+
+213
+00:15:08,400 --> 00:15:12,500
+see, here's a telltale sign that we have got authentication set up
+
+214
+00:15:12,500 --> 00:15:14,400
+because we've got a user we can choose 
+
+215
+00:15:15,100 --> 00:15:17,100
+and I'm going to make a request..
+
+216
+00:15:17,480 --> 00:15:27,820
+I actually like the fact that the authentication test is immutable in the
+
+217
+00:15:27,820 --> 00:15:34,640
+context of the plan, because if you look at, you know, just the sequence of events, let's say from
+
+218
+00:15:34,640 --> 00:15:41,260
+a red team perspective, right, you want to have figured out absolutely everything around how
+
+219
+00:15:41,260 --> 00:15:46,780
+authentication works before you go into, before you go near, you know, anything relating to
+
+220
+00:15:46,780 --> 00:15:51,600
+automation, right? And that's a general principle not related to just security. It's, you know, you
+
+221
+00:15:51,600 --> 00:15:57,660
+don't automate something unless you've got the absolute swim lane sussed out in terms of what
+
+222
+00:15:57,660 --> 00:16:04,040
+are the precise steps that need to be followed. So I don't see it as a bad thing to be editing,
+
+223
+00:16:04,200 --> 00:16:07,240
+you know, the authentication. Now, it could be like when you have nuances and so on, it could
+
+224
+00:16:07,240 --> 00:16:10,840
+be a little bit more difficult because you've got to create a new context and to do that, you've got
+
+225
+00:16:10,840 --> 00:16:16,760
+to run the browser-based, you know, authentication. Not necessarily. Let's see, because what 
+
+226
+00:16:16,760 --> 00:16:24,460
+I've done, so I've, using this authentication test context, I've added a request, which, so this
+
+227
+00:16:24,460 --> 00:16:31,200
+one was, we use it authenticated. So we've said the user, if you don't say which user, then it'll
+
+228
+00:16:31,200 --> 00:16:36,400
+be unauthenticated request. We're very explicit about, you know, we do what we're told, or ZAP
+
+229
+00:16:36,400 --> 00:16:44,160
+does what it's told, and we're requesting this page. Now, I will start a new ZAP session. I think
+
+230
+00:16:44,160 --> 00:16:46,740
+we mentioned this before, a new ZAP session will wipe 
+
+231
+00:16:46,760 --> 00:16:51,340
+everything apart from the automation plan, because it's really useful to keep that there.
+
+232
+00:16:51,840 --> 00:16:58,960
+And I will now run the automation plan. And we should see the browser launching and
+
+233
+00:16:58,960 --> 00:17:09,340
+logged in. There we go. Should, and after five seconds, it will stop. And it says everything is
+
+234
+00:17:09,340 --> 00:17:16,200
+okay. But if you work in security, you know, you never believe everything that's just shown to you
+
+235
+00:17:16,200 --> 00:17:20,660
+like this. So let's have a look at the history. And we will see down here, there are actually
+
+236
+00:17:20,660 --> 00:17:28,980
+two requests for the whoami page. The first one is auth. The source is auth. So this is the
+
+237
+00:17:28,980 --> 00:17:35,360
+authenticator. And this is, so this has made the request, and you'll see the authorization token
+
+238
+00:17:35,360 --> 00:17:43,240
+there. And the response all looks good. We've got the email in there, last login IP, etc. and then
+
+239
+00:17:43,240 --> 00:17:46,140
+this is the manual one. This is the one I added
+
+240
+00:17:46,200 --> 00:17:54,000
+via the plan and you can see, again, it's got the bearer, but it's got very little else. So the other one came
+
+241
+00:17:54,000 --> 00:18:00,520
+from the browser. This one's just come from the automation framework. And again, the response is
+
+242
+00:18:00,520 --> 00:18:08,720
+good. So that's it. Everyone's happy. It's all sorted. We can now go and add extra things. So
+
+243
+00:18:08,720 --> 00:18:15,820
+you can then do things like the AJAX spider, active scan, all those things. A quick tip on that.
+
+244
+00:18:16,200 --> 00:18:22,080
+You could always check the size, right, in terms of the URL that you're verifying, that you use to
+
+245
+00:18:22,080 --> 00:18:28,440
+verify. The size of the length of what comes back typically changes if you're successful or
+
+246
+00:18:28,440 --> 00:18:29,020
+unsuccessful.
+
+247
+00:18:29,920 --> 00:18:37,160
+Well, let's just show that as you've suggested. So right-click, right-click anywhere on ZAP to get
+
+248
+00:18:37,160 --> 00:18:43,800
+loads of options. And we're going to open in the request editor. So here's our request. And I'm
+
+249
+00:18:43,800 --> 00:18:46,000
+going to take out 
+
+250
+00:18:46,200 --> 00:18:55,200
+the cookie and authorization header. And then just send that. And you'll see here, the response is
+
+251
+00:18:55,200 --> 00:19:06,520
+just user. And we get 200. And of course, we can then see back down here, I have made ZAP the text
+
+252
+00:19:06,520 --> 00:19:10,980
+bigger, which is why it's all scrunched up here, just so it's easier to read on the video. We can
+
+253
+00:19:10,980 --> 00:19:16,180
+see 125 bytes when it worked, and then 11 bytes
+
+254
+00:19:16,200 --> 00:19:22,620
+when it failed. So we can see from the size, even though we're getting a 200 response code back
+
+255
+00:19:22,620 --> 00:19:23,120
+in each case.
+
+256
+00:19:24,880 --> 00:19:31,860
+So you've set this up, but it's not quite what you want. You want to tweak things. So let's have a
+
+257
+00:19:31,860 --> 00:19:40,320
+look at this authentication test context again. Now, as said, it's set up browsed-based
+
+258
+00:19:40,320 --> 00:19:46,180
+authentication. Now, we could... Obviously, it's got this... It's sending pull URL. This is
+
+259
+00:19:46,200 --> 00:19:51,540
+fine. We can leave it like that. But what we can do is we can also change it back to auto-detect.
+
+260
+00:19:52,120 --> 00:19:59,760
+So this means that if something changes in your application, maybe we've chosen a URL that
+
+261
+00:19:59,760 --> 00:20:05,360
+is currently there right now, but in the future, that API call gets changed,
+
+262
+00:20:05,600 --> 00:20:12,340
+then your plan would fail because we're pinging an API that no longer exists, is no longer supported,
+
+263
+00:20:12,740 --> 00:20:15,060
+and then everything fails.
+
+264
+00:20:15,780 --> 00:20:16,180
+
+
+265
+00:20:16,200 --> 00:20:22,300
+So if you change it back to auto-detect, then ZAP will auto-detect the right URL to verify every
+
+266
+00:20:22,300 --> 00:20:27,660
+time. And the same with session management. We're going to go back and change to auto-detect
+
+267
+00:20:27,660 --> 00:20:34,740
+session management. And we don't want it to be called authentication test. We'll change it to
+
+268
+00:20:34,740 --> 00:20:41,760
+Juice Shop. And actually, when we go to authentication, we don't want Firefox popping
+
+269
+00:20:41,760 --> 00:20:44,540
+up every time when we automate it, so we can change it to Firefox headless.
+
+270
+00:20:44,540 --> 00:20:53,620
+So we can change this context. That has not changed the context in the automation framework.
+
+271
+00:20:54,020 --> 00:21:01,860
+If we have a look here, it still says authentication test, because the plan is different from the
+
+272
+00:21:01,860 --> 00:21:06,480
+context we've created. We created that context. There's now no link between them. And this came
+
+273
+00:21:06,480 --> 00:21:12,660
+up recently on the user group. So changing one doesn't change the context. So if I go in and
+
+274
+00:21:12,660 --> 00:21:14,260
+change the plan, and
+
+275
+00:21:14,540 --> 00:21:24,760
+change this to authentication test too.. I'm saving the plan. But until I run that plan, nothing happens. So if I run the plan now, I will
+
+276
+00:21:24,760 --> 00:21:30,220
+get another context. We won't overwrite this one because they're separate. But what I'm going to do
+
+277
+00:21:30,220 --> 00:21:35,420
+is I'm going to... I nearly actually created a new ZAP context, which I don't want to do because I
+
+278
+00:21:35,420 --> 00:21:42,660
+want to create the plan first. So I'm going to trash that plan. And I'm going to create.. use this new
+
+279
+00:21:42,660 --> 00:21:44,420
+context. And again...
+
+280
+00:21:45,540 --> 00:21:58,520
+add the requester. And then we can go in and make sure I've copied the right URL. So put that in
+
+281
+00:21:58,520 --> 00:22:01,220
+there and paste URL.
+
+282
+00:22:04,260 --> 00:22:11,580
+So we can.. Just delete the update plan through the edits that you've done on the authentication test
+
+283
+00:22:11,580 --> 00:22:11,880
+now.
+
+284
+00:22:12,500 --> 00:22:14,520
+Yeah, I should have actually pointed out.
+
+285
+00:22:14,540 --> 00:22:20,180
+I could have selected the URL from the sites tree like this. But hey, I've got it saved there.
+
+286
+00:22:20,380 --> 00:22:28,500
+So I will save that. And we can now again go and create a new ZAP session. And then we will run the
+
+287
+00:22:28,500 --> 00:22:34,440
+plan. And you can see it's now created this Juice Shop context. And we're not getting the browser
+
+288
+00:22:34,440 --> 00:22:39,000
+being displayed because we've chosen a headless one. So we'll just have to kind of...
+
+289
+00:22:39,000 --> 00:22:44,160
+Let's spend a bit of time on browser and browser headless, like Chrome and Chrome headless. What
+
+290
+00:22:44,540 --> 00:22:48,480
+does headless stand for in the context of what we are selecting?
+
+291
+00:22:49,480 --> 00:22:58,520
+As you see, we don't see the browser pop up. So we don't see the Firefox or Chrome GUI. And this
+
+292
+00:22:58,520 --> 00:23:03,680
+means... This is really good for automation because in many cases, you're going to be running...
+
+293
+00:23:03,680 --> 00:23:11,540
+People run automation on a server that doesn't have a console attached to it at all and will
+
+294
+00:23:11,540 --> 00:23:14,380
+actually fail if you try and launch programs
+
+295
+00:23:14,380 --> 00:23:25,460
+that have a GUI. So headless browsers are really good for testing and automation where you don't have, you know, you don't
+
+296
+00:23:25,460 --> 00:23:29,200
+want things popping up all over the screen. I often use it when I'm doing something. I'm doing
+
+297
+00:23:29,200 --> 00:23:34,800
+a scan on one window and typing another. You just don't want all these things popping up.
+
+298
+00:23:35,460 --> 00:23:41,080
+Sometimes, if you're testing stuff, if you're testing authentication with the AJAX Spider,
+
+299
+00:23:41,080 --> 00:23:44,160
+you might want to have all these windows popping up. So you can just check,
+
+300
+00:23:44,380 --> 00:23:50,460
+visually, that it looks like things are logging in. But yeah. So this is why we give you that
+
+301
+00:23:50,460 --> 00:23:53,660
+choice. And luckily, the two main browsers support that.
+
+302
+00:23:55,260 --> 00:23:58,880
+So the headless option is something that browsers support in the context of
+
+303
+00:23:58,880 --> 00:24:05,500
+launching the browser, but not having the UI visible to the user, right?
+
+304
+00:24:05,500 --> 00:24:13,600
+Yeah. So our plan has run. It's successful, but we will just go to the history just to double check.
+
+305
+00:24:14,380 --> 00:24:19,740
+And we will see that we've made, again, two requests. One is from authentication and one is
+
+306
+00:24:19,740 --> 00:24:27,500
+manual. They both got the right contents and they're both 125 bytes, code 200. So everything
+
+307
+00:24:27,500 --> 00:24:37,260
+worked. So that's it. That is the simple case with authentication in the automation framework.
+
+308
+00:24:39,900 --> 00:24:42,140
+This is where we know that the ZAP...
+
+309
+00:24:42,620 --> 00:24:44,380
+so we browser-based authentication
+
+310
+00:24:44,390 --> 00:24:51,660
+works and auto-detect works as well. And as you can see, it's a lot easier than, you know,
+
+311
+00:24:51,720 --> 00:24:58,260
+you don't have to understand what's going on. You don't have to understand what session tokens are
+
+312
+00:24:58,260 --> 00:25:04,220
+used, which headers, which cookies. You don't have to worry about how to verify that the user is
+
+313
+00:25:04,220 --> 00:25:09,240
+logged in. ZAP handles all of that for you. It auto-detects and configures itself to handle
+
+314
+00:25:09,240 --> 00:25:16,220
+these things. Now, one thing you do need to be aware of is obviously things can change and you
+
+315
+00:25:16,220 --> 00:25:20,620
+never know. If you don't check things, you don't know what's going on. So we've already talked
+
+316
+00:25:20,620 --> 00:25:27,360
+about statistics, the ZAP statistics you can use to check that these things are working. And I
+
+317
+00:25:27,360 --> 00:25:32,860
+think we'll probably have to have a ZAP Chat session just on statistics. And we'll need to
+
+318
+00:25:32,860 --> 00:25:38,520
+have another session on what to do if the auto, the
+
+319
+00:25:38,520 --> 00:25:39,220
+
+
+320
+00:25:39,240 --> 00:25:47,360
+authentication tester doesn't work for you. But right now, I will just stop sharing. So
+
+321
+00:25:47,360 --> 00:25:53,700
+we've shown you that the automation framework does support authentication. It's pretty easy
+
+322
+00:25:53,700 --> 00:25:59,360
+to handle as long as the authentication tester works. And if it doesn't work for you,
+
+323
+00:25:59,680 --> 00:26:03,320
+obviously we'll have more sessions on this, but do get in touch via the ZAP user group
+
+324
+00:26:03,320 --> 00:26:08,520
+because we can help you. And it's not the end of the world. ZAP will be able to handle things.
+
+325
+00:26:08,520 --> 00:26:14,460
+And we want to learn more about the applications that ZAP struggles with. So if there are a lot of
+
+326
+00:26:14,460 --> 00:26:20,200
+apps that are struggling with a particular type of authentication, we'll fix that. We will be able
+
+327
+00:26:20,200 --> 00:26:26,260
+to do this. We just need enough data, enough information or test cases. And then we want
+
+328
+00:26:26,260 --> 00:26:32,120
+this ZAP auto-detection to handle as many of the authentication cases as possible.
+
+329
+00:26:34,360 --> 00:26:36,340
+Amazing and insightful. Thank you, Simon.
+
+330
+00:26:36,920 --> 00:26:38,500
+Thank you, Yiannis.
+
+331
+00:26:38,520 --> 00:26:43,320
+Thank you for watching. If you like this series, then please click on the like button, subscribe
+
+332
+00:26:43,320 --> 00:26:48,480
+and add comments to let us know what you think of it and what else you'd like us to cover.
+
+333
+00:26:48,480 --> 00:26:49,900
+Thank you very much.
+
