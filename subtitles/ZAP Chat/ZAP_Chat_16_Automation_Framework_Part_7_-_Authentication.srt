@@ -906,7 +906,7 @@ one was, we use it authenticated. So we've said the user, if you don't say which
 
 228
 00:16:31,200 --> 00:16:36,400
-be an authenticated request. We're very explicit about, you know, we do what we're told, or ZAP
+be unauthenticated request. We're very explicit about, you know, we do what we're told, or ZAP
 
 229
 00:16:36,400 --> 00:16:44,160
@@ -1062,7 +1062,7 @@ time. And the same with session management. We're going to go back and change to
 
 267
 00:20:27,660 --> 00:20:34,740
-session management. And we don't want it to be called authentication chest. We'll change it to
+session management. And we don't want it to be called authentication test. We'll change it to
 
 268
 00:20:34,740 --> 00:20:41,760
