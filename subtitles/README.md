@@ -7,7 +7,7 @@ Here is a short guide on how the subtitles were created using OpenAI's Whisper.
 
 Regardless of the project, you first need the video file to create the audio file (see next step). 
 There are many tools and online services out there - one way to do this quickly and easily is [JDownloader](https://jdownloader.org/download/index?s=lng_en). 
-After installation, simply start the program, copy the YouTube link and import it into Jdownloader. It may be that ffmpg needs to be installed. Then just select the video file and click on "Next". The download will now start in the quality provided by the uploader.
+After installation, simply start the program, copy the YouTube link and import it into Jdownloader. It may be that ffmpeg needs to be installed. Then just select the video file and click on "Next". The download will now start in the quality provided by the uploader.
 
 ## The audio file
 
