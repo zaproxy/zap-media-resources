@@ -1,22 +1,21 @@
 # Generate subtitles for ZAP Videos using whisper
 
 Here is a short guide on how the subtitles were created using OpenAI's Whisper.
-**A Nvidia graphics card with Cuda cores is required**. The more VRAM the better, as larger models can then be used if necessary.
-In addition to Whisper, you also need an audio file, e.g. in .mp3 format, which you want to transcribe.
+**A Nvidia graphics card with Cuda cores is required (The absolute minimum is the Nvidia 1080Ti).** The more VRAM the better, as larger models can then be used if necessary. In addition to Whisper, you also need an audio file, e.g. in .mp3 format, which you want to transcribe.
 
+## Video download
 
-
-## Install Whisper
-
-First you have to install Whisper - you can find out how to do this in the official repository [Whisper](https://github.com/openai/whisper). Here you will also find a list of the requirements, languages and possibilities of what you can do with it.
-
-
+Regardless of the project, you first need the video file to create the audio file (see next step). 
+There are many tools and online services out there - one way to do this quickly and easily is [JDownloader](https://jdownloader.org/download/index?s=lng_en). 
+After installation, simply start the program, copy the YouTube link and import it into Jdownloader. It may be that ffmpg needs to be installed. Then just select the video file and click on "Next". The download will now start in the quality provided by the uploader.
 
 ## The audio file
 
 To be able to use Whisper, you need the audio part of the video. First you have to download the video with the tool of your choice. Then you have to cut off the video or audio part. You can use [DaVinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve) as a free and well-known tool. The recommended audio format is .mp3.
 
+## Install Whisper
 
+First you have to install Whisper - you can find out how to do this in the official repository [Whisper](https://github.com/openai/whisper). Here you will also find a list of the requirements, languages and possibilities of what you can do with it.
 
 ## Generate .srt file from the audio file
 
@@ -27,6 +26,8 @@ recognized automatically. For the model, please note that you should use the one
 
     whisper .\audiofile.mp3 --language English --model large --task transcribe --output_format srt --output_dir YOUR OUTPUT DIRECTORY
     
+
+With a 1080Ti, the transcript for a 30 minute video takes about 45 minutes.
 
 ## The follow-up check
 
