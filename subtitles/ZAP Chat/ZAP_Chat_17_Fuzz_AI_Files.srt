@@ -380,7 +380,7 @@ So here you go.
 
 96
 00:05:52,400 --> 00:06:01,400
-You can actually see I'm based on GPT-4, which is interation of open APIs, generative pre-trained transform models, etc., etc.
+You can actually see I'm based on GPT-4, which is interaction of open APIs, generative pre-trained transform models, etc., etc.
 
 97
 00:06:01,400 --> 00:06:02,400
@@ -720,7 +720,7 @@ Shame.
 
 181
 00:10:43,400 --> 00:10:46,400
-So a well-doiled response back, right?
+So a well oiled response back, right?
 
 182
 00:10:46,400 --> 00:10:48,400
